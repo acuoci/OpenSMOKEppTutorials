@@ -14,8 +14,8 @@
 
 Dictionary POLIMI_PRF_PAH_HT_1407
 {
-		@Kinetics			..\..\KineticMechanisms\POLIMI_1407\Kinetics\POLIMI_PRF_PAH\POLIMI_PRF_PAH_HT_1407.CKI;
-		@Thermodynamics		..\..\KineticMechanisms\POLIMI_1407\Thermodynamics\POLIMI_TOT_NOX_1407.CKT;
+		@Kinetics			../../KineticMechanisms/POLIMI_1407/Kinetics/POLIMI_PRF_PAH/POLIMI_PRF_PAH_HT_1407.CKI;
+		@Thermodynamics		../../KineticMechanisms/POLIMI_1407/Thermodynamics/POLIMI_TOT_NOX_1407.CKT;
 		@Output				kinetics;
 }
 

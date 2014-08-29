@@ -1,2 +1,1 @@
-$OPENSMOKEPP_EXEFOLDER\ShockTubeReactor.sh --input input.dic
-pause
+$OPENSMOKEPP_EXEFOLDER/OpenSMOKE_ShockTubeReactor.sh --input input.dic

@@ -27,8 +27,8 @@ Dictionary ShockTubeReactor
 
 Dictionary Camac-Feinberg
 {
-		@Kinetics			..\..\KineticMechanisms\Camac-Feinberg\kinetics.CKI;
-		@Thermodynamics		..\..\KineticMechanisms\Camac-Feinberg\thermo.CKT;
+		@Kinetics			../../KineticMechanisms/Camac-Feinberg/kinetics.CKI;
+		@Thermodynamics		../../KineticMechanisms/Camac-Feinberg/thermo.CKT;
 		@Output				kinetics;
 }
 

@@ -1,2 +1,1 @@
-$OPENSMOKEPP_EXEFOLDER\OpenSMOKE_PlugFlowReactor.sh --input input.dic
-pause
+$OPENSMOKEPP_EXEFOLDER/OpenSMOKE_PlugFlowReactor.sh --input input.dic

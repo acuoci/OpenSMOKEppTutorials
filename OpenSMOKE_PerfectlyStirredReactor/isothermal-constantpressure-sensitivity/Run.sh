@@ -1,2 +1,1 @@
-$OPENSMOKEPP_EXEFOLDER\OpenSMOKE_PerfectlyStirredReactor.sh --input input.dic
-pause
+$OPENSMOKEPP_EXEFOLDER/OpenSMOKE_PerfectlyStirredReactor.sh --input input.dic
