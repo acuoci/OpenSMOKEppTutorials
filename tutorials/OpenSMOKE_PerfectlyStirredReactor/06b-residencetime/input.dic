@@ -1,0 +1,66 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PerfectlyStirredReactor
+{
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
+		
+		@Type					NonIsothermal-ConstantPressure;
+		
+		@InletStatus            inlet-mixture;
+		
+		@ResidenceTime			350 ms;
+
+		@Volume                 100 cm3;
+		
+		@EndTime				0.5 s;
+
+		@ExchangeArea						104.18 cm2;
+		@EnvironmentTemperature 			620 		K;
+		@GlobalThermalExchangeCoefficient	4e-2 		kcal/m2/K;
+		
+		@OdeParameters	ode-parameters;
+		@Options        output-options;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics			../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output				kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	620.   	K ; 
+		@Pressure      	7. 		bar ;
+
+		@EquivalenceRatio		1.;
+		@FuelMoleFractions		H2	1;
+		@OxidizerMoleFractions	O2 0.21 N2 0.79;
+}
+                                            
+Dictionary output-options
+{	
+		@StepsFile  3;
+		@StepsVideo 10;
+		@VerboseASCIIFile true;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-8;
+}

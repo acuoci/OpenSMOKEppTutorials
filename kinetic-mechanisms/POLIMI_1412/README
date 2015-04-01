@@ -1,0 +1,68 @@
+------------------------------------------------------
+GAS PHASE COMBUSTION SCHEMES: VERSION 1412 (December 2014)
+------------------------------------------------------
+
+The kinetic schemes provided by CRECK Modeling at Politecnico di Milano are hierarchically organized: moving from the "Hydrogen mechanism" up to the "Complete mechanism: low and high temperature". All the schemes are self consistent, i.e., they already include the previous submechanisms. All the mechanisms are available with or without NOx reactions. All these mechanisms are in Chemkin format, they are compatible with version 3.6.2 and above.
+
+The Kinetics folder contains the current version of POLIMI kinetic mechanisms (December 2014). The thermodynamic (POLIMI_TOT_NOX_1412.CKT) and transport (POLIMI_TOT_NOX_1412.TRC) files are the same for all the kinetic mechanisms reported below. The POLIMI_TOT_NOX_1412.NAM (in the Thermodynamics folder) contains the explanation of the names of the species.
+
+The references to properly cite the kinetic mechanisms are reported on the first lines of each kinetic file (CKI).
+
+Please visit our web site to have more information: http://creckmodeling.chem.polimi.it
+
+--------------
+1. POLIMI_H2CO
+--------------
+Detailed mechanism of hydrogen oxidation.
+a. Kinetic scheme (14 species 33 reactions)
+b. Kinetic scheme with NOx (32 species 173 reactions)
+
+-------------------------------------------------
+2. POLIMI_C1C3: hydrocarbon fuels up to 3 C atoms
+-------------------------------------------------
+Detailed mechanism of the pyrolysis, partial oxidation and combustion of hydrocarbon fuels up to 3 C atoms.
+a. High temperature kinetic scheme (84 species 1698 reactions)
+b. High and Low temperature kinetic scheme (107 species 2642 reactions)
+c. High temperature kinetic scheme with NOX (115 species 2141 reactions)
+
+------------------------
+3. POLIMI_BIO: Biomasses
+------------------------
+Mechanism of the secondary gas-phase pyrolysis, partial oxidation and combustion of species released during biomass thermal degradation
+a. Kinetic scheme (137 species 4533 reactions)
+
+------------------------------------------------------
+4. POLIMI_PRF_PAH: Primary Reference Fuels (PRF) + PAH
+------------------------------------------------------
+Detailed and semidetailed (lumped) mechanism of the pyrolysis, partial oxidation and combustion Primary Reference Fuels, including PAH (Polycyclic Aromatic Hydrocarbons) formation up to C20.
+a. High temperature kinetic scheme (176 species 6067 reactions)
+b. High and Low Temperature kinetic scheme (300 species 11790 reactions)
+
+----------------------------------------------------------------
+5. POLIMI_PRF_PAH_ALCOHOLS_ETHERS: PRF + PAH + Alcohols + Ethers
+----------------------------------------------------------------
+Mechanism of PRFs, Alcohols (Ethanol, Propanol and Butanol isomers) and Ethers (DME, MTBE, ETBE, DIPE, TAME). n-Butanol includes a lumped Low Temperature mechanism. .
+a. High temperature kinetic scheme (225 species 7645 reactions)
+b. High and Low temperature kinetic scheme (317 species 12353 reactions)
+
+-----------------------------------------
+6. PRF_PAH_RFUELS: PRF + PAH + Real Fuels
+-----------------------------------------
+Mechanism of Real Transportation Fuels (Gasoline, Jet Fuels, Diesel: PRFs, heavy n-alkanes, Isocetane, Decalin, Tetralin, ...).
+a. High temperature kinetic scheme (200 species 6907 reactions)
+b. High and Low temperature kinetic scheme (352 species 13264 reactions)
+
+-----------------------------------------------------------------
+7. PRF_PAH_RFUELS_MESTERS: PRF + PAH + Real Fuels + Methyl-Esters
+-----------------------------------------------------------------
+Mechanism of Real Transportation Fuels (Gasoline, Jet Fuels, Diesel: PRFs, heavy n-alkanes, Isocetane, Decalin, Tetralin, ...), including biodiesel (light and heavy methyl-esters).
+a. High and Low temperature kinetic scheme (417 species 15742 reactions)
+
+------------------------------------------------
+8. POLIMI_TOT: Complete Low and High Temperature
+------------------------------------------------
+Detailed and lumped mechanism of pyrolysis, partial oxidation and combustion of hydrocarbon and oxygenated fuels. This mechanism includes all the previous sub-schemes..
+a. High and Low temperature kinetic scheme (451 species 17848 reactions)
+b. High and Low temperature kinetic scheme with NOx (484 species 19341 reactions)
+
+

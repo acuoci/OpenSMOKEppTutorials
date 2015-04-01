@@ -1,0 +1,64 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PerfectlyStirredReactor
+{
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
+		
+		@Type					NonIsothermal-ConstantPressure;
+		
+		@InletStatus            inlet-mixture;
+		
+		@ResidenceTime			1 s;
+
+		@Volume                 100 cm3;
+		
+		@InitialStatus          initial-mixture;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics			../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output				kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	300.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@EquivalenceRatio 	1.;	
+		@FuelMoles 			H2 1.;
+		@OxidizerMoles 		O2 21 N2 79;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	2000.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@EquivalenceRatio 	1.;	
+		@FuelMoles 			H2 1.;
+		@OxidizerMoles 		O2 21 N2 79;
+}
+
+Dictionary output-options
+{	
+		@StepsFile  10;
+		@StepsVideo 2;
+		@VerboseASCIIFile false;
+}
+
+

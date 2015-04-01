@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ShockTubeReactor
+{
+		@KineticsPreProcessor	 Camac-Feinberg;
+		
+		@Type					 IncidentShock;
+		
+		@IncidentShockVelocity   2800 m/s;
+		
+		@AfterShockStatus        initial-mixture;
+		
+		@EndTime				 310.e-6 s;
+}
+
+Dictionary Camac-Feinberg
+{
+		@Kinetics			../../../kinetic-mechanisms/Camac-Feinberg/kinetics.CKI;
+		@Thermodynamics		../../../kinetic-mechanisms/Camac-Feinberg/thermo.CKT;
+		@Output				kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	3465 	K ; 
+		@Pressure      	0.52453 atm;
+		@MoleFractions	N2 0.78118 O2 0.20948 AR 0.00934;
+}

@@ -1,0 +1,53 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary POLIMI_PRF_PAH_HT_1412
+{
+		@Kinetics			../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_HT_1412.CKI;
+		@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output				kinetics;
+}
+
+
+Dictionary initial-mixture
+{
+		@Temperature   	1357.     K ; 
+		@Pressure      	24.900000 atm ;
+
+		@MoleFractions 	CH4 0.95020905E-01
+						N2  0.71493729    
+						O2  0.19004181    
+						AR  0.95020905E-11
+						HE  0.95020905E-11
+						H2O 0.95020905E-09 ;
+}
+
+Dictionary BatchReactor
+{
+		@KineticsPreProcessor	POLIMI_PRF_PAH_HT_1412;
+		@Type					NonIsothermal-UserDefinedVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime				0.001 s;
+		@OdeParameters          ode-OpenSMOKE;
+		@Volume					1 m3;
+		
+		@PressureCoefficient	3.000	atm/ms;
+}
+
+Dictionary ode-OpenSMOKE
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}

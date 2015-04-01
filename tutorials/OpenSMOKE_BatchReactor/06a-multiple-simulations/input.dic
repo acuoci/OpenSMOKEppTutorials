@@ -1,0 +1,118 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary POLIMI_PRF_PAH_HT_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_HT_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	1200.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@EquivalenceRatio 		1.;	
+		@FuelMoles 				NC7H16 1.;
+		@OxidizerMoles 			O2 21 N2 79;
+}
+
+Dictionary BatchReactor-BzzOde
+{
+		@KineticsPreProcessor	POLIMI_PRF_PAH_HT_1412;
+		@Type					NonIsothermal-ConstantVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime				0.001 s;
+		@OdeParameters          ode-BzzOde;
+		@Options				output-BzzOde;
+}
+
+Dictionary BatchReactor-DASPK
+{
+		@KineticsPreProcessor	POLIMI_PRF_PAH_HT_1412;
+		@Type					NonIsothermal-ConstantVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime				0.001 s;
+		@OdeParameters          ode-DASPK;
+		@Options				output-DASPK;	
+}
+
+Dictionary BatchReactor-CVODE
+{
+		@KineticsPreProcessor	POLIMI_PRF_PAH_HT_1412;
+		@Type					NonIsothermal-ConstantVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime				0.001 s;
+		@OdeParameters          ode-CVODE;
+		@Options				output-CVODE;
+}
+
+Dictionary BatchReactor-DVODE
+{
+		@KineticsPreProcessor	POLIMI_PRF_PAH_HT_1412;
+		@Type					NonIsothermal-ConstantVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime				0.001 s;
+		@OdeParameters          ode-DVODE;
+		@Options				output-DVODE;
+}
+
+Dictionary ode-BzzOde
+{	
+		@OdeSolver BzzOde;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary ode-CVODE
+{	
+		@OdeSolver CVODE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary ode-DASPK
+{	
+		@OdeSolver DASPK;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary ode-DVODE
+{	
+		@OdeSolver DVODE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary output-BzzOde
+{	
+		@OutputFolder Output-BzzOde ;
+}
+
+Dictionary output-DASPK
+{	
+		@OutputFolder Output-DASPK ;
+}
+
+Dictionary output-DVODE
+{	
+		@OutputFolder Output-DVODE ;
+}
+
+Dictionary output-CVODE
+{	
+		@OutputFolder Output-CVODE ;
+}
