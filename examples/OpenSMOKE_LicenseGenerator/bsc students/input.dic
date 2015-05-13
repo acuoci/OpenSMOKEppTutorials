@@ -15,8 +15,8 @@
 Dictionary LicenseGenerator
 {
 		
-		@StartingDate		2014-Mar-01;
-		@ExpirationDate		2016-Mar-01;
+		@StartingDate		2015-May-01;
+		@ExpirationDate		2016-May-01;
 		@UserName			anonymous;
 		@UserEmail			none;
 		@UserOrganization	none;

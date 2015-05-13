@@ -1,0 +1,69 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary PremixedLaminarFlame1D
+{
+	@KineticsPreProcessor	kinetics;
+	
+	@InletStream 	inlet-stream;
+	@OutletStream	outlet-stream;
+	
+	@InletVelocity	100 cm/s;
+	
+	@Grid			grid;
+	
+	@Output			Output;
+	
+	@UseDaeSolver	false;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+	@Transport 		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
+	@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+	@EquivalenceRatio	1 1.025 1.05 1.1 1.15 0.975 0.95;
+
+	@FuelMoles			H2 1;
+	@OxidizerMoles		O2 0.21 
+						N2 0.79;
+						
+	@Temperature	298 K;
+	@Pressure		1 atm;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			H2O 1 
+					N2  2;
+	@Temperature	2300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					3 cm;
+	@InitialPoints			12;
+	@Type					database;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}
+
