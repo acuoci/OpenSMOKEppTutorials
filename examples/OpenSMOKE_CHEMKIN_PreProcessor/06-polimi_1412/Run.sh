@@ -1,5 +1,3 @@
-OpenSMOKE_CHEMKIN_PreProcessor.sh --input input.dic
-
 OpenSMOKE_CHEMKIN_PreProcessor.sh --input input.dic.POLIMI_BIO1412
 
 OpenSMOKE_CHEMKIN_PreProcessor.sh --input input.dic.POLIMI_C1C3HT_1412
