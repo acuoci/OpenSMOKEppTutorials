@@ -17,11 +17,11 @@ Dictionary LicenseGenerator
 		
 		@StartingDate		2015-May-20;
 		@ExpirationDate		2016-May-20;
-		@UserName			procida;
+		@UserName			creck_students;
 		@UserEmail			none;
 		@UserOrganization	none;
 		@Type				Academic;
-		@Version			0.2;
-		@MaxSpecies			5000;
+		@Version			0.2.0;
+		@MaxSpecies			10000;
 		@Solvers			All;
 }
