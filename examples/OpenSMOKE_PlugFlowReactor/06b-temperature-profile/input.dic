@@ -1,0 +1,62 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
+		
+		@Type					Isothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@ResidenceTime			1 s;
+		
+		@ConstantPressure		true;
+		
+		@Velocity				0.01 m/s;
+		
+		@TemperatureProfile     T-Profile;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1000.  	K ; 
+		@Pressure      	101325 	Pa;
+		@Moles			H2 2 
+						O2 1 
+						N2 3.76 ;
+}
+
+Dictionary T-Profile
+{	
+		@XVariable time;
+		@YVariable temperature;
+		
+		@XUnits s;
+		@YUnits K;
+		
+		@Profile
+		0    1000
+		0.1  1500
+		0.2  1600
+		0.5  1800
+		1.0  2000;		
+}

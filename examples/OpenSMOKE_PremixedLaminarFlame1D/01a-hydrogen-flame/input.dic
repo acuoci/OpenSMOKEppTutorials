@@ -13,6 +13,7 @@
 //-----------------------------------------------------------------//
 Dictionary PremixedLaminarFlame1D
 {
+	@Type					FlameSpeed;
 	@KineticsPreProcessor	kinetics;
 	
 	@InletStream 	inlet-stream;
