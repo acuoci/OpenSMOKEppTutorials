@@ -15,13 +15,13 @@
 Dictionary LicenseGenerator
 {
 		
-		@StartingDate		2015-May-20;
-		@ExpirationDate		2016-May-20;
-		@UserName			anonymous;
+		@StartingDate		2016-January-01;
+		@ExpirationDate		2017-January-01;
+		@UserName			bsc_student;
 		@UserEmail			none;
 		@UserOrganization	none;
 		@Type				Academic;
-		@Version			0.2.0;
-		@MaxSpecies			10000;
+		@Version			0.3.0;
+		@MaxSpecies			1000;
 		@Solvers			All;
 }
