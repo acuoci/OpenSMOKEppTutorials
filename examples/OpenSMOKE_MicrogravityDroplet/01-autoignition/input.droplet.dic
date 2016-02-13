@@ -1,0 +1,57 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary MicrogravityDroplet
+{
+		@KineticsFolder		kinetics-NC12H26-31species;
+		@OutputFolder		Output;
+		
+		@Type							NoSpark;
+		@FlameRadiation         		none;
+		
+		@FuelMassFractions				NC12H26 1.;
+		@Inert							N2;
+		@DropletDiameter				0.300 mm;
+		@DropletTemperature				300  K;
+		
+		@GasStatus          			Initial-Composition;
+		
+		@DropletPoints					30;
+		@GasPoints						100;
+		
+		@EndTime						100 s;
+		
+		@FirstGuessInterfaceMassFractions 	NC12H26 0.197;
+		@FirstGuessInterfaceTemperature     299.7 K;
+		@FirstGuessInterfaceGasVelocity     176. cm/s;
+		
+		@StepsVideo						10;
+		@StepsMap1D						10;	
+		@StepsMap3D						30;
+		
+		@SnapshotTimes					1e-4 1e-3 1e-2 1e-1;		
+		@SnapshotSpecies				NC12H26 O2 CO2 H2O CO OH CH2O H2;
+		
+		@DAERelativeTolerance			1e-6;
+		@NLSRelativeTolerance			1e-10;		
+}
+
+Dictionary Initial-Composition
+{
+		@Temperature   	1200.   K ; 
+		@Pressure      	1. 		bar ;
+
+		@MoleFractions  N2  0.79	
+						O2  0.21;
+}

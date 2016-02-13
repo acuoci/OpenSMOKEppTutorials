@@ -74,8 +74,8 @@ Dictionary grid
 
 Dictionary dae-parameters
 {
-	@DaeSolver				BzzDae;
-	@LinearAlgebra			Lapack;
+	@DaeSolver				OpenSMOKE++;
+	@Jacobian				TridiagonalBlock;
 	
 	@RelativeTolerance		1e-6;
 	@AbsoluteTolerance		1e-10;
@@ -93,11 +93,11 @@ Dictionary dae-parameters
 
 Dictionary nls-parameters
 {
-	@NlsSolver					KinSol;
-	@LinearAlgebra				Lapack;
+	@NlsSolver					OpenSMOKE++;
+	@Jacobian					TridiagonalBlock;
 	
-	@Tolerance					1e-7;
-	@ToleranceStep				3e-11;
+	@FunctionTolerance			1e-7;
+	@StepTolerance				3e-11;
 	@RelativeError				1.5e-8;
 	
 	@MaximumNumberOfIterations	200;
@@ -112,11 +112,11 @@ Dictionary nls-parameters
 
 Dictionary falsetransient-parameters
 {
-	@FalseTransientSolver		KinSol;
-	@LinearAlgebra				Lapack;
+	@FalseTransientSolver		OpenSMOKE++;
+	@Jacobian					TridiagonalBlock;
 	
-	@Tolerance					1e-8;
-	@ToleranceStep				3e-11;
+	@FunctionTolerance			1e-8;
+	@StepTolerance				3e-11;
 	@RelativeError				1.5e-8;
 	
 	@MaximumNumberOfIterations	200;

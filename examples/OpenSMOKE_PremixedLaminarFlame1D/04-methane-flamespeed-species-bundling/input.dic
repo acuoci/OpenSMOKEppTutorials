@@ -27,28 +27,7 @@ Dictionary PremixedLaminarFlame1D
 	
 	@UseDaeSolver	true;
 	
-	@DaeParameters	dae-parameters;
-	
 	@SpeciesBundling	0.05;
-}
-
-Dictionary dae-parameters
-{
-	@DaeSolver				OpenSMOKE++;
-//	@LinearAlgebra			Lapack;
-	
-//	@RelativeTolerance		1e-6;
-//	@AbsoluteTolerance		1e-10;
-//	@MaximumNumberOfSteps	100000;
-//	@MaximumStep			1e3;
-//	@MinimumStep			1e-9;
-//	@InitialStep			1e-9;
-//	@MaximumOrder			5;
-	
-//	@MeanResidualThreshold		1e-5;
-//	@VerbosityLevel				0;
-
-//	@FullPivoting			false;
 }
 
 Dictionary inlet-stream
