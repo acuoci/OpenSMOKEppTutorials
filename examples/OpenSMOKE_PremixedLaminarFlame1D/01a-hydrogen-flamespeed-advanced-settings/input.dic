@@ -25,18 +25,18 @@ Dictionary PremixedLaminarFlame1D
 	
 	@Output			Output;
 	
-	@UseDaeSolver	false;
+	@UseDaeSolver	true;
 	
 	@DaeParameters				dae-parameters;
 	@NlsParameters				nls-parameters;
-	@FalseTransientParameters	falsetransient-parameters;
+	//@FalseTransientParameters	falsetransient-parameters;
 }
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-	@Transport 		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
+	@Kinetics		C:\Development\MyCodes\OpenSMOKEppTutorials\kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+	@Thermodynamics	C:\Development\MyCodes\OpenSMOKEppTutorials\kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+	@Transport 		C:\Development\MyCodes\OpenSMOKEppTutorials\/kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
 	@Output			kinetics;
 }
 
@@ -75,7 +75,14 @@ Dictionary grid
 Dictionary dae-parameters
 {
 	@DaeSolver				OpenSMOKE++;
-	@Jacobian				Band;
+	@Jacobian				Sparse;
+	@SparseSolver			Pardiso;
+	@Preconditioner			ILUT;
+	
+	//Sparse solvers: EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
+	//                Pardiso       | SuperLUSerial | UMFPack
+	
+	//Preconditioners: ILUT | diagonal
 	
 	@RelativeTolerance		1e-6;
 	@AbsoluteTolerance		1e-10;
@@ -92,7 +99,7 @@ Dictionary dae-parameters
 Dictionary nls-parameters
 {
 	@NlsSolver					OpenSMOKE++;
-	@Jacobian					TridiagonalBlock;
+	@Jacobian					Band;
 	
 	@FunctionTolerance			1e-7;
 	@StepTolerance				3e-11;
@@ -111,7 +118,7 @@ Dictionary nls-parameters
 Dictionary falsetransient-parameters
 {
 	@FalseTransientSolver		OpenSMOKE++;
-	@Jacobian					TridiagonalBlock;
+	@Jacobian					Band;
 	
 	@FunctionTolerance			1e-8;
 	@StepTolerance				3e-11;
@@ -135,5 +142,4 @@ Dictionary falsetransient-parameters
 	@DecrementFactor			2.;
 	@MinimumStep				1e-9;
 }
-
 
