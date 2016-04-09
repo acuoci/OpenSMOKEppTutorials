@@ -1,1 +1,1 @@
-OpenSMOKE_ShockTubeReactor.sh --input input.dic
+OpenSMOKEpp_ShockTubeReactor.sh --input input.dic

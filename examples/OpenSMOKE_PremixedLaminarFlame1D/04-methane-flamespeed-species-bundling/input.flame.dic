@@ -14,7 +14,7 @@
 Dictionary PremixedLaminarFlame1D
 {
 	@Type					FlameSpeed;
-	@KineticsFolder			..\..\OpenSMOKE_CHEMKIN_PreProcessor\08-polimi_1412-species-bundling\kinetics-POLIMI_PRF_PAH_HT_1412;
+	@KineticsFolder			kinetics-POLIMI_PRF_PAH_HT_1412;
 	
 	@InletStream 	inlet-stream;
 	@OutletStream	outlet-stream;

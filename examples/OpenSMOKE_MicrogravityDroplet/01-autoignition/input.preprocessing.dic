@@ -14,9 +14,9 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics kinetics/therm.dat;
-		@Transport		kinetics/tran.dat;
-		@Kinetics 		kinetics/chem.inp;
+		@Thermodynamics NC12H26-31species/therm.dat;
+		@Transport		NC12H26-31species/tran.dat;
+		@Kinetics 		NC12H26-31species/chem.inp;
 		
 		@Output			kinetics-NC12H26-31species;
 }

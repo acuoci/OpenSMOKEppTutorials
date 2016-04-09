@@ -1,1 +1,1 @@
-OpenSMOKE_CHEMKIN_PreProcessor.sh --input input.dic
+OpenSMOKEpp_CHEMKIN_PreProcessor.sh --input input.dic

@@ -1,1 +1,1 @@
-OpenSMOKE_BatchReactor.sh --input input.dic
+OpenSMOKEpp_BatchReactor.sh --input input.dic

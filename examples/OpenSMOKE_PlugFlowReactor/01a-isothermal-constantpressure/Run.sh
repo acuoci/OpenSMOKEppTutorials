@@ -1,1 +1,1 @@
-OpenSMOKE_PlugFlowReactor.sh --input input.dic
+OpenSMOKEpp_PlugFlowReactor.sh --input input.dic

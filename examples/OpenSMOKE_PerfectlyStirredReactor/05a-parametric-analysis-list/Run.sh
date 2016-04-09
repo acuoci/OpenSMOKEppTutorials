@@ -1,1 +1,1 @@
-OpenSMOKE_PerfectlyStirredReactor.sh --input input.dic
+OpenSMOKEpp_PerfectlyStirredReactor.sh --input input.dic

@@ -1,2 +1,2 @@
-%OPENSMOKEPP_EXE_FOLDER%\OpenSMOKE_PlugFlowReactor.exe --input input.dic
+%OPENSMOKEPP_EXE_FOLDER%\OpenSMOKEpp_PlugFlowReactor.exe --input input.dic
 pause
