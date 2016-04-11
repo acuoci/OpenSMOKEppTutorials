@@ -12,16 +12,13 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
+		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+		@Kinetics 		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_FAME_REDUCED177_1410.CKI;
 		
-		@StartingDate		2016-April-01;
-		@ExpirationDate		2017-April-01;
-		@UserName			creck_students;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.4.0;
-		@MaxSpecies			10000;
-		@Solvers			All;
+		@Output			kinetics-POLIMI_FAME_REDUCED177_1410;
 }
+
+

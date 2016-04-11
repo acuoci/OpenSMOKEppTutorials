@@ -14,11 +14,11 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_THERMO.CKT;
-		@Transport		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_TRANS.TRC;
-		@Kinetics 		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_NC7_106.CKI;
+		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+		@Kinetics 		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_DIESEL_REDUCED201C_1410.CKI;
 		
-		@Output			kinetics-POLIMI_NC7_106;
+		@Output			kinetics-POLIMI_DIESEL_REDUCED201C_1410;
 }
 
 

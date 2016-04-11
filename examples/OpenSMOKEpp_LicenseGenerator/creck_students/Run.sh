@@ -1,1 +1,1 @@
-OpenSMOKE_LicenseGenerator.sh --input input.dic
+OpenSMOKEpp_LicenseGenerator.sh --input input.dic

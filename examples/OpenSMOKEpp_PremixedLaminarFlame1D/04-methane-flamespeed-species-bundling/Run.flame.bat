@@ -1,2 +1,2 @@
-%OPENSMOKEPP_EXE_FOLDER%\OpenSMOKEpp_PremixedLaminarFlame1D.exe --input input.flame.dic
+"%OPENSMOKEPP_EXE_FOLDER%\OpenSMOKEpp_PremixedLaminarFlame1D.exe" --input input.flame.dic
 pause
