@@ -1,0 +1,73 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary LaminarFlamelets
+{
+	@KineticsPreProcessor					kinetics;
+	
+	@FuelSide 								fuel-side;
+	@OxidizerSide							oxidizer-side;
+	@StoichiometricScalarDissipationRates	1e-6 1e-5 1e-3 1e-1 1e0 1e0 1e2 1e3 1e4 Hz;
+	@EnthalpyDefects						250 500 750 1000 kJ/kg;
+
+	@Grid		grid;
+	
+	@Output		Output;
+	
+	@UseOdeSolver	true;
+	@UseNlsSolver	false;
+}
+
+Dictionary kinetics
+{
+	@Output			kinetics;
+
+//	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_C1C3LT_1412.CKI;
+//	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/test.CKI;
+	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
+	
+	@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+	@Transport 			../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
+	
+	
+//	@Kinetics			C:\Development\MyCodes\KineticMechanismsLibrary\LLNL\Heptane\Reduced\heptanesymp159_mec.txt;
+//	@Thermodynamics		C:\Development\MyCodes\KineticMechanismsLibrary\LLNL\Heptane\Reduced\heptanesymp_therm.txt;
+//	@Transport 			C:\Development\MyCodes\KineticMechanismsLibrary\LLNL\Heptane\Reduced\heptanesymp_trans.txt;
+}
+
+Dictionary fuel-side
+{
+	@Moles			H2 1;					
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary oxidizer-side
+{
+	@Moles			O2 0.21 N2 0.79;					
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length				1 m;
+	@InitialPoints			50;
+	@Type				equispaced;
+	
+	@MaxPoints			500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.1;
+	@CurvatureCoefficient		1;
+}
+
