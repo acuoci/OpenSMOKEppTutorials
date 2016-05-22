@@ -27,7 +27,7 @@ Dictionary BatchReactor
 
 Dictionary kinetics
 {
-		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_HT_1412.CKI;
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_LT_1412.CKI;
 		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
 		@Output			kinetics;
 }
@@ -49,11 +49,11 @@ Dictionary ode-parameters
 
 Dictionary initial-mixture
 {
-		@Temperature   	1000.   K ; 
+		@Temperature   	600.   K ; 
 		@Pressure      	10. 	atm ;
 
 		@EquivalenceRatio 	1.;	
-		@FuelMasses 		H2 1.;
+		@FuelMasses 		NC7H16 1.;
 		@OxidizerMoles      O2 21. 
                             N2 79.;
 }

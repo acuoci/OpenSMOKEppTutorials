@@ -16,14 +16,16 @@ Dictionary LookUpTables
 {
 	@KineticsPreProcessor	KineticMechanism;
 	
-	@Input	C:\Development\MyCodes\OpenSMOKEppTutorials\examples\OpenSMOKEpp_LaminarFlamelets\01a-hydrogen-flamespeed\Output;
-	@Output Output;
+	@Input				C:\Development\MyCodes\OpenSMOKEppTutorials\examples\OpenSMOKEpp_LaminarFlamelets\01-hydrogen-air-flame\Output\;
+	@OutputASCII 		Output;
+	@OutputLookUpTable	OutputXML;
 }
 
 Dictionary KineticMechanism
 {
 		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
 		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
+		@Transport		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
 		
 	//	@Kinetics			C:\Development\MyCodes\KineticMechanismsLibrary\LLNL\Heptane\Reduced\heptanesymp159_mec.txt;
 	//	@Thermodynamics		C:\Development\MyCodes\KineticMechanismsLibrary\LLNL\Heptane\Reduced\heptanesymp_therm.txt;
