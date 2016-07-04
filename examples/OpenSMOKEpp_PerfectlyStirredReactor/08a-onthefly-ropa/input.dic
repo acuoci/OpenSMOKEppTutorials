@@ -12,16 +12,43 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary PerfectlyStirredReactor
 {
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.4.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					Isothermal-ConstantPressure;
+		
+		@InletStatus            inlet-mixture;
+		
+		@ResidenceTime			1 s;
+
+		@Volume                 100 cm3;
+		
+		@OnTheFlyROPA			onthefly-ropa;
 }
+
+Dictionary onthefly-ropa
+{
+		@Species			ALL;
+		@Threshold			0.04;
+		@ReferenceSpecies	H2;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1000.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@EquivalenceRatio 	1.;	
+		@FuelMoles 			H2 1.;
+		@OxidizerMoles 		O2 21 N2 79;
+}
+
+

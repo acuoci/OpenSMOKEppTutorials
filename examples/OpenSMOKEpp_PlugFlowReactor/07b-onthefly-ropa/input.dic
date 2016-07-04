@@ -12,16 +12,41 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary PlugFlowReactor
 {
+		@KineticsPreProcessor	POLIMI_C1C3HT_1412;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.4.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					Isothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@ResidenceTime			0.2 s;
+		
+		@ConstantPressure		true;
+		
+		@Velocity				1 m/s;
+		
+		@OnTheFlyROPA			onthefly-ropa;
+}
+
+Dictionary onthefly-ropa
+{
+		@ReferenceSpecies	C3H6;
+		@Species			C3H6 C6H6 C2H4 CH4;
+		@Threshold			0.04;
+		@Times				0.01 0.05 0.1 s;
+}
+
+Dictionary POLIMI_C1C3HT_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_C1C3HT_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1127.  	K ; 
+		@Pressure       10		atm;
+		@Moles			C3H6 	1.0;
 }
