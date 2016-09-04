@@ -36,7 +36,7 @@ Dictionary onthefly-ropa
 		@Threshold							0.04;
 		@NumberOfSteps						25;
 		@CompactOutput						true;
-		@MergeForwardAndBAckwardReactions	false;
+		@MergeForwardAndBackwardReactions	false;
 }
 
 Dictionary POLIMI_C1C3HT_1412

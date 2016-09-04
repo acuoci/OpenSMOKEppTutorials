@@ -1,0 +1,16 @@
+----------------------------------------------------------
+GAS PHASE COMBUSTION SCHEMES: VERSION 1410 (October 2014)
+----------------------------------------------------------
+
+The kinetic schemes provided by CRECK Modeling at Politecnico di Milano are hierarchically organized: moving from the "Hydrogen mechanism" up to the "Complete mechanism: low and high temperature". All the schemes are self consistent, i.e., they already include the previous submechanisms. All the mechanisms are available with or without NOx reactions. All these mechanisms are in Chemkin format, they are compatible with version 3.6.2 and above.
+
+The Kinetics folder contains the current version of POLIMI kinetic mechanisms (December 2014). 
+The thermodynamic (POLIMI_REDUCED_1410.CKT) and transport (POLIMI_REDUCED_1410.TRC) files are the same for all the kinetic mechanisms reported below. The POLIMI_REDUCED_1410.NAM (in the Thermodynamics folder) contains the explanation of the names of the species.
+
+The references to properly cite the kinetic mechanisms are reported on the first lines of each kinetic file (CKI).
+
+Please visit our web site to have more information: http://creckmodeling.chem.polimi.it
+
+
+
+

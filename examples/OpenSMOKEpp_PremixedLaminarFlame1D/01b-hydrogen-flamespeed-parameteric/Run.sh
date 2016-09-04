@@ -1,1 +1,1 @@
-OpenSMOKE_PremixedLaminarFlame1D.sh --input input.dic
+OpenSMOKEpp_PremixedLaminarFlame1D.sh --input input.dic

@@ -30,7 +30,7 @@ Dictionary onthefly-ropa
 		@Species							H2 H2O2 OH;
 		@Threshold							0.05;
 		@ReferenceSpecies					H2;
-		@MergeForwardAndBAckwardReactions	true;
+		@MergeForwardAndBackwardReactions	true;
 		@NumberOfSteps						20;
 }
 
