@@ -12,16 +12,20 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
+		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_1412\Transport\POLIMI_TOT_NOX_1412.TRC;
+		@Kinetics 		Polimi4BremboRevised.CKI;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Output			kinetics-Polimi4BremboRevised;
+		
+		@Comments 		CRECK-Signature;
+}
+
+Dictionary CRECK-Signature
+{
+	@Author 	CRECK Modeling Group;
+	@Place  	Politecnico di Milano (Italy);
+	@Comments	This kinetic mechanism can be downloaded at: www.creckmodeling.chem.polimi.it;
 }

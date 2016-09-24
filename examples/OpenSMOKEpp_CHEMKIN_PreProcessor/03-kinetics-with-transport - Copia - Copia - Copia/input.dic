@@ -12,16 +12,11 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
+		@Thermodynamics thermo30.dat;
+		@Transport		transport.dat;
+		@Kinetics 		GRI30Pyrolysis.CKI;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Output			kinetics-GRI30Pyrolysis;
 }

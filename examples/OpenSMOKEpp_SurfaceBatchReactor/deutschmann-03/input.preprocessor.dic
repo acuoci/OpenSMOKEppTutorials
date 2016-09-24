@@ -12,16 +12,13 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
+		@Thermodynamics thermo.ckt;
+		@Transport		transport.tra;
+		@Kinetics 		homogeneous.kin;
+		@Surface 		surface.kin;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Output			kinetics-Deutschmann_CPO_CH4_over_Rh;
 }
+

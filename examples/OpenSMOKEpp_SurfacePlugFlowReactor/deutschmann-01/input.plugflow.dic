@@ -12,16 +12,55 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary SurfacePlugFlowReactor
 {
+		@KineticsFolder			kinetics-Deutschmann_CH4_O2_over_Pt;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					NonIsothermal;
+		@ConstantPressure		true;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length					0.2 cm;
+		
+		@Diameter				1 cm;
+		
+		@Velocity				10 cm/s;
+		
+		@OdeParameters          ode-parameters;
+		@DaeParameters          dae-parameters;
 }
+
+Dictionary inlet-mixture
+{
+		@MoleFractions			H2		0.10
+								O2		0.10	
+								CO		0.10
+								CO2		0.10
+								N2		0.60;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-PT_SURFACE
+{					
+	@SurfaceFractions	_Pt_ 	1;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver DASPK;
+//		@AbsoluteTolerance 1e-14;
+//		@RelativeTolerance 1e-7;
+}
+
+Dictionary dae-parameters
+{	
+		@DaeSolver DASPK;
+	//	@AbsoluteTolerance 1e-14;
+	//	@RelativeTolerance 1e-7;		
+}
+
+
+

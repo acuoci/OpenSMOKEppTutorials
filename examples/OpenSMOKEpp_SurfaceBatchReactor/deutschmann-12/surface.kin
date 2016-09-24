@@ -1,0 +1,139 @@
+!***********************************************************************
+!SURFACE MECHANISM FOR PT-CATALYZED ABATMENT OF AUTOMOTIVE EXHAUST GASES
+!***********************************************************************
+!****                                                                  *
+!****      C3H6/CH4/NOx/CO ON PT - SURFACE MECHANISM                   *
+!****                                                                  *
+!****     J. Koop, O. Deutschmann                                      *
+!****     KIT (Karlsruhe Institute of Technology)                      * 
+!****                                                                  *
+!****     Reference:                                                   *
+!****     J. Koop, O. Deutschmann                                      *  
+!****     Appl. Catal.B: Environmental 91 (2009), 47-58                *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   * 
+!****     www.detchem.com/mechanisms                                   * 
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****     STICK: A in next reaction is initial sticking coefficient    *
+!****                                                                  *
+!****                                                                  *
+!****     (SURFACE CHEMKIN format)                                     *
+!****                                                                  * 
+!*********************************************************************** 
+
+MATERIAL CATALYST
+
+SITE/PT_SURFACE/    SDEN/2.72E-9/
+_Pt_ NO_Pt O_Pt N_Pt H_Pt H2O_Pt CO_Pt CO2_Pt C3H5_Pt C3H6_Pt/2/  C_Pt  
+CH_Pt CH2_Pt CH3_Pt C2H3_Pt OH_Pt CH3CO_Pt C3H5_Pt1 C3H4_Pt1 NO2_Pt N2O_Pt  
+HCOO_Pt 
+END
+
+REACTIONS  JOULES/MOLE  MWOFF 
+
+C3H6 + _Pt_ + _Pt_ => C3H6_Pt 0.98 0. 0. 
+    STICK 
+C3H6_Pt => _Pt_ + _Pt_ + C3H6 3.688E+12 0. 74370. 
+C3H6 + _Pt_ + O_Pt => C3H5_Pt1 + OH_Pt 0.05 0. 0. 
+    STICK 
+    COV /_Pt_ 0. -0.9 -0. / 
+C3H5_Pt1 + OH_Pt => O_Pt + _Pt_ + C3H6 3.7E+21 0. 31000. 
+O2 + _Pt_ + _Pt_ => O_Pt + O_Pt 0.07 0. 0. 
+    STICK 
+O_Pt + O_Pt => _Pt_ + _Pt_ + O2 3.218E+21 0. 224710. 
+    COV /O_Pt 0. 0. -120000. / 
+H2 + _Pt_ + _Pt_ => H_Pt + H_Pt 0.046 0. 0. 
+    STICK 
+    COV /_Pt_ 0. -1. -0. / 
+H_Pt + H_Pt => _Pt_ + _Pt_ + H2 2.121E+21 0. 69110. 
+    COV /H_Pt 0. 0. -6000. / 
+H2O + _Pt_ => H2O_Pt 0.75 0. 0. 
+    STICK 
+H2O_Pt => _Pt_ + H2O 5.013E+13 0. 49160. 
+CO2 + _Pt_ => CO2_Pt 0.005 0. 0. 
+    STICK 
+CO2_Pt => _Pt_ + CO2 3.565E+10 0. 23660. 
+CO + _Pt_ => CO_Pt 0.84 0. 0. 
+    STICK 
+CO_Pt => _Pt_ + CO 2.126E+13 0. 136190. 
+    COV /CO_Pt 0. 0. -33000. / 
+NO + _Pt_ => NO_Pt 0.85 0. 0. 
+    STICK 
+NO_Pt => _Pt_ + NO 2.047E+12 0. 80740. 
+NO2 + _Pt_ => NO2_Pt 0.9 0. 0. 
+    STICK 
+NO2_Pt => _Pt_ + NO2 1.438E+13 0. 60990. 
+N2O + _Pt_ => N2O_Pt 0.025 0. 0. 
+    STICK 
+N2O_Pt => _Pt_ + N2O 1.287E+10 0. 730. 
+N_Pt + N_Pt => _Pt_ + _Pt_ + N2 3.7E+21 0. 113900. 
+    COV /CO_Pt 0. 0. -75000. / 
+C3H6_Pt => C3H5_Pt + H_Pt 1.E+13 0. 75400. 
+C3H5_Pt + H_Pt => C3H6_Pt 3.665E+21 0. 48800. 
+C3H5_Pt + _Pt_ => C2H3_Pt + CH2_Pt 3.7E+21 0. 108200. 
+C2H3_Pt + CH2_Pt => C3H5_Pt + _Pt_ 3.665E+21 0. 3340. 
+C2H3_Pt + _Pt_ => CH3_Pt + C_Pt 3.7E+21 0. 46000. 
+CH3_Pt + C_Pt => C2H3_Pt + _Pt_ 3.719E+21 0. 46450. 
+CH3_Pt + _Pt_ => CH2_Pt + H_Pt 1.262E+22 0. 70400. 
+CH2_Pt + H_Pt => CH3_Pt + _Pt_ 2.943E+22 0. 410. 
+CH2_Pt + _Pt_ => CH_Pt + H_Pt 7.E+22 0. 59200. 
+CH_Pt + H_Pt => CH2_Pt + _Pt_ 8.11E+21 0. 710. 
+CH_Pt + _Pt_ => C_Pt + H_Pt 3.09E+22 0. 0. 
+C_Pt + H_Pt => CH_Pt + _Pt_ 5.792E+21 0. 128870. 
+C3H5_Pt1 + O_Pt => C3H4_Pt1 + OH_Pt 5.E+21 0. 70000. 
+C2H3_Pt + O_Pt => CH3CO_Pt + _Pt_ 3.7E+19 0. 62300. 
+CH3CO_Pt + _Pt_ => C2H3_Pt + O_Pt 7.894E+20 0. 191390. 
+    COV /O_Pt 0. 0. 60000. / 
+CH3_Pt + CO_Pt => CH3CO_Pt + _Pt_ 3.7E+21 0. 82900. 
+CH3CO_Pt + _Pt_ => CH3_Pt + CO_Pt 1.746E+23 0. 6120. 
+    COV /CO_Pt 0. 0. 33000. / 
+CH3_Pt + O_Pt => OH_Pt + CH2_Pt 3.7E+21 0. 36600. 
+OH_Pt + CH2_Pt => CH3_Pt + O_Pt 2.342E+22 0. 25980. 
+CH2_Pt + O_Pt => OH_Pt + CH_Pt 3.7E+21 0. 25100. 
+OH_Pt + CH_Pt => CH2_Pt + O_Pt 1.163E+21 0. 26800. 
+CH_Pt + O_Pt => OH_Pt + C_Pt 3.7E+21 0. 25100. 
+OH_Pt + C_Pt => CH_Pt + O_Pt 1.882E+21 0. 214160. 
+H_Pt + O_Pt => OH_Pt + _Pt_ 3.7E+20 0. 70500. 
+OH_Pt + _Pt_ => H_Pt + O_Pt 1.004E+21 0. 130690. 
+OH_Pt + H_Pt => H2O_Pt + _Pt_ 3.7E+21 0. 17400. 
+H2O_Pt + _Pt_ => OH_Pt + H_Pt 6.824E+20 0. 67560. 
+OH_Pt + OH_Pt => H2O_Pt + O_Pt 3.7E+21 0. 48200. 
+H2O_Pt + O_Pt => OH_Pt + OH_Pt 2.515E+20 0. 38170. 
+CO_Pt + O_Pt => CO2_Pt + _Pt_ 3.7E+20 0. 108000. 
+    COV /CO_Pt 0. 0. -33000. / 
+    COV /NO_Pt 0. 0. 90000. / 
+CO2_Pt + _Pt_ => CO_Pt + O_Pt 3.964E+21 0. 165590. 
+    COV /O_Pt 0. 0. 60000. / 
+C_Pt + O_Pt => CO_Pt + _Pt_ 3.7E+21 0. 0. 
+    COV /CO_Pt 0. 0. 33000. / 
+CO_Pt + _Pt_ => C_Pt + O_Pt 1.664E+21 0. 205420. 
+    COV /O_Pt 0. 0. 60000. / 
+OH_Pt + CO_Pt => HCOO_Pt + _Pt_ 3.7E+21 0. 94200. 
+HCOO_Pt + _Pt_ => OH_Pt + CO_Pt 1.333E+21 0. 870. 
+HCOO_Pt + O_Pt => OH_Pt + CO2_Pt 3.7E+21 0. 0. 
+OH_Pt + CO2_Pt => HCOO_Pt + O_Pt 2.787E+21 0. 151050. 
+HCOO_Pt + _Pt_ => CO2_Pt + H_Pt 3.7E+21 0. 0. 
+CO2_Pt + H_Pt => HCOO_Pt + _Pt_ 2.787E+21 0. 90050. 
+NO_Pt + _Pt_ => N_Pt + O_Pt 5.E+20 0. 107800. 
+    COV /CO_Pt 0. 0. 33000. / 
+N_Pt + O_Pt => NO_Pt + _Pt_ 9.97E+20 0. 122550. 
+    COV /O_Pt 0. 0. -60000. / 
+O_Pt + NO => NO2_Pt 1.963E+13 0. 111280. 
+    COV /O_Pt 0. 0. -60000. / 
+    COV /CO_Pt 0. 0. 75000. / 
+NO2_Pt => O_Pt + NO 3.306E+14 0. 115460. 
+N_Pt + NO_Pt => N2O_Pt + _Pt_ 1.E+21 0. 90900. 
+N2O_Pt + _Pt_ => N_Pt + NO_Pt 2.876E+24 0. 133130. 
+O_Pt + NO_Pt => NO2_Pt + _Pt_ 1.317E+17 0. 133000. 
+    COV /CO_Pt 0. 0. 75000. / 
+NO2_Pt + _Pt_ => O_Pt + NO_Pt 8.128E+18 0. 58000. 
+H_Pt + NO_Pt => OH_Pt + N_Pt 1.18E+21 0. 25000. 
+    COV /CO_Pt 0. 0. 75000. / 
+OH_Pt + N_Pt => H_Pt + NO_Pt 6.386E+21 0. 99930. 
+NO2_Pt + H_Pt => OH_Pt + NO_Pt 3.93E+21 0. 20000. 
+OH_Pt + NO_Pt => NO2_Pt + H_Pt 6.075E+22 0. 175290. 
+
+END 

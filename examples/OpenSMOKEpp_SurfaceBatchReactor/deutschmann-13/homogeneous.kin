@@ -1,0 +1,14 @@
+ELEMENTS 
+C H O N AR Rh 
+END 
+
+SPECIES 
+C3H8	CH4		CO     
+CO2		H2		H2O    
+I-C8H18	O2    	N2
+AR 
+END 
+
+REACTIONS
+N2=>N2	1 0 0 
+END 

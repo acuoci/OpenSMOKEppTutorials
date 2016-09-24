@@ -1,0 +1,65 @@
+MATERIAL MAT-1
+
+HEATS_OF_CHEMISORPTION 
+TREF / 300 /
+    Rh(s)   /   0.      0.                                              /
+    O(s)	/	1.5		100.0     	O(s)	-26                         /
+    H(s)	/	1.5		62.3    	H(s)     -2.5    /
+    OH(s)	/	2.0		70.0    	O(s)	-33        H2O(s)   25      OH(s)  -25 /
+    H2O(s)	/	2.5		10.8    	OH(s)	 25	       H2O(s)  -4.5     /
+END
+
+SITE/RH_SURFACE/    SDEN/2.49E-9/
+    Rh(s)   H2O(s)  H(s)    OH(s)      
+    O(s)    
+   
+END
+
+
+REACTIONS
+H2      +2Rh(s)     => 2H(s)                7.73E-01   0.9387  0.5
+UBIQEP /	2	ADS DIR		H/
+2H(s)   =>H2        +2Rh(s)                 5.56E+11  -0.4347  0.5
+UBIQEP /	2	DES REV		H/
+
+O2      +2Rh(s)     => 2O(s)                4.81E-02   1.9965  0.5
+UBIQEP /	2	ADS DIR 	O/
+2O(s)    =>O2        +2Rh(s)                4.31E12    1.1995  0.5
+UBIQEP /	2	DES REV 	O/
+
+OH(s)   +Rh(s)  =>H(s)      +O(s)           1.82E14   -0.2659  0.7
+UBIQEP /	5   SUP DIR 	H	O	OH/
+H(s)    +O(s)   =>OH(s)     +Rh(s)			1.64E14   -0.8196  0.7
+UBIQEP /	5   SUP REV 	H	O	OH/
+
+H2O(s)  +Rh(s)  =>H(s)      +OH(s) 			1.15E11    0.0281  0.55 
+UBIQEP /	5   SUP DIR 	H	OH	H2O/
+H(s)    +OH(s)  =>H2O(s)    +Rh(s)			3.60E08    1.2972  0.55
+UBIQEP /	5   SUP REV 	H	OH	H2O/
+
+H2O(s)  +O(s)   =>2OH(s)					2.08E13   -2.113   0.8
+UBIQEP /	8   SUP DIR 	OH	O	H2O/
+2OH(s)  =>H2O(s)    +O(s)					7.22E10   -0.2902  0.8
+UBIQEP /	8   SUP REV 	OH	O	H2O/
+
+OH      +Rh(s)  =>OH(s)          			2.66E-1   -0.2891  0.5
+UBIQEP /	1	ADS DIR /  
+OH(s)           =>OH        +Rh(s)			1.14E13   -0.95    0.5
+UBIQEP /	1	DES REV /  
+
+H2O     +Rh(s)  =>H2O(s)           			7.72E-2    1.4067  0.5
+UBIQEP /	1	ADS DIR /    
+H2O(s)          =>H2O       +Rh(s) 			2.06E13   -1.8613  0.5        
+UBIQEP /	1	DES REV / 
+
+H       +Rh(s)  =>H(s)              		1.93E-1    1.5313  0.5
+UBIQEP /	1	ADS DIR / 
+H(s)            =>H         +Rh(s)  		2.4E12     1.3208  0.5
+UBIQEP /	1	DES REV / 
+
+O       +Rh(s)  =>O(s)            			4.46E-2   -1.9236  0.5
+UBIQEP /	1	ADS DIR / 
+O(s)            =>O         +Rh(s) 			9.74E12   -1.9701  0.5
+UBIQEP /	1	DES REV /
+
+END

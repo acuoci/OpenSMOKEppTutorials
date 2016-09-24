@@ -12,16 +12,58 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary SurfacePlugFlowReactor
 {
+		@KineticsFolder			kinetics-Deutschmann_C3H6_NO_over_Pt_Rh;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					Isothermal;
+		@ConstantPressure		true;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length					20 cm;
+		
+		@Diameter				1 cm;
+		
+		@Velocity				10 cm/s;
+		
+		@OdeParameters          ode-parameters;
+		@DaeParameters          dae-parameters;
 }
+
+Dictionary inlet-mixture
+{
+		@MoleFractions			O2		0.01	
+								C3H6	0.01
+								N2		0.98;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-PLATINUM
+{
+		@SurfaceFractions	Pt(S)	1.00;
+}
+
+Dictionary Surface-RHODIUM
+{
+		@SurfaceFractions	Rh(S1)	1.00;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary dae-parameters
+{	
+		@DaeSolver IDA;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;		
+}
+
+
+

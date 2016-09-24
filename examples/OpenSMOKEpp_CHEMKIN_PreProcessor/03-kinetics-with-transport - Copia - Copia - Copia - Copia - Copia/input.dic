@@ -12,16 +12,11 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
+		@Thermodynamics td__C2H4_C2H2_C3H6_2005.dat;
+		@Transport		transport.dat;
+		@Kinetics 		gm_C2H4_C2H2_C3H6_2005_chemkin.CKI;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Output			kinetics-Deutschmann;
 }

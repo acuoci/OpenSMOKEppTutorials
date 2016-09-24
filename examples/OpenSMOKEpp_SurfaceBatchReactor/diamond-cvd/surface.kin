@@ -1,0 +1,26 @@
+MATERIAL diamond-cvd
+
+SITE/DIAMOND/   SDEN/5.22E-09/
+   CH(S)      C(S,R)   CH3(S)
+   CH2(S)     CH2(S,R)   CH(S,R)
+END
+
+BULK
+   D /3.515/
+END
+
+REACTIONS MWON
+
+ CH(S)     + H         => C(S,R)  + H2                   2.14     0.0  7300.0
+    STICK   
+	COV /CH(S)  0.1  0.0  -0.25/   
+
+ C(S,R)    + H          => CH(S)                          3.0E-1   0.0     0.0
+    STICK
+ 
+ C(S,R)  + CH3    => D      + CH3(S)     4.0E12  0.0  1200.
+ D       + CH3(S) => C(S,R) + CH3        1.0E13  0.0  15000.
+	
+ CH2(S,R)  + CH(S,R)   <=> CH2(S)  + CH(S)                6.0E19   0.0  2000.0
+ 
+END

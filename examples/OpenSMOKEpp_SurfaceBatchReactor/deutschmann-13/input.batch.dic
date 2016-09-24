@@ -12,16 +12,44 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary SurfaceBatchReactor
 {
+		@KineticsFolder			kinetics-Deutschmann_IC8_C3H8_CPO_over_Rh;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					Isothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				1 s;
+		
+		@Volume					100 cm3;
+		@InternalSurfaceArea	10 cm2;
+		
+		@OdeParameters          ode-parameters;
 }
+
+Dictionary initial-mixture
+{
+		@MoleFractions			C3H8	0.10
+								O2		0.10	
+								I-C8H18	0.10
+								CH4		0.10
+								N2		0.60;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-RH_SURFACE
+{
+		@SurfaceFractions	_Rh_	1.00;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-16;
+		@RelativeTolerance 1e-8;
+}
+
+

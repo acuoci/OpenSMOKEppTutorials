@@ -12,16 +12,46 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary SurfaceBatchReactor
 {
+		@KineticsFolder			kinetics-PtRh_3WCC;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					Isothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				10 s;
+		
+		@Volume					100 cm3;
+		@InternalSurfaceArea	10 cm2;
 }
+
+Dictionary initial-mixture
+{
+		@MoleFractions			C3H6	0.03
+								NO		0.01
+								O2 		0.18 
+								N2		0.78;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-RHODIUM
+{
+		@SurfaceFractions	CO(S1) 	1.00;
+}
+
+Dictionary Surface-PLATINUM
+{
+		@SurfaceFractions	O(S) 	1.00;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+

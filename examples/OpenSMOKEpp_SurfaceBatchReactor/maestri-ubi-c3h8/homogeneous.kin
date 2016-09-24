@@ -1,0 +1,18 @@
+ELEMENTS
+	C
+	O 
+	H
+	N
+	Rh
+END
+
+SPECIES
+N2             O2             H2             H2O
+CO             CO2                           CH4
+C3H8           O              H              OH
+CH             CH2                       
+CH3            COOH           HCOO           C
+END
+REACTIONS
+N2 => N2 1 0 1
+END

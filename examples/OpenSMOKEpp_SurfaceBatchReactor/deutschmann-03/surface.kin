@@ -1,0 +1,102 @@
+!***********************************************************************
+!SURFACE MECHANISM OF THE PARTIAL OXIDATION OF CH4 ON RHODIUM
+!***********************************************************************
+!****                                                                  *
+!****     CPO OF CH4 ON Rh - SURFACE MECHANISM                         *
+!****                                                                  *
+!****     Version 1.0   February 13, 2001                              *
+!****                                                                  *
+!****     O. Deutschmann, R. Schwiedernoch, L. Maier,                  *
+!****        Heidelberg University, Germany                            *
+!****     S. Tummala, L. D. Schmidt, University of Minnesota, USA      *
+!****                                                                  *
+!****                                                                  *
+!****     NOTE: That is a first version that needs further             *
+!****           improvements, e.g. methanization, reforming etc.!!!    *
+!****                                                                  *
+!****                                                                  *
+!****     Ref:  O. Deutschmann, R. Schwiedernoch, L.I. Maier,          *
+!****           D. Chatterjee. Natural Gas Conversion in Monolithic    *
+!****           Catalysts: Interaction of Chemical Reactions and       *
+!****           Transport Phenomena.  Natural Gas Conversion VI,       *
+!****           Studies in Surface Science and Catalysis 136,          *
+!****           E. Iglesia, J.J. Spivey, T.H. Fleisch (eds.),          *
+!****           p. 215-258, Elsevier, 2001                             *
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     J/mol  *
+!****                                                                  *
+!****                                                                  *
+!**** SURFACE CHEMKIN format  21.01.06, tested with Vers.4.0.1         *
+!****                                                                  *
+!***********************************************************************
+
+MATERIAL CATALYST
+
+SITE/RH_SURFACE/    SDEN/2.72E-9/
+_Rh_   H2O_Rh  H_Rh  OH_Rh   CO_Rh   C_Rh    
+CH3_Rh  CH2_Rh  CH_Rh   CH4_Rh  O_Rh    CO2_Rh       
+END
+
+
+REACTIONS      JOULES/MOLE
+
+!***********************************************************************
+!**** 1.  ADSORPTION
+!***********************************************************************
+H2      +_Rh_   +_Rh_  =>H_Rh    +H_Rh      0.010E-00  0.0       0.0
+                                          STICK
+O2      +_Rh_   +_Rh_  =>O_Rh    +O_Rh      0.010E-00  0.0       0.0
+                                          STICK
+CH4     +_Rh_           =>CH4_Rh             8.000E-03  0.0       0.0
+                                          STICK
+H2O     +_Rh_  =>H2O_Rh                      1.000E-01  0.0       0.0
+                                          STICK
+CO2     +_Rh_  =>CO2_Rh                      1.000E-05  0.0       0.0
+                                          STICK
+CO      +_Rh_  =>CO_Rh                       5.000E-01  0.0       0.0
+                                          STICK
+!***********************************************************************
+!**** 2. DESORPTION
+!***********************************************************************
+H_Rh    +H_Rh   =>_Rh_   +_Rh_   +H2        3.000E+21  0.0      77800
+O_Rh    +O_Rh   =>_Rh_   +_Rh_   +O2        1.300E+22  0.0     355200
+H2O_Rh          =>H2O     +_Rh_              3.000E+13  0.0      45000
+CO_Rh           =>CO      +_Rh_              3.500E+13  0.0     133400
+CO2_Rh          =>CO2     +_Rh_              1.000E+13  0.0      21700
+CH4_Rh          =>CH4     +_Rh_              1.000E+13  0.0      25100
+!***********************************************************************
+!**** 3.  SURFACE REACTIONS
+!***********************************************************************
+H_Rh    +O_Rh   =>OH_Rh   +_Rh_              5.000E+22  0.0      83700
+OH_Rh   +_Rh_  =>H_Rh    +O_Rh               3.000E+20  0.0      37700
+H_Rh    +OH_Rh  =>H2O_Rh  +_Rh_              3.000E+20  0.0      33500
+H2O_Rh  +_Rh_  =>H_Rh    +OH_Rh              5.000E+22  0.0     106400
+OH_Rh   +OH_Rh  =>H2O_Rh  +O_Rh               3.000E+21  0.0     100800
+H2O_Rh  +O_Rh   =>OH_Rh   +OH_Rh              3.000E+21  0.0     224200
+C_Rh    +O_Rh   =>CO_Rh   +_Rh_              3.000E+22  0.0      97900
+CO_Rh   +_Rh_  =>C_Rh    +O_Rh               2.500E+21  0.0     169000
+CO_Rh   +O_Rh   =>CO2_Rh  +_Rh_              1.400E+20  0.0     121600
+CO2_Rh  +_Rh_  =>CO_Rh   +O_Rh               3.000E+21  0.0     115300
+!***********************************************************************
+CH4_Rh  +_Rh_  =>CH3_Rh  +H_Rh               3.700E+21  0.0      61000
+CH3_Rh  +H_Rh   =>CH4_Rh  +_Rh_              3.700E+21  0.0      51000
+CH3_Rh  +_Rh_  =>CH2_Rh  +H_Rh               3.700E+24  0.0     103000
+CH2_Rh  +H_Rh   =>CH3_Rh  +_Rh_              3.700E+21  0.0      44000
+CH2_Rh  +_Rh_  =>CH_Rh   +H_Rh               3.700E+24  0.0     100000
+CH_Rh   +H_Rh   =>CH2_Rh  +_Rh_              3.700E+21  0.0      68000
+CH_Rh   +_Rh_  =>C_Rh    +H_Rh               3.700E+21  0.0      21000
+C_Rh    +H_Rh   =>CH_Rh   +_Rh_              3.700E+21  0.0     172800
+!***********************************************************************
+CH4_Rh  +O_Rh   =>CH3_Rh  +OH_Rh              1.700E+24  0.0      80300
+CH3_Rh  +OH_Rh  =>CH4_Rh  +O_Rh               3.700E+21  0.0      24300
+CH3_Rh  +O_Rh   =>CH2_Rh  +OH_Rh              3.700E+24  0.0     120300
+CH2_Rh  +OH_Rh  =>CH3_Rh  +O_Rh               3.700E+21  0.0      15100
+CH2_Rh  +O_Rh   =>CH_Rh   +OH_Rh              3.700E+24  0.0     158400
+CH_Rh   +OH_Rh  =>CH2_Rh  +O_Rh               3.700E+21  0.0      36800
+CH_Rh   +O_Rh   =>C_Rh    +OH_Rh              3.700E+21  0.0      30100
+C_Rh    +OH_Rh  =>CH_Rh   +O_Rh               3.700E+21  0.0     145500
+!***********************************************************************
+
+END

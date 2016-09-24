@@ -12,16 +12,37 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary BatchReactor
 {
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
 		
-		@StartingDate		2016-May-01;
-		@ExpirationDate		2017-May-01;
-		@UserName			academic_user;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.5.0;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Type					NonIsothermal-ConstantPressure;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				1e-4 s;
+		
+		@Options				output-options;
 }
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics	../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	1000.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@Masses	 		H2 0.2 O2 0.1 OH 0.01 N2 0.69;
+}
+
+Dictionary output-options
+{ 		
+	@StepsFile		1;
+}
+
+
