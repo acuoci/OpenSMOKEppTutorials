@@ -46,5 +46,5 @@ Dictionary ode-parameters
 {	
 		@OdeSolver OpenSMOKE;
 		@AbsoluteTolerance 1e-14;
-		@RelativeTolerance 1e-7;
+		@RelativeTolerance 1e-9;
 }

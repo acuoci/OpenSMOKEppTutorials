@@ -30,11 +30,12 @@ Dictionary PremixedLaminarFlame1D
 
 Dictionary kinetics
 {
-	@Kinetics		C:\Users\acuoci\Desktop\Test Laminar Flame Speed\Kinetics\POLIMI_NC7_Skeletal\POLIMI_NC7_106.CKI;
-	@Thermodynamics	C:\Users\acuoci\Desktop\Test Laminar Flame Speed\Kinetics\POLIMI_NC7_Skeletal\POLIMI_THERMO.CKT;
-	@Transport 		C:\Users\acuoci\Desktop\Test Laminar Flame Speed\Kinetics\POLIMI_NC7_Skeletal\POLIMI_TRANS.TRC;
-	@Output			kinetics;
+        @Kinetics       ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_NC7_REDUCED106_1410.CKI;
+        @Thermodynamics ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+        @Transport      ../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+        @Output                 kinetics;
 }
+
 
 Dictionary inlet-stream
 {

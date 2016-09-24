@@ -16,17 +16,17 @@ Dictionary BatchReactor
 {
 		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
 		
-		@Type					Isothermal-ConstantPressure;
+		@Type			Isothermal-ConstantPressure;
 		
 		@InitialStatus          initial-mixture;
 		
-		@EndTime				0.01 s;
+		@EndTime		0.01 s;
 }
 
 Dictionary POLIMI_H2CO_NOX_1412
 {
 		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
-		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
 		@Output			kinetics;
 }
 
