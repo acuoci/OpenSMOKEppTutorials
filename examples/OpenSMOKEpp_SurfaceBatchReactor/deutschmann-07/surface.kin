@@ -1,0 +1,108 @@
+!***********************************************************************
+!SURFACE MECHANISM OF CH4 REFORMING AND OXIDATION OVER NI              *
+!***********************************************************************
+!****                                                                  *
+!****     CH4 ON Ni - SURFACE MECHANISM                                *
+!****
+!****     Version 1.2  (March 2006)
+!****
+!****     V. Janardhanan, O. Deutschmann
+!****     ITCP, University of Karlsruhe, Germany
+!****     Contact: mail@detchem.com (O. Deutschmann)
+!****
+!****     NOTE: The mechanism Ni2005: E. Hecht, G.K. Gupta, H. Zhu. 
+!****           A.M. Dean, R.J. Kee, L. Maier, O. Deutschmann.         *                    
+!****           Applied Catalysis A: General 295 (2005) 40–51          
+!****           adjusted for temperature range 500-2000°C for SOFC 
+!****           applications
+!****     Referenc:
+!****     V.M. Janardhanan, O. Deutschmann. 
+!****         Journal of Power Sources 162 (2006), 1192-1202
+!****     www.detchem.com/mechanisms
+!****
+!****     Kinetic data:
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea
+!****                                       (cm,mol,s)    -      J/mol
+!****
+!****
+!****     Surface site density: 2.66E-9 mol/cm**2
+!****
+!****
+!****     (SURFACE CHEMKIN format)
+!****
+!***********************************************************************
+
+MATERIAL CATALYST
+
+SITE   /NI_surface/   SDEN /2.66E-09/
+     NI(s)             /1/
+     H2O(s)            /1/
+     H(s)              /1/
+     OH(s)             /1/
+     CO(s)             /1/
+     C(s)              /1/
+     CH3(s)            /1/
+     CH2(s)            /1/
+     CH(s)             /1/
+     CH4(s)            /1/
+     O(s)              /1/
+     CO2(s)            /1/
+     HCO(s)            /1/
+END
+
+REACTIONS   KJOULES/MOLE
+
+   H2     +   2NI(s)   =>   2H(s)               1.000E-002  0.00     0.0
+          STICK     
+  2H(s)                =>    H2     +   2NI(s)  2.545E+019  0.00    81.2
+   O2     +   2NI(s)   =>   2O(s)               1.000E-002  0.00     0.0
+          STICK     
+  2O(s)                =>    O2     +   2NI(s)  4.283E+023  0.00   474.9
+   CH4    +    NI(s)   =>    CH4(s)             8.000E-003  0.00     0.0
+          STICK     
+   CH4(s)              =>    CH4    +    NI(s)  8.705E+015  0.00    37.5
+   H2O    +    NI(s)   =>    H2O(s)             1.000E-001  0.00     0.0
+          STICK     
+   H2O(s)              =>    H2O    +    NI(s)  3.732E+012  0.00    60.8
+   CO2    +    NI(s)   =>    CO2(s)             1.000E-005  0.00     0.0
+          STICK     
+   CO2(s)              =>    CO2    +    NI(s)  6.447E+007  0.00    26.0
+   CO     +    NI(s)   =>    CO(s)              5.000E-001  0.00     0.0
+          STICK     
+   CO(s)               =>    CO     +    NI(s)  3.563E+011  0.00   111.3
+          COV        /CO(s)                     0.000E+000  0.00   -50.0/
+   H(s)   +    O(s)    =>    NI(s)  +    OH(s)  5.000E+022  0.00    97.9
+   NI(s)  +    OH(s)   =>    H(s)   +    O(s)   1.781E+021  0.00    36.1
+   H(s)   +    OH(s)   =>    NI(s)  +    H2O(s) 3.000E+020  0.00    42.7
+   NI(s)  +    H2O(s)  =>    H(s)   +    OH(s)  2.271E+021  0.00    91.8
+  2OH(s)               =>    H2O(s) +    O(s)   3.000E+021  0.00   100.0
+   H2O(s) +    O(s)    =>   2OH(s)              6.373E+023  0.00   210.9
+   C(s)   +    O(s)    =>    NI(s)  +    CO(s)  5.200E+023  0.00   148.1
+   NI(s)  +    CO(s)   =>    C(s)   +    O(s)   1.354E+022 -3.00   116.1
+          COV        /CO(s)                     0.000E+000  0.00   -50.0/
+   CO(s)  +    O(s)    =>    NI(s)  +    CO2(s) 2.000E+019  0.00   123.6
+          COV        /CO(s)                     0.000E+000  0.00   -50.0/
+   NI(s)  +    CO2(s)  =>    CO(s)  +    O(s)   4.653E+023 -1.00    89.3
+   NI(s)  +    HCO(s)  =>    H(s)   +    CO(s)  3.700E+021  0.00     0.0
+          COV        /CO(s)                     0.000E+000  0.00    50.0/
+   H(s)   +    CO(s)   =>    NI(s)  +    HCO(s) 4.019E+020 -1.00   132.2
+   NI(s)  +    HCO(s)  =>    CH(s)  +    O(s)   3.700E+024 -3.00    95.8
+   CH(s)  +    O(s)    =>    NI(s)  +    HCO(s) 4.604E+020  0.00   110.0
+   NI(s)  +    CH4(s)  =>    H(s)   +    CH3(s) 3.700E+021  0.00    57.7
+   H(s)   +    CH3(s)  =>    NI(s)  +    CH4(s) 6.034E+021  0.00    61.6
+   NI(s)  +    CH3(s)  =>    H(s)   +    CH2(s) 3.700E+024  0.00   100.0
+   H(s)   +    CH2(s)  =>    NI(s)  +    CH3(s) 1.293E+023  0.00    55.3
+   NI(s)  +    CH2(s)  =>    H(s)   +    CH(s)  3.700E+024  0.00    97.1
+   H(s)   +    CH(s)   =>    NI(s)  +    CH2(s) 4.089E+024  0.00    79.2
+   NI(s)  +    CH(s)   =>    H(s)   +    C(s)   3.700E+021  0.00    18.8
+   H(s)   +    C(s)    =>    NI(s)  +    CH(s)  4.562E+022  0.00   161.1
+   CH4(s) +    O(s)    =>    OH(s)  +    CH3(s) 1.700E+024  0.00    88.3
+   OH(s)  +    CH3(s)  =>    CH4(s) +    O(s)   9.876E+022  0.00    30.4
+   CH3(s) +    O(s)    =>    OH(s)  +    CH2(s) 3.700E+024  0.00   130.1
+   OH(s)  +    CH2(s)  =>    CH3(s) +    O(s)   4.607E+021  0.00    23.6
+   CH2(s) +    O(s)    =>    OH(s)  +    CH(s)  3.700E+024  0.00   126.8
+   OH(s)  +    CH(s)   =>    CH2(s) +    O(s)   1.457E+023  0.00    47.1
+   CH(s)  +    O(s)    =>    OH(s)  +    C(s)   3.700E+021  0.00    48.1
+   OH(s)  +    C(s)    =>    CH(s)  +    O(s)   1.625E+021  0.00   128.6
+   
+END

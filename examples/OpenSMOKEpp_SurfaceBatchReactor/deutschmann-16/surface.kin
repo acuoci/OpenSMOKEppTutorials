@@ -1,0 +1,58 @@
+!***********************************************************************
+!****     CO/O2 OVER RH - SURFASE MECHANISM                            *
+!****     thermodynamically constant (273 - 1273K)                     *
+!****                                                                  *
+!****     References:                                                  *
+!****     H. Karadeniz, C. Karakaya, S. Tischer, O. Deutschmann,       *
+!****     Chemical Engineering Science, Submitted (2013).              *
+!****     www.detchem.com/mechanisms                                   * 
+!****     KIT (Karlsruhe Institute of Technology)                      *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   * 
+!****     www.detchem.com/mechanisms                                   * 
+!****                                                                  *
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****     STICK: A in next reaction is initial sticking coefficient    *
+!****                                                                  *
+!****                                                                  *
+!****     (CHEMKIN format)                                             *
+!****                                                                  * 
+!***********************************************************************       
+
+MATERIAL CATALYST
+
+SITE/Rh_surface/    SDEN/2.72E-9/
+    Rh(s)
+    H2O(s)
+    H(s)
+    OH(s)
+    CO(s)
+    O(s)
+    CO2(s)
+    COOH(s)
+	C(s)
+END
+
+REACTIONS      MWOFF   KJOULES/MOLE  
+
+O2 + Rh(s) + Rh(s) => O(s) + O(s)             1.000E-02  0.000      0.000 
+    STICK 
+CO2 + Rh(s) => CO2(s)                         4.800E-02  0.000      0.000 
+    STICK 
+CO + Rh(s) => CO(s)                           4.971E-01  0.000      0.000 
+    STICK 
+O(s) + O(s) => Rh(s) + Rh(s) + O2             5.329E+22  -0.137     386.995 
+CO(s) => Rh(s) + CO                           1.300E+13  0.295      134.070 
+    COV/CO(s)                               0.000E+00  0.000      -47.000/ 
+CO2(s) => Rh(s) + CO2                         3.920E+11  0.315      20.505 
+O(s) + C(s) => CO(s) + Rh(s)                  1.173E+22  0.000      92.142 
+CO(s) + Rh(s) => O(s) + C(s)                  6.390E+21  0.000      174.758 
+    COV/CO(s)                               0.000E+00  0.000      -47.000/ 
+O(s) + CO(s) => CO2(s) + Rh(s)                6.183E+21  0.034      129.982  
+    COV/CO(s)                               0.000E+00  0.000      -47.000/
+CO2(s) + Rh(s) => O(s) + CO(s)                5.752E+22  -0.175     106.492 
+
+END 

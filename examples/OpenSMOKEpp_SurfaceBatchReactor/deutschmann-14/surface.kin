@@ -1,0 +1,98 @@
+!***********************************************************************
+!SURFACE MECHANISM FOR STEAM REFORMING AND PARTIAL OXIDATION 
+!OF METHANE AND HEXADECANE OVER RHODIUM
+!***********************************************************************
+!****                                                                  *
+!****     SR/CPO CH4/C16H34 ON RH - SURFACE MECHANISM                  *
+!****                                                                  *
+!****     Version 1.0, March  2008                                     *
+!****     L. Maier, O. Deutschmann                                     *
+!****     KIT (Karlsruhe Institute of Technology)                      *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   * 
+!****                                                                  *
+!****     References:                                                  *
+!****     J. Thormann, L. Maier, P. Pfeifer, U. Kunz, K. Schubert,     *
+!****     O. Deutschmann.International J. Hydrogen Energy              *
+!****     34 (2009), 5108-5120                                         * 
+!****     www.detchem.com/mechanisms                                   * 
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****     STICK: A in next reaction is initial sticking coefficient    *
+!****                                                                  *
+!****                                                                  *
+!****     (SURFACE CHEMKIN format)                                     *
+!****                                                                  * 
+!***********************************************************************   
+
+MATERIAL CATALYST
+
+SITE/RH_SURFACE/    SDEN/2.72E-9/
+_Rh_ H2O_Rh H_Rh OH_Rh CO_Rh C_Rh CH3_Rh CH2_Rh 
+CH_Rh CH4_Rh O_Rh CO2_Rh
+HCO_Rh 
+END
+
+REACTIONS  JOULES/MOLE  MWOFF 
+
+H2 + _Rh_ + _Rh_ => H_Rh + H_Rh 0.01 0. 0. 
+    STICK 
+H_Rh + H_Rh => _Rh_ + _Rh_ + H2 3.E+21 0. 77800. 
+O2 + _Rh_ + _Rh_ => O_Rh + O_Rh 0.01 0. 0. 
+    STICK 
+O_Rh + O_Rh => _Rh_ + _Rh_ + O2 1.3E+22 0. 355200. 
+CH4 + _Rh_ => CH4_Rh 0.008 0. 0. 
+    STICK 
+CH4_Rh => _Rh_ + CH4 2.E+14 0. 25100. 
+H2O + _Rh_ => H2O_Rh 0.1 0. 0. 
+    STICK 
+H2O_Rh => _Rh_ + H2O 6.E+13 0. 45000. 
+CO2 + _Rh_ => CO2_Rh 0.00001 0. 0. 
+    STICK 
+CO2_Rh => _Rh_ + CO2 3.E+8 0. 21700. 
+CO + _Rh_ => CO_Rh 0.5 0. 0. 
+    STICK 
+CO_Rh => _Rh_ + CO 1.E+13 0. 133400. 
+    COV /CO_Rh 0. 0. -50000. / 
+O_Rh + H_Rh => OH_Rh + _Rh_ 5.E+22 0. 83700. 
+OH_Rh + _Rh_ => O_Rh + H_Rh 3.E+20 0. 37700. 
+OH_Rh + H_Rh => H2O_Rh + _Rh_ 3.E+20 0. 33500. 
+H2O_Rh + _Rh_ => OH_Rh + H_Rh 5.E+22 0. 106400. 
+OH_Rh + OH_Rh => O_Rh + H2O_Rh 3.E+21 0. 100800. 
+O_Rh + H2O_Rh => OH_Rh + OH_Rh 3.E+21 0. 171800. 
+O_Rh + C_Rh => CO_Rh + _Rh_ 5.E+23 0. 97900. 
+CO_Rh + _Rh_ => O_Rh + C_Rh 3.7E+21 0. 169000. 
+    COV /CO_Rh 0. 0. -50000. / 
+O_Rh + CO_Rh => CO2_Rh + _Rh_ 1.E+19 0. 121600. 
+    COV /CO_Rh 0. 0. -50000. / 
+CO2_Rh + _Rh_ => O_Rh + CO_Rh 5.E+21 0. 115300. 
+CO_Rh + H_Rh => HCO_Rh + _Rh_ 5.E+19 0. 108900. 
+HCO_Rh + _Rh_ => CO_Rh + H_Rh 3.7E+21 0. 0. 
+    COV /CO_Rh 0. 0. 50000. / 
+HCO_Rh + _Rh_ => O_Rh + CH_Rh 8.E+23 0. 59500. 
+O_Rh + CH_Rh => HCO_Rh + _Rh_ 3.7E+21 0. 167500. 
+CH4_Rh + _Rh_ => CH3_Rh + H_Rh 5.5E+20 0. 61000. 
+CH3_Rh + H_Rh => CH4_Rh + _Rh_ 3.7E+21 0. 51000. 
+CH3_Rh + _Rh_ => CH2_Rh + H_Rh 3.7E+24 0. 103000. 
+CH2_Rh + H_Rh => CH3_Rh + _Rh_ 3.7E+21 0. 44000. 
+CH2_Rh + _Rh_ => CH_Rh + H_Rh 3.7E+24 0. 100000. 
+CH_Rh + H_Rh => CH2_Rh + _Rh_ 3.7E+24 0. 68000. 
+CH_Rh + _Rh_ => C_Rh + H_Rh 3.7E+21 0. 21000. 
+C_Rh + H_Rh => CH_Rh + _Rh_ 3.7E+21 0. 172800. 
+O_Rh + CH4_Rh => CH3_Rh + OH_Rh 1.7E+24 0. 80340. 
+CH3_Rh + OH_Rh => O_Rh + CH4_Rh 3.7E+21 0. 24270. 
+O_Rh + CH3_Rh => CH2_Rh + OH_Rh 3.7E+24 0. 120310. 
+CH2_Rh + OH_Rh => O_Rh + CH3_Rh 3.7E+21 0. 15060. 
+O_Rh + CH2_Rh => CH_Rh + OH_Rh 3.7E+24 0. 114500. 
+CH_Rh + OH_Rh => O_Rh + CH2_Rh 3.7E+21 0. 36820. 
+O_Rh + CH_Rh => C_Rh + OH_Rh 3.7E+21 0. 30130. 
+C_Rh + OH_Rh => O_Rh + CH_Rh 3.7E+21 0. 136000. 
+CO_Rh + H_Rh => C_Rh + OH_Rh 3.7E+21 0. 142760. 
+C_Rh + OH_Rh => CO_Rh + H_Rh 3.7E+20 0. 25540. 
+C16H34 + 16 _Rh_ => 2 CH3_Rh + 14 CH2_Rh 422807.09 0.2 71000. 
+    FORD/ C16H34 0.495 / 
+    FORD/ _Rh_ 0.9 / 
+	
+END 

@@ -1,0 +1,113 @@
+!***********************************************************************
+!SURFACE MECHANISM OF POX of CH4 on PT wire gauze
+!***********************************************************************      
+!****                                                                  *     
+!****     CH4-O2 SURFACE MECHANISM  ON PT                              *    
+!****                                                                  *         
+!****     Version 1.0   Spring 2005                                    *
+!****                                                                  *         
+!****     Raul Quiceno, Olaf Deutschmann, IWR, Heidelberg University,  *
+!****     Germany            *                                         *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   *
+!****                                                                  *
+!****     Reference:                                                   *
+!****     R. Quiceno, J. Perez-Ramyrez, J. Warnatz, O. Deutschmann.    *
+!****     Appl. Catal. A: General (2006)                               *
+!****     www.detchem.com/mechanisms                                   *
+!****                                                                  *
+!****                                                                  *
+!****     Kinetic data format: DETCHEM                                 *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****      STICK: A in next reaction is initial sticking coefficient   *
+!****                                                                  *
+!****      $..  : additional coverage dependence of Ea (3rd column)    *
+!****               or changed reaction order (2nd column)             *
+!****                                                                  *
+!****      see manuals on www.detchem.com for details                  *
+!****                                                                  *
+!****      The kinetic data of the backward reactions of               *
+!****      reactions in Section 3 are calculated                       *
+!****      from thermodynamics (k_b = k_f /K)                          *
+!****                                                                  *
+!****     Surface site density: 2.72E-9 mol/cm**2                      *
+!****                                                                  *
+!****     CHEMKIN format                                               *
+!****                                                                  *
+!***********************************************************************
+
+MATERIAL CATALYST
+
+SITE/PT_SURFACE/    SDEN/2.72E-9/
+_Pt_   H2O_Pt  	H_Pt    	OH_Pt   
+CO_Pt  CO2_Pt  	CH3_Pt		CH2_Pt
+CH_Pt  O_Pt		C_Pt
+END
+
+REACTIONS  KJOULES/MOLE  MWOFF 
+
+H2 + _Pt_ + _Pt_ => H_Pt + H_Pt             4.600E-02  0.000      0.000 
+    STICK 
+    COV /_Pt_                               0.000E+00  -1.000     -0.000 / 
+_Pt_ + _Pt_ + O2 => O_Pt + O_Pt             1.891E+21  -0.500     0.000 
+CH4 + _Pt_ + _Pt_ => H_Pt + CH3_Pt          9.000E-04  0.000      72.000 
+    STICK 
+_Pt_ + O_Pt + CH4 => OH_Pt + CH3_Pt          5.000E+18  0.700      42.000 
+    COV /O_Pt                                0.000E+00  0.000      8.000 / 
+CH4 + OH_Pt + _Pt_ => H2O_Pt + CH3_Pt        1.000E+00  0.000      10.000 
+    STICK 
+H2O + _Pt_ => H2O_Pt                         7.500E-01  0.000      0.000 
+    STICK 
+CO2 + _Pt_ => CO2_Pt                         5.000E-03  0.000      0.000 
+    STICK 
+CO + _Pt_ => CO_Pt                           8.400E-01  0.000      0.000 
+    STICK 
+H_Pt + H_Pt => _Pt_ + _Pt_ + H2             3.700E+21  0.000      67.400 
+    COV /H_Pt                                0.000E+00  0.000      -10.000 / 
+O_Pt + O_Pt => _Pt_ + _Pt_ + O2             3.700E+21  0.000      235.500 
+    COV /O_Pt                                0.000E+00  0.000      -188.280 / 
+H2O_Pt => _Pt_ + H2O                         4.500E+12  0.000      41.800 
+CO_Pt => _Pt_ + CO                           1.000E+15  0.000      146.000 
+    COV /CO_Pt                               0.000E+00  0.000      -33.000 / 
+CO2_Pt => _Pt_ + CO2                         1.000E+13  0.000      27.070 
+O_Pt + C_Pt => _Pt_ + CO_Pt                  3.700E+19  0.000      0.000 
+_Pt_ + CO_Pt => O_Pt + C_Pt                  3.700E+19  0.000      236.500 
+    COV /CO_Pt                               0.000E+00  0.000      -33.000 / 
+O_Pt + CO_Pt => _Pt_ + CO2_Pt                3.700E+21  0.000      117.600 
+    COV /CO_Pt                               0.000E+00  0.000      -33.000 / 
+_Pt_ + CO2_Pt => O_Pt + CO_Pt                3.700E+19  0.000      173.300 
+    COV /O_Pt                                0.000E+00  0.000      94.140 / 
+OH_Pt + CO_Pt => H_Pt + CO2_Pt                1.000E+19  0.000      38.700 
+    COV /CO_Pt                               0.000E+00  0.000      -30.000 / 
+H_Pt + CO2_Pt => OH_Pt + CO_Pt                1.000E+19  0.000      8.400 
+_Pt_ + CH3_Pt => H_Pt + CH2_Pt               1.262E+22  0.000      70.300 
+H_Pt + CH2_Pt => _Pt_ + CH3_Pt               3.090E+22  0.000      0.000 
+    COV /H_Pt                                0.000E+00  0.000      -2.800 / 
+_Pt_ + CH2_Pt => H_Pt + CH_Pt                7.314E+22  0.000      58.900 
+    COV /C_Pt                                0.000E+00  0.000      50.000 / 
+H_Pt + CH_Pt => _Pt_ + CH2_Pt                3.090E+22  0.000      0.000 
+    COV /H_Pt                                0.000E+00  0.000      -2.800 / 
+_Pt_ + CH_Pt => H_Pt + C_Pt                  3.090E+22  0.000      0.000 
+    COV /H_Pt                                0.000E+00  0.000      -2.800 / 
+H_Pt + C_Pt => _Pt_ + CH_Pt                  1.248E+22  0.000      138.000 
+O_Pt + H_Pt => _Pt_ + OH_Pt                  1.280E+21  0.000      11.200 
+_Pt_ + OH_Pt => O_Pt + H_Pt                  7.390E+19  0.000      77.300 
+    COV /O_Pt                                0.000E+00  0.000      -73.220 / 
+_Pt_ + H2O_Pt => OH_Pt + H_Pt                1.150E+19  0.000      101.400 
+    COV /O_Pt                                0.000E+00  0.000      167.360 / 
+OH_Pt + OH_Pt => O_Pt + H2O_Pt                7.400E+20  0.000      74.000 
+O_Pt + H2O_Pt => OH_Pt + OH_Pt                1.000E+20  0.000      43.100 
+    COV /O_Pt                                0.000E+00  0.000      240.580 / 
+H2 + C_Pt => CH2_Pt                           4.000E-02  0.000      29.700 
+    STICK 
+    COV /C_Pt                                0.000E+00  0.000      4.600 / 
+CH2_Pt => C_Pt + H2                           7.690E+13  0.000      25.100 
+    COV /C_Pt                                0.000E+00  0.000      50.000 / 
+OH_Pt + H_Pt => _Pt_ + H2O_Pt                2.040E+21  0.000      66.220 
+H_Pt + CH3_Pt => _Pt_ + _Pt_ + CH4          3.300E+21  0.000      50.000 
+    COV /H_Pt                                0.000E+00  0.000      -2.800 / 
+H2O_Pt + CH3_Pt => _Pt_ + OH_Pt + CH4        3.700E+21  0.000      110.600 
+OH_Pt + CH3_Pt => _Pt_ + O_Pt + CH4          3.700E+21  0.000      87.900
+ 
+END

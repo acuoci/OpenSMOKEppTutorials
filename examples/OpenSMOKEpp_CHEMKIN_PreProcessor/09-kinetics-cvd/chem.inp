@@ -1,0 +1,47 @@
+ELEMENTS 
+H N SI F 
+END
+
+SPECIES  
+H2 H N2 N NH NH2 NNH N2H2 N2H3 N2H4
+HF F SIF4 SIF3 SIHF3 SIF3NH2 NH3
+END
+
+REACTIONS
+H+H+M=H2+M                     0.100E+19 -1.000      0.000 ! D-L
+ H2/0.0/
+H+H+H2=H2+H2                   0.920E+17 -0.600      0.000
+NH+N=N2+H                      0.300E+14  0.000      0.000 ! JAM
+NH+H=N+H2                      0.100E+15  0.000      0.000 ! NH3  CST
+NH2+H=NH+H2                    0.692E+14  0.000   3650.000
+NH3+H=NH2+H2                   0.636E+06  2.390  10171.000 ! MICHAEL
+NNH=N2+H                       0.100E+05  0.000      0.000 ! JAM
+NNH+H=N2+H2                    0.100E+15  0.000      0.000 ! JAM
+NNH+NH2=N2+NH3                 0.500E+14  0.000      0.000 ! JAM
+NNH+NH=N2+NH2                  0.500E+14  0.000      0.000 ! JAM
+NH2+NH=N2H2+H                  0.500E+14  0.000      0.000 ! NH3CST
+NH+NH=N2+H+H                   0.254E+14  0.000      0.000 ! NH3 CST
+NH2+N=N2+H+H                   0.720E+14  0.000      0.000 ! PG
+N2H2+M=NNH+H+M                 0.500E+17  0.000  50000.000 ! NH3 CST
+    N2/2/ H2/2/
+N2H2+H=NNH+H2                  0.500E+14  0.000   1000.000 ! NH3 CST
+N2H2+NH=NNH+NH2                0.100E+14  0.000   1000.000 ! NH3 CST
+N2H2+NH2=NH3+NNH               0.100E+14  0.000   1000.000 ! NH3 CST
+NH2+NH2=N2H2+H2                0.500E+12  0.000      0.000 ! NH3  CST
+NH3+M=NH2+H+M                  0.140E+17  0.000  90600.000 ! MSGK
+N2H3+H=NH2+NH2                 1.60E+12   0.0        0.0   ! MSGK
+N2H3+M=N2H2+H+M                3.50E+16   0.0    46000.0   ! MSGK
+N2H3+NH=NH2+N2H2               2.00E+13   0.0        0.0   ! MSGK
+NH2+NH2+M=N2H4+M               3.00E+20  -1.0        0.0   ! MSGK
+H+N2H4=H2+N2H3                 1.30E+13   0.0     2500.0   ! MSGK
+NH2+N2H4=NH3+N2H3              3.90E+12   0.0     1500.0   ! MSGK
+NH+H+M=NH2+M                   2.00E+16  -0.5        0.0   ! MSGK
+NH2+NH2=NH3+NH                 5.00E+12   0.0    10000.0   ! MSGK
+F+NH3=NH2+HF                   4.27E+11   0.5      800.0   ! KONDRATIEV
+SIF4=SIF3+F                    3.00E+12   0.0   147170.0   ! PHO&MEC
+H+SIF4=HF+SIF3                 1.00E+13   0.0    50000.0   ! PHO&MEC
+NH2+SIF4=SIF3NH2+F             1.00E+11   0.0    40950.0   ! GUESS
+NH3+SIF3=SIF3NH2+H             1.00E+11   0.0     5000.0   ! GUESS
+NH3+SIF3=SIHF3+NH2             1.00E+11   0.0    10000.0   ! PHO&MEC
+END
+

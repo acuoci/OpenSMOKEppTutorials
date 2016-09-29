@@ -1,0 +1,150 @@
+!***********************************************************************
+!MECHANISM C1+ Gas phase chemistry, P = 1 bar
+!***********************************************************************
+!****                                                                  *
+!****     Reduced gas phase mechanism for Syngas production            *
+!****     at 800 K and 1 Bar                                           *
+!****     Application for speciefied problem only !!!                  *
+!****                                                                  *
+!****     Version 1.0   December 2003                                  *
+!****                                                                  *         
+!****     Raul Quiceno, Jürgen Warnatz, Olaf Deutschmann               *
+!****     IWR, Heidelberg University, Germany                          *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   *
+!****                                                                  *
+!****     Reference:                                                   *
+!****     R. Quiceno, J. Perez-Ramyrez, J. Warnatz, O. Deutschmann.    *
+!****     Appl. Catal. A: General (2006) 303 (2006) 166–176            *
+!****     www.detchem.com/mechanisms                                   *
+!****                                                                  *
+!****                                                                  *
+!****     Kinetic data format: DETCHEM                                 *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****      + some reactions in TROE nomenclature                       *
+!****                                                                  *
+!****      see manuals on www.detchem.com for details                  *
+!****                                                                  *
+!****      The kinetic data of the backward reactions of               *
+!****      reactions are calculated                                    *
+!****      from thermodynamics (k_b = k_f /K)                          *
+!****                                                                  *
+!****                                                                  *
+!****     CHEMKIN format                                               *
+!****                                                                  *
+!***********************************************************************
+ELEMENTS 
+C H O N PT 
+END 
+
+SPECIES 
+  C2H3O C2H4 C2H5 C2H5O2 C2H5OOH C2H6 CH2O CH2OH CH3 CH3CHO CH3CO CH3O CH3O2 CH3O2H CH3OH CH4 CHO  
+  CO CO2 DC2OOH1 H H2 H2O H2O2 HO2 O O2 OH OXIRAN N2
+END 
+
+REACTIONS  KJOULES/MOLE 
+O2 + H <=> OH + O                             9.756E+13  0.000      62.100 
+OH + H2 <=> H2O + H                           1.000E+08  1.600      13.800 
+O2 + H +M <=> HO2 +M                          2.100E+18  -0.800     0.000 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+HO2 + H <=> OH + OH                           1.500E+14  0.000      3.800 
+HO2 + H <=> O2 + H2                           3.000E+13  0.000      4.000 
+HO2 + H <=> O + H2O                           3.000E+13  0.000      7.200 
+OH + HO2 <=> O2 + H2O                         6.000E+13  0.000      0.000 
+HO2 + HO2 <=> O2 + H2O2                       4.220E+14  0.000      50.140 
+DUP
+HO2 + HO2 <=> O2 + H2O2                       1.320E+11  0.000      -6.820 
+DUP
+OH + OH (+M) <=> H2O2 (+M)                    7.230E+19  -0.370     0.000 
+  LOW /                                       5.530E+13  -0.760     0.000 / 
+  TROE / 0.5 0. 0. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+OH + H2O2 <=> HO2 + H2O                       5.400E+12  0.000      4.200 
+OH + CO <=> H + CO2                           4.760E+07  1.230      0.290 
+HO2 + CO <=> OH + CO2                         1.500E+14  0.000      98.700 
+CO + CH3O <=> CO2 + CH3                       1.580E+13  0.000      49.400 
+CHO +M <=> H + CO +M                          4.500E+14  0.000      66.000 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+O2 + CHO <=> HO2 + CO                         2.400E+12  0.000      0.000 
+O2 + CHO <=> OH + CO2                         6.000E+11  0.000      0.000 
+HO2 + CHO <=> OH + H + CO2                    3.000E+13  0.000      0.000 
+H + CH2O <=> H2 + CHO                         1.270E+08  1.620      9.000 
+O + CH2O <=> OH + CHO                         4.150E+11  0.570      11.600 
+OH + CH2O <=> H2O + CHO                       3.400E+09  1.180      -1.870 
+HO2 + CH2O <=> H2O2 + CHO                     3.000E+12  0.000      54.700 
+CH3 + CH2O <=> CHO + CH4                      7.830E-08  6.100      8.200 
+O2 + CH2O <=> HO2 + CHO                       6.000E+13  0.000      170.700 
+O2 + CH3 <=> OH + CH2O                        3.300E+11  0.000      37.400 
+HO2 + CH3 <=> OH + CH3O                       1.800E+13  0.000      0.000 
+HO2 + CH3 <=> O2 + CH4                        3.600E+12  0.000      0.000 
+CH3 + CH3 (+M) <=> C2H6 (+M)                  3.610E+19  0.000      0.000 
+  LOW /                                       3.630E+35  -7.000     11.600 / 
+  TROE / 0.62 73. 1180. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+CH3O +M <=> H + CH2O +M                       5.000E+13  0.000      105.000 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+O2 + CH3O <=> HO2 + CH2O                      3.000E+10  0.000      7.300 
+CH3O + CH2O <=> CHO + CH3OH                   1.150E+11  0.000      5.200 
+O2 + CH3 <=> O + CH3O                         4.041E+13  0.000      122.200 
+O2 + CH2OH <=> HO2 + CH2O                     1.570E+15  -1.000     0.000 
+DUP
+O2 + CH2OH <=> HO2 + CH2O                     7.230E+13  0.000      14.970 
+DUP
+O2 + CH3 (+M) <=> CH3O2 (+M)                  7.800E+14  1.200      0.000 
+  LOW /                                       1.650E+20  -3.300     0.000 / 
+  TROE / 0.495 2325.5 10. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+CH3O2 + CH2O <=> CHO + CH3O2H                 2.000E+12  0.000      48.740 
+CH3O2 + CH3 <=> CH3O + CH3O                   2.400E+13  0.000      0.000 
+HO2 + CH3O2 <=> O2 + CH3O2H                   2.400E+11  0.000      -6.600 
+H + CH4 <=> H2 + CH3                          1.047E+08  1.900      44.890 
+O + CH4 <=> OH + CH3                          6.923E+08  1.560      35.500 
+OH + CH4 <=> H2O + CH3                        1.000E+07  1.830      11.600 
+HO2 + CH4 <=> H2O2 + CH3                      1.100E+13  0.000      103.100 
+CH4 + CH3O <=> CH3OH + CH3                    4.300E+12  0.000      42.000 
+CH4 + CH3O2 <=> CH3O2H + CH3                  1.810E+11  0.000      77.800 
+H + CH3OH <=> H2 + CH2OH                      1.640E+07  2.000      18.890 
+OH + CH3OH <=> H2O + CH2OH                    1.440E+06  2.000      -3.500 
+OH + CH3OH <=> H2O + CH3O                     1.000E+13  0.000      -7.100 
+HO2 + CH3OH <=> H2O2 + CH2OH                  9.640E+10  0.000      52.580 
+CH3OH + CH3 <=> CH4 + CH2OH                   9.000E+12  0.000      41.100 
+CH3OH + CH3O <=> CH3OH + CH2OH                3.000E+11  0.000      17.000 
+CH3O2H <=> OH + CH3O                          6.000E+14  0.000      177.100 
+H2O2 + CH3O2 <=> HO2 + CH3O2H                 2.400E+12  0.000      41.800 
+CO + CH3 (+M) <=> CH3CO (+M)                  5.058E+17  0.000      28.770 
+  LOW /                                       3.109E+08  0.000      15.880 / 
+  TROE / 0.5 0. 0. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+CH3O + C2H4 <=> OXIRAN + CH3                  1.000E+11  0.000      60.610 
+OH + CH3CHO <=> H2O + CH3CO                   2.300E+10  0.730      -4.600 
+HO2 + CH3CHO <=> H2O2 + CH3CO                 3.100E+12  0.000      50.000 
+CH3CHO + CH3 <=> CH4 + CH3CO                  2.050E-06  5.600      10.300 
+H + C2H4 (+M) => C2H5 (+M)                    2.000E+15  1.280      5.400 
+  LOW /                                       6.980E+12  0.000      3.200 / 
+  TROE / 0.76 40. 1025. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+C2H5 (+M) => H + C2H4 (+M)                    8.200E+19  0.000      166.800 
+  LOW /                                       3.400E+11  0.000      139.600 / 
+  TROE / 0.75 97. 1379. 0. / 
+  H2 / 1. / H2O / 6.5 / O2 / 0.4 / CO / 0.75 / CO2 / 1.5 / CH4 / 3. / 
+H + C2H6 <=> H2 + C2H5                        1.150E+09  1.900      31.100 
+OH + C2H6 <=> H2O + C2H5                      6.200E+06  2.000      3.600 
+HO2 + C2H6 <=> H2O2 + C2H5                    1.333E+13  0.000      85.600 
+CH3 + C2H6 <=> CH4 + C2H5                     9.990E+12  0.000      56.540 
+CH3O + C2H6 <=> CH3OH + C2H5                  2.409E+11  0.000      29.680 
+O + CH3CO <=> CO2 + CH3                       4.818E+23  0.000      0.000 
+OXIRAN + H <=> H2 + C2H3O                     8.010E+13  0.000      40.500 
+OXIRAN + OH <=> H2O + C2H3O                   6.625E+12  0.000      12.139 
+OXIRAN + CH3 <=> CH4 + C2H3O                  1.072E+12  0.000      49.470 
+OXIRAN <=> CH3CHO                             6.310E+13  0.000      247.710 
+OXIRAN <=> CO + CH4                           1.210E+13  0.000      239.460 
+OXIRAN <=> CHO + CH3                          3.630E+13  0.000      239.460 
+O2 + C2H5 <=> C2H5O2                          2.002E+42  -10.300    25.442 
+C2H5O2 => DC2OOH1                             2.080E+12  0.000      138.000 
+DC2OOH1 => C2H5O2                             8.500E+09  -0.099     69.500 
+DC2OOH1 <=> OXIRAN + OH                       1.300E+10  0.000      65.500 
+HO2 + C2H5O2 <=> O2 + C2H5OOH                 9.697E+10  0.000      -10.476 
+CH2O + C2H5O2 => CHO + C2H5OOH                1.000E+12  0.000      42.000 
+CHO + C2H5OOH => CH2O + C2H5O2                2.170E+06  1.010      0.688 
+END 

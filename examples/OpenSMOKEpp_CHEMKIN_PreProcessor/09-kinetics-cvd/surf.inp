@@ -1,0 +1,22 @@
+
+MATERIAL SOLID
+
+SITE/SI3N4/    SDEN/4.1683E-9/
+   HN_SIF(S)/2/ F3SI_NH2(S)/2/ F2SINH(S)/2/
+   H2NFSINH(S)/2/ HN(FSINH)2(S)/4/
+   HN_NH2(S)/2/ 
+END
+
+BULK SI(D)/2.066/  
+BULK N(D) /1.374/  
+END
+
+
+REACTIONS
+ NH3             + HN_SIF(S) => HN_NH2(S)   + SI(D) + HF    7.562E08  0.5 0.0
+ SIF4            + HN_NH2(S) => F3SI_NH2(S) + N(D)  + HF    3.0967E8  0.5 0.0
+ F3SI_NH2(S)                 => F2SINH(S)           + HF    1.0E05  0.0 0.0
+ NH3             + F2SINH(S) => H2NFSINH(S)         + HF    7.562E08  0.5 0.0
+ H2NFSINH(S)     + F2SINH(S) => HN(FSINH)2(S)       + HF    1.0E15  0.0 0.0
+ HN(FSINH)2(S)   + F2SINH(S) => 3HN_SIF(S)  + N(D)  + HF    1.0E15  0.0 0.0
+END

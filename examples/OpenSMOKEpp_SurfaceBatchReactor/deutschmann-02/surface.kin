@@ -1,0 +1,62 @@
+!---------------------------------------------------------------------!
+!***********************************************************************
+!****                                                                  *
+!****     H2-O2 SURFACE MECHANISM  ON Pd                               *
+!****                                                                  *
+!****     Version 1.2   November  1995                                 *
+!****                                                                  *
+!****     O. Deutschmann, IWR, Heidelberg University, Germany          *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   *
+!****                                                                  *
+!****     Reference:                                                   *
+!****     O. Deutschmann, R. Schmidt, F. Behrendt, J. Warnatz.         *
+!****     Proc. Combust. Inst. 26 (1996) 1747-1754.                    *
+!****     www.detchem.com/mechanisms                                   *
+!****                                                                  *
+!****                                                                  *
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -      J/mol *
+!****                                                                  *
+!****                                                                  *
+!****     Surface site density: 1.55E-9 mol/cm**2                      *
+!****                                                                  *
+!****                                                                  *
+!****   SURFACE CHEMKIN format Februar 2006, tested with Vers.4.0.1    *
+!****                                                                  *
+!***********************************************************************
+
+MATERIAL CATALYST
+
+SITE/PD_SURFACE/    SDEN/1.55E-9/
+_Pd_ H_Pd H2O_Pd OH_Pd O_Pd
+END
+
+!!******************************************************************************!
+!!*********         H2-O2  Surface Reaction on Pd                     **********!
+!!******************************************************************************!
+REACTIONS      KJOULES/MOLE
+
+ H2 + 2_Pd_  => 2H_Pd                        	0.70  		0.0   0.0
+	STICK
+ 2H_Pd        => H2 + 2_Pd_                  	4.800E+21  	0.0	  84.0
+	COV/H_Pd 0.0    0.0    -15.0/
+ H  +  _Pd_  => H_Pd                           	1.00    	0.0   0.0
+    STICK
+ O2 +  2_Pd_ => 2O_Pd                        	0.400E-00  	0.0    0.0
+    STICK
+ 2O_Pd        => O2 + 2_Pd_                  	7.100E+21  	0.0    230.0
+ O + _Pd_    => O_Pd                           	1.00    	0.0    0.0
+    STICK
+ H2O  + _Pd_ => H2O_Pd                         	0.75    	0.0    0.0
+    STICK
+ H2O_Pd       => H2O  + _Pd_                   	1.300E+13  	0.0   44.0
+ OH  +  _Pd_ => OH_Pd                          	1.00    	0.0    0.0
+	STICK
+ OH_Pd        => OH  +  _Pd_                   	1.300E+13 0.0     213.0
+ H_Pd + O_Pd  =  OH_Pd + _Pd_                  	3.70E+21  0.00    11.5
+ H_Pd + OH_Pd =  H2O_Pd + _Pd_                 	3.70E+21  0.00    17.4
+ OH_Pd + OH_Pd = H2O_Pd + O_Pd                  3.70E+21  0.00    48.2
+ 
+END

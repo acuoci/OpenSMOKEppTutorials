@@ -1,0 +1,95 @@
+!***********************************************************************
+!SURFACE MECHANISM FOR STEAM REFORMING AND PARTIAL OXIDATION OF METHANE 
+!OVER RHODIUM
+!***********************************************************************
+!****                                                                  *
+!****     SR/CPO CH4 ON RH - SURFACE MECHANISM                         *
+!****                                                                  *
+!****     Version 2.0, March  2008                                     *
+!****     L. Maier, O. Deutschmann                                     *
+!****     KIT (Karlsruhe Institute of Technology)                      *
+!****     Contact: mail@detchem.com (O. Deutschmann)                   * 
+!****                                                                  *
+!****     References:                                                  *
+!****     J. Thormann, L. Maier, P. Pfeifer, U. Kunz, K. Schubert,     *
+!****     O. Deutschmann.International J. Hydrogen Energy              *
+!****     34 (2009), 5108-5120                                         * 
+!****     www.detchem.com/mechanisms                                   * 
+!****                                                                  *
+!****     Kinetic data:                                                *
+!****      k = A * T**b * exp (-Ea/RT)         A          b       Ea   *
+!****                                       (cm,mol,s)    -     kJ/mol *
+!****                                                                  *
+!****     STICK: A in next reaction is initial sticking coefficient    *
+!****                                                                  *
+!****                                                                  *
+!****     (SURFACE CHEMKIN format)                                     *
+!****                                                                  * 
+!*********************************************************************** 
+
+MATERIAL CATALYST
+
+SITE/RH_SURFACE/    SDEN/2.72E-9/
+RH(s) H2O(s) H(s) OH(s) CO(s) C(s) CH3(s) CH2(s) CH(s) CH4(s) O(s) CO2(s)
+HCO(s) 
+END
+
+
+REACTIONS  JOULES/MOLE  MWOFF 
+
+H2 + RH(s) + RH(s) => H(s) + H(s) 0.01 0. 0. 
+    STICK 
+H(s) + H(s) => RH(s) + RH(s) + H2 3.E+21 0. 77800. 
+O2 + RH(s) + RH(s) => O(s) + O(s) 0.01 0. 0. 
+    STICK 
+O(s) + O(s) => RH(s) + RH(s) + O2 1.3E+22 0. 355200. 
+CH4 + RH(s) => CH4(s) 0.008 0. 0. 
+    STICK 
+CH4(s) => RH(s) + CH4 2.E+14 0. 25100. 
+H2O + RH(s) => H2O(s) 0.1 0. 0. 
+    STICK 
+H2O(s) => RH(s) + H2O 6.E+13 0. 45000. 
+CO2 + RH(s) => CO2(s) 0.00001 0. 0. 
+    STICK 
+CO2(s) => RH(s) + CO2 3.E+8 0. 21700. 
+CO + RH(s) => CO(s) 0.5 0. 0. 
+    STICK 
+CO(s) => RH(s) + CO 1.E+13 0. 133400. 
+    COV /CO(s) 0.0 0.0 -50000 / 
+O(s) + H(s) => OH(s) + RH(s) 5.E+22 0. 83700. 
+OH(s) + RH(s) => O(s) + H(s) 3.E+20 0. 37700. 
+OH(s) + H(s) => H2O(s) + RH(s) 3.E+20 0. 33500. 
+H2O(s) + RH(s) => OH(s) + H(s) 5.E+22 0. 106400. 
+OH(s) + OH(s) => O(s) + H2O(s) 3.E+21 0. 100800. 
+O(s) + H2O(s) => OH(s) + OH(s) 3.E+21 0. 171800. 
+O(s) + C(s) => CO(s) + RH(s) 5.E+23 0. 97900. 
+CO(s) + RH(s) => O(s) + C(s) 3.7E+21 0. 169000. 
+    COV /CO(s) 0. 0. -50000. / 
+O(s) + CO(s) => CO2(s) + RH(s) 1.E+19 0. 121600. 
+    COV /CO(s) 0.0 0.0 -50000 / 
+CO2(s) + RH(s) => O(s) + CO(s) 5.E+21 0. 115300. 
+CO(s) + H(s) => HCO(s) + RH(s) 5.E+19 0. 108900. 
+HCO(s) + RH(s) => CO(s) + H(s) 3.7E+21 0. 0. 
+    COV /CO(s) 0. 0. 50000. / 
+HCO(s) + RH(s) => O(s) + CH(s) 8.E+23 0. 59500. 
+O(s) + CH(s) => HCO(s) + RH(s) 3.7E+21 0. 167500. 
+CH4(s) + RH(s) => CH3(s) + H(s) 5.5E+20 0. 61000. 
+CH3(s) + H(s) => CH4(s) + RH(s) 3.7E+21 0. 51000. 
+CH3(s) + RH(s) => CH2(s) + H(s) 3.7E+24 0. 103000. 
+CH2(s) + H(s) => CH3(s) + RH(s) 3.7E+21 0. 44000. 
+CH2(s) + RH(s) => CH(s) + H(s) 3.7E+24 0. 100000. 
+CH(s) + H(s) => CH2(s) + RH(s) 3.7E+24 0. 68000. 
+CH(s) + RH(s) => C(s) + H(s) 3.7E+21 0. 21000. 
+C(s) + H(s) => CH(s) + RH(s) 3.7E+21 0. 172800. 
+O(s) + CH4(s) => CH3(s) + OH(s) 1.7E+24 0. 80340. 
+CH3(s) + OH(s) => O(s) + CH4(s) 3.7E+21 0. 24270. 
+O(s) + CH3(s) => CH2(s) + OH(s) 3.7E+24 0. 120310. 
+CH2(s) + OH(s) => O(s) + CH3(s) 3.7E+21 0. 15060. 
+O(s) + CH2(s) => CH(s) + OH(s) 3.7E+24 0. 114500. 
+CH(s) + OH(s) => O(s) + CH2(s) 3.7E+21 0. 36820. 
+O(s) + CH(s) => C(s) + OH(s) 3.7E+21 0. 30130. 
+C(s) + OH(s) => O(s) + CH(s) 3.7E+21 0. 136000. 
+CO(s) + H(s) => C(s) + OH(s) 3.7E+21 0. 142760. 
+C(s) + OH(s) => CO(s) + H(s) 3.7E+20 0. 25540. 
+
+END 

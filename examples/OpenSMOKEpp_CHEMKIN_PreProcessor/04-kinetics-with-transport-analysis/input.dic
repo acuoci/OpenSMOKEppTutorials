@@ -15,7 +15,7 @@
 Dictionary CHEMKIN_PreProcessor
 {
 		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-		@Transport		../../../kinetic-mechanisms/POLIMI_1412\Transport\POLIMI_TOT_NOX_1412.TRC;
+		@Transport		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
 		@Kinetics 		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_C1C3HT_1412.CKI;
 		
 		@Output				kinetics-POLIMI_C1C3HT_1412;
