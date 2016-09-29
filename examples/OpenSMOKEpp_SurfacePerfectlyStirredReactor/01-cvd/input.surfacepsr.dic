@@ -1,0 +1,67 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary SurfacePerfectlyStirredReactor
+{
+		@KineticsFolder			../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/kinetics-CVD;
+		
+		@Type					Isothermal-ConstantPressure;
+		
+		@InletStatus            inlet-mixture;
+		
+		@ResidenceTime			1 s;
+		
+//		@MassFlowRate			2e-5	g/s;
+
+		@Volume                 100 cm3;
+
+
+		@InternalSurfaceArea	100 cm2;
+		
+		@OdeParameters          ode-parameters;
+		@Options				output-options;
+}
+
+Dictionary Surface-SI3N4
+{
+		@SurfaceFractions	HN_NH2(S) 			0.99
+							F2SINH(S) 			0.001
+							F3SI_NH2(S) 		0.002 
+							H2NFSINH(S)			0.002 
+							HN(FSINH)2(S) 		0.004
+							HN_SIF(S) 			0.001;  
+}
+
+Dictionary inlet-mixture
+{
+		@MoleFractions			NH3 	0.85714 
+								SIF4 	0.14286;
+								
+		@Temperature			1440 		C;
+		@Pressure				0.002368	atm;
+}
+
+Dictionary output-options
+{	
+		@StepsFile	5;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+
