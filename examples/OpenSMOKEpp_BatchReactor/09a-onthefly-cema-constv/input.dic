@@ -1,0 +1,64 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BatchReactor
+{
+		@KineticsPreProcessor	POLIMI_H2_1412;
+		
+		@Type					NonIsothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				1e-4 s;
+		
+		@OnTheFlyCEMA			cema;
+		
+		@OdeParameters          ode-parameters;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@SparseSolver Pardiso;
+		@SparsePreconditioner ILUT;
+		
+		@AbsoluteTolerance 1e-10;
+		@RelativeTolerance 1e-6;
+}
+
+Dictionary cema
+{
+		@Species	ALL;
+		@Reactions	ALL;
+}
+
+Dictionary POLIMI_H2_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	1100.   K ; 
+		@Pressure      	101325. Pa ;
+
+		@EquivalenceRatio 	1.;	
+		@FuelMasses 		H2 1.;
+		@OxidizerMoles      O2 0.21 
+                            N2 0.79;
+}
+
+
