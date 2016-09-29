@@ -1,0 +1,93 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary MicrogravityDroplet
+{
+		@KineticsFolder			   kinetics;
+
+		@OutputFolder			    Output;
+		
+		@FirstGuessInterfaceMassFractions   NC7H16 0.1;
+		@FirstGuessInterfaceTemperature     299.7 K;
+		@FirstGuessInterfaceGasVelocity     1.76 cm/s;
+		
+		@Type						Spark;
+		@SparkTemperature				2000. K;
+		@FlameRadiation         			P1;
+		@ExtinctionCoefficient				WSGG-Smith;
+		@RadiationCorrectionCoefficient			1.00;
+		
+		@FuelMassFractions				NC7H16 1.;
+		@Inert						N2;
+		
+		@GasStatus          				Initial-Composition;
+		@DropletDiameter				1.005 mm;
+		@DropletTemperature				298  K;
+		
+		@DropletPoints					30;
+		@GasPoints					250;
+		@BandSize					3;
+		
+		@EndTime					20 s;
+		
+		@StepsVideo					10;
+		@StepsMap1D					10;	
+		@StepsMap3D					30;
+		
+		@SnapshotTimes					0.3 0.5 0.7 0.9;
+		@SnapshotSpecies				NC7H16 O2 CO2 H2O CO OH CH2O H2;
+		
+		@NumberOfNLS					1;
+
+		@DAERelativeTolerance				1e-6;
+		@DAEAbsoluteTolerance				1e-10;
+
+		@Soret						true;
+
+		@Fiber						fiber;		
+
+		@LiquidMixture						liquid-properties;
+		@GasMixture						gas-properties;
+
+
+		@SpeciesFolder						../LiquidProperties;
+}
+
+Dictionary Initial-Composition
+{
+		@Temperature   	298.    K ; 
+		@Pressure      	1. 	bar ;
+
+		@Moles  N2 0.79
+			O2 0.21;
+}
+
+Dictionary fiber
+{
+	@Material	quartz;
+	@Diameter	50 micron;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+
