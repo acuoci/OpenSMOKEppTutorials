@@ -14,7 +14,7 @@
 
 Dictionary BatchReactor
 {
-		@KineticsPreProcessor	POLIMI_H2_1412;
+		@KineticsPreProcessor	POLIMI_H2CO_1412;
 		
 		@Type					NonIsothermal-ConstantPressure;
 		
@@ -31,9 +31,9 @@ Dictionary cema
 		@Reactions						ALL;
 }
 
-Dictionary POLIMI_H2_1412
+Dictionary POLIMI_H2CO_1412
 {
-		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2_1412.CKI;
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
 		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
 		@Output			kinetics;
 }
