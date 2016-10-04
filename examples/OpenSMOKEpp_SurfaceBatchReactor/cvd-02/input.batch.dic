@@ -14,7 +14,7 @@
 
 Dictionary SurfaceBatchReactor
 {
-		@KineticsFolder			../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/kinetics-CVD;
+		@KineticsFolder			kinetics-cvd;
 		
 		@Type					Isothermal-ConstantPressure;
 		
