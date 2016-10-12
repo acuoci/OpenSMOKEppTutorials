@@ -14,55 +14,140 @@
 
 Dictionary MicrogravityDroplet
 {
+		// Kinetic mechanism and output folder
 		@KineticsFolder			   			kinetics;
-
 		@OutputFolder			    		Output;
 		
+		// Initial solution
 		@FirstGuessInterfaceMassFractions   NC7H16 0.1;
 		@FirstGuessInterfaceTemperature     299.7 K;
 		@FirstGuessInterfaceGasVelocity     1.76 cm/s;
+		@NumberOfNLS						1;
 		
+		// Ignition
 		@Type								NoSpark;
 		@SparkTemperature					2000. K;
+		
+		// Radiative heat transfer
 		@FlameRadiation         			P1;
 		@ExtinctionCoefficient				gray;
 		@RadiationCorrectionCoefficient		1.00;
 		
-		@FuelMassFractions					NC7H16 1.;
-		@Inert								N2;
-		
-		@GasStatus          				Initial-Composition;
-		@DropletDiameter					1.005 mm;
-		@DropletTemperature					298  K;
-
-		@Combustion					false;
-		
+		// Operating conditions
+		@FuelMassFractions			NC7H16 1.;
+		@Inert						N2;
+		@GasStatus          		Initial-Composition;
+		@DropletDiameter			1.005 mm;
+		@DropletTemperature			298  K;
 		@DropletPoints				30;
 		@GasPoints					250;
-		@BandSize					3;
-		
 		@EndTime					20 s;
+		@GasPhaseReactions			false;
 		
+		// Output options
 		@StepsVideo					10;
 		@StepsMap1D					10;	
 		@StepsMap3D					30;
-		
 		@SnapshotTimes				0.3 0.5 0.7 0.9;
 		@SnapshotSpecies			NC7H16 O2 CO2 H2O CO;
-		
-		@NumberOfNLS				1;
 
-		@DAERelativeTolerance		1e-6;
-		@DAEAbsoluteTolerance		1e-10;
-
+		// Soret effect
 		@Soret						true;
+		@SoretSmoothingTime			0 s;
 
+		// Fiber
 		@Fiber						fiber;
 
+		// Liquid/Vapor equilibrium
 		@LiquidMixture				liquid-properties;
 		@GasMixture					gas-properties;
-
 		@SpeciesFolder				../LiquidProperties;
+		
+		// Inclusion of displacement velocities of grid points in transport equations
+		@GasGridVelocitiesInEquations		false;
+		@LiquidGridVelocitiesInEquations   	false;
+		
+		// Caracteristic time for smoothing the time derivative of density
+		// in continuity equation (default 0)		
+		@DensityTimeDerivativeSmoothingTime 0. s;
+		
+		// Dae/Nls parameters
+		@DaeParameters	dae-parameters;
+		@NlsParameters	nls-parameters;
+		
+		// Continuity equation type: 1=non-conservative(default) | 2=conservative | 3=semi-implicit
+		@ContinuityEquationType 1;
+}
+
+Dictionary nls-parameters
+{
+	// NL solver: OpenSMOKE++ | BzzNls | KinSol
+	@NlsSolver				KinSol;
+	
+	// Tolerances
+	@RelativeTolerance		1e-5;
+	@AbsoluteTolerance		1e-10;
+	
+	// Minimum/Maximum constraints
+	@MinimumConstraints		true;
+	@MaximumConstraints		true;
+
+	// Kinsol algorithm: NewtonBasic | NewtonGlobalization | FixedPoint | Picard
+	@Strategy	Picard;
+	
+	// Verbosity level: 0=no output	| 1=detailed output
+	@VerbosityLevel 1;
+	
+	// Maximum number of iterations (default 200)
+	@MaximumNumberOfIterations	200;
+	
+	// Maximum number of setup calls (default 10)
+	@MaximumSetupCalls			10;
+	
+	// Maximum number of setup sub-calls (default 5)
+	@MaximumSubSetupCalls		5;
+	
+	// Function tolerance (default 6.e-6)
+	@FunctionTolerance			6.e-6;
+	
+	// Step tolerance (default 3.6e-11)
+	@StepTolerance				3.6e-11;
+	
+	// Relative Error (default 1.5e-8)
+	@RelativeError				1.5e-8;
+	
+	// Scaling of main variables
+	@Scaling					1;
+}
+
+Dictionary dae-parameters
+{
+	// DAE solver: OpenSMOKE++ | BzzDae | Ida | DASPK
+	@DaeSolver				OpenSMOKE++;
+	
+	// Jacobian sparsity pattern: Band | Sparse
+	@Jacobian				Band;
+	
+	//Sparse solvers  (direct):    Pardiso       | UMFPack | SuperLUSerial
+	//                (iterative): EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
+	@SparseSolver			Pardiso;
+	
+	//Preconditioners: ILUT | diagonal
+	@Preconditioner			ILUT;
+	
+	// Maximum/minimum constraints
+	@MinimumConstraints		true;
+	@MaximumConstraints		true;
+	
+	// Tolerances
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-10;
+	
+	// Maximum number of steps
+	@MaximumNumberOfSteps	100000;
+	
+	// Maximum step
+	@MaximumStep			1e3;
 }
 
 Dictionary polimi-soot

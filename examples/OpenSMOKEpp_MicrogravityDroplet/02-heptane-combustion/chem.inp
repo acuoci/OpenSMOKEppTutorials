@@ -1,16 +1,19 @@
 ELEMENTS
+H
+O
+C
 AR
 N
-O
-H
-C
 END
 
 SPECIES
-AR                            N2                            O2                            
+NC7H16                        O2                            OH
+O                             H                             HO2                               
 H2                            H2O                           H2O2                          
-CO                            CO2                           CH2O                          
-CH4                           CH3OH                         C2H2                          
+CO                            CO2                           CH2O 
+CH                            CH2S                          CH2
+CH4                           CH3OH                         C2H2 
+HCO                           CH3                         
 CH2CO                         C2H4                          C2H4O                         
 CH3CHO                        C2H6                          C3H2                          
 PC3H4                         AC3H4                         C2H3CHO                       
@@ -21,17 +24,14 @@ CYC5H6                        C5H8                          NC5H10
 BENZYNE                       C6H4O2                        C6H6                          
 C6H5OH                        MCPTD                         C6H5CHO                       
 C7H8                          CRESOL                        C6H5OCH3                      
-NC7H14                        NC7H16                        C6H5C2H                       
+NC7H14                        C6H5C2H                       
 BZFUR                         C6H5C2H3                      C6H5C2H5                      
 XYLENE                        INDENE                        NPBENZ                        
 C10H8                         C10H7OH                       C10H7CH3                      
 C12H8                         DIBZFUR                       BIPHENYL                      
 FLUORENE                      C6H5CH2C6H5                   C14H10                        
-C6H5C2H4C6H5                  C16H10                                                                  
-O                             H                             OH                            
-HO2                           CSOLID                        CH                            
-HCO                           CH2S                          CH2                           
-CH3                           CH2OH                         CH3O                          
+C6H5C2H4C6H5                  C16H10                                                
+CH2OH                         CH3O                          
 CH3OO                         C2H                           HCCO                          
 C2H3                          CH3CO                         CH2CHO                        
 C2H5                          C2H5OO                        C2-QOOH                       
@@ -48,7 +48,8 @@ NC7H13                        NC7H15                        C6H4C2H
 C6H5C2H2                      RXYLENE                       INDENYL                       
 C10H7                         C10H7O                        RTETRALIN                     
 C10H7CH2                      C12H7                         RBIPHENYL                     
-C14H9                         C16H9                                                                  
+C14H9                         C16H9                         AR
+N2                                                               
 END
 
 REACTIONS
@@ -2125,8 +2126,6 @@ NC7H13=>NC4H8+CH2CHCH2                                  1.5000e+13    0.000     
 
 CYC5H6+C5H7=>C2H4+C6H6+C2H3                             1.0000e+12    0.000     16000.00
 
-O2+CSOLID=>CO2                                          1.0000e+08    0.000     80000.00
-
 NPBENZ=>C6H5C2H3+H+CH3                                  2.0000e+16    0.000     86500.00
 
 NPBENZ=C2H5+C7H7                                        1.0000e+16    0.000     73500.00
@@ -2174,14 +2173,6 @@ BZFUR+HO2=>CO+CH2O+C4H4+HCCO                            5.0000e+12    0.000     
 2C6H5O=>H2O+DIBZFUR                                     4.0000e+13    0.000     11000.00
 
 DIBZFUR+OH=>CO+C10H8+HCO                                2.0000e+13    0.000         0.00
-
-OH+CSOLID=>CO+H                                         1.7100e+13    0.000         0.00
-
-O+CSOLID=>CO                                            1.8900e+13    0.000         0.00
-
-HO2+CSOLID=>CO+OH                                       6.2500e+09    0.000      2250.00
-
-O2+CSOLID=>0.25O2+0.5CO+0.5CO2                          1.9700e+11    0.000     34200.00
 
 O2+CH2CO=>HO2+HCCO                                      5.1110e+06    2.000     38570.96
 
