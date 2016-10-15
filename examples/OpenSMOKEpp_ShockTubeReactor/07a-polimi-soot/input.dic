@@ -1,0 +1,66 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ShockTubeReactor
+{
+		@KineticsPreProcessor	 POLIMI_SOOT_BIN25;
+		
+		@Type					 IncidentShock;
+		
+		@IncidentShockVelocity   2800 m/s;
+		
+		@BeforeShockStatus       initial-mixture;
+		
+		@EndTime				 310.e-6 s;
+		
+		@PolimiSoot				polimi-soot;
+}
+
+Dictionary polimi-soot
+{
+	// Label indicating the soot particles (default: BIN)
+	@SootLabel	BIN;
+
+	// Fractal dimension of soot particles (default: 1.8)
+	@FractalDimension 	1.8;
+
+	// Index of minimum discrete section which is considered soot (default: 5)
+	@SootMinimumSection		5;
+	
+	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
+	@SootMinimumFractalDimension	12;
+
+	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
+	@Density	10 1500. 20 1700.;
+
+	// Write the soot particle size distribution function (PSDF) on file (default: true)
+	@WritePSDF	true;
+
+	// Threshold (soot volume fraction) for writing the PSDF on file (default: 1e-11)
+	@ThresholdForPSDF	1e-11;
+}
+
+Dictionary POLIMI_SOOT_BIN25
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+		@Output			kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	300. K; 
+		@Pressure      	1 atm;
+		@MoleFractions	C3H6 0.1 N2 0.8 O2 0.1;
+}
