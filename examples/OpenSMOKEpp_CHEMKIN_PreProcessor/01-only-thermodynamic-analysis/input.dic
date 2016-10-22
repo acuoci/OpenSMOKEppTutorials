@@ -16,7 +16,6 @@ Dictionary CHEMKIN_PreProcessor
 {
 		
 		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-		
 		@CheckThermodynamics	true;
 		
 		@Output					kinetics-POLIMI_TOT_NOX_1412;

@@ -123,7 +123,7 @@ Dictionary nls-parameters
 Dictionary dae-parameters
 {
 	// DAE solver: OpenSMOKE++ | BzzDae | Ida | DASPK
-	@DaeSolver				OpenSMOKE++;
+	@DaeSolver				DASPK;
 	
 	// Jacobian sparsity pattern: Band | Sparse
 	@Jacobian				Band;

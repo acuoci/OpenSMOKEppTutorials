@@ -27,10 +27,11 @@ Dictionary BatchReactor
 
 Dictionary onthefly-ropa
 {
-		@Species			H2 H2O2 OH;
-		@Threshold			0.03;
-		@ReferenceSpecies	H2;
-		@Conversions		0.01 0.10 0.40 0.70;
+		@Species							H2 H2O2 OH;
+		@Threshold							0.03;
+		@ReferenceSpecies					H2;
+		@Conversions						0.01 0.10 0.40 0.70;
+		@MergeForwardAndBackwardReactions	true;
 }
 
 Dictionary POLIMI_H2CO_NOX_1412

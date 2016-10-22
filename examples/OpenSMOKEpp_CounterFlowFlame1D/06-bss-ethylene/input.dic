@@ -11,10 +11,17 @@
 //                http://www.opensmoke.polimi.it/                  //
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
+Dictionary kinetics
+{
+	@Kinetics 		soot-156/156.CKI;
+	@Thermodynamics soot-156/soot.CKT;
+	@Transport 		soot-156/soot.TRC;
+	@Output			kinetics;
+}
 Dictionary CounterFlowFlame1D
 {
 	@Type					CounterFlowDiffusion;
-	@KineticsFolder			C:\Users\user\Desktop\Phi_2.06\kinetics-POLIMI_SOOT_SKELETAL_156;
+	@KineticsPreProcessor	kinetics;
 	
 	@FuelStream 	fuel-stream;
 	@OxidizerStream	oxidizer-stream;
@@ -22,8 +29,8 @@ Dictionary CounterFlowFlame1D
 	@FuelVelocity		14  	cm/s;
 	@OxidizerVelocity	1e-4	cm/s;
 	
-	@Soret    		true;
-	@PolimiSoot		polimi-soot;
+//	@Soret    		true;
+//	@PolimiSoot		polimi-soot;
 	
 	@Grid			grid;
 	
@@ -31,7 +38,7 @@ Dictionary CounterFlowFlame1D
 	
 	@InitialTemperatureProfile T-Profile;
 	
-	@EigenValueStartingGuess	-100 kg/m3/s2;
+	@EigenValueStartingGuess	-200 kg/m3/s2;
 	@PeakMixture				peak-mixture;
 	@InitialProfiles			linear;
 	@PeakPosition				3 mm;
@@ -46,7 +53,6 @@ Dictionary polimi-soot
 {
 	@ThermophoreticEffect 	true;
 	@RadiativeHeatTransfer	false;
-	
 }
 
 Dictionary fuel-stream
@@ -78,7 +84,7 @@ Dictionary peak-mixture
 Dictionary grid
 {
 	@Length					0.8 cm;
-	@InitialPoints			15;
+	@InitialPoints			10;
 	@Type					equispaced;
 	
 	@MaxPoints				500;
@@ -89,9 +95,9 @@ Dictionary grid
 
 Dictionary dae-parameters
 {
-	@DaeSolver				OpenSMOKE++;
-	@RelativeTolerance		1e-7;
-	@AbsoluteTolerance		1e-12;
+	@DaeSolver				DASPK;
+//	@RelativeTolerance		1e-6;
+//	@AbsoluteTolerance		1e-10;
 }
 
 Dictionary T-Profile
