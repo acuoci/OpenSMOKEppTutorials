@@ -1,0 +1,111 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary PremixedLaminarFlame1D
+{
+	@Type					FlameSpeed;
+	@KineticsPreProcessor	POLIMI_SOOT_BIN25;
+	
+	@InletStream 	inlet-stream;
+	@OutletStream	outlet-stream;
+	
+	@InletVelocity	40 cm/s;
+	
+	@Grid			grid;
+	
+	@Output			Output;
+	
+	@UseDaeSolver	true;
+	
+	@Radiation					true;
+	@EnvironmentTemperature		300 K;
+	
+	@PolimiSoot					polimi-soot;
+}
+
+Dictionary polimi-soot
+{
+	// Label indicating the soot particles (default: BIN)
+	@SootLabel	BIN;
+
+	// Fractal dimension of soot particles (default: 1.8)
+	@FractalDimension 	1.8;
+
+	// Index of minimum discrete section which is considered soot (default: 5)
+	@SootMinimumSection		5;
+	
+	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
+	@SootMinimumFractalDimension	12;
+
+	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
+	@Density	10 1500. 20 1700.;
+
+	// Write the soot particle size distribution function (PSDF) on file (default: true)
+	@WritePSDF	true;
+
+	// Threshold (soot volume fraction) for writing the PSDF on file (default: 1e-11)
+	@ThresholdForPSDF	1e-11;
+	
+	// Radiative heat transfer from soot (default true)
+	@RadiativeHeatTransfer    true;
+
+    // Planck mean absorption coefficient for soot: Smooke (default) | Kent | Sazhin
+	@PlanckCoefficient		Smooke;
+
+	// Physical diffusion for soot particles (default: true)
+	@PhysicalDiffusion   	true;
+
+	// Thermophoretic effect for soot sections (default: true)
+	@ThermophoreticEffect   true;
+}
+
+Dictionary POLIMI_SOOT_BIN25
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+		@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+	@EquivalenceRatio	1;
+
+	@FuelMoles			NC7H16 1;
+	@OxidizerMoles		O2     0.21 
+						N2     0.79;
+						
+	@Temperature	298 K;
+	@Pressure		1 atm;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			H2O 1 
+					N2  2;
+	@Temperature	2300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					3 cm;
+	@InitialPoints			12;
+	@Type					database;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}
+
