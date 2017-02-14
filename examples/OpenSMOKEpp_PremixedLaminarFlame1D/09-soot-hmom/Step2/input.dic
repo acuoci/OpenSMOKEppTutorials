@@ -1,0 +1,101 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary PremixedLaminarFlame1D
+{
+	@Type						BurnerStabilized;
+	@KineticsPreProcessor		kinetics;
+	
+	@Backup						../Step1/Output/Output.xml;
+	@HMOM						hmom;
+	
+	@InletStream 				inlet-stream;
+	@OutletStream				outlet-stream;
+	
+	@InletVelocity				2.94 cm/s;
+	
+	@Grid						grid;
+	
+	@Output						Output;
+
+	@UseDaeSolver				true;
+	
+	@DaeParameters				dae-parameters;
+}
+
+Dictionary hmom
+{
+	@HMOM	true;
+
+	@PAH					C10H8;
+	@NumberOfCarbonPAH		   16;
+	@CollisionDiameterModel		2;
+	@FractalDiameterModel		1;
+	@ThermophoreticModel		1;
+	
+	@NucleationModel			1;
+	@SurfaceGrowthModel			1;
+	@OxidationModel				1;
+	@CondensationModel			1;
+	@CoagulationModel			1;
+	@ContinousCoagulationModel	1;
+	
+	@PAHConsumption				true;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@AbsoluteTolerance	1e-14;
+	@RelativeTolerance	1e-7;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		../../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_C2H4_53_AR.CKI;
+	@Thermodynamics	../../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+	@Transport 		../../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+	@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+	@Moles			C2H4 13.1
+					O    18.2
+					N2   68.6;
+						
+	@Temperature	298 K;
+	@Pressure		1 bar;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			H2O 15
+					CO2 15
+					AR  70;
+
+	@Temperature	1074 K;
+	@Pressure		1 bar;
+}
+
+Dictionary grid
+{
+	@Length				10 cm;
+	@InitialPoints		13;
+	@Type				equispaced;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}

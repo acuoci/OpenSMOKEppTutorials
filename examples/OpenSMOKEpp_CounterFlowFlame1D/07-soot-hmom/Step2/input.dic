@@ -17,67 +17,75 @@ Dictionary CounterFlowFlame1D
 	@Type					CounterFlowDiffusion;
 	@KineticsPreProcessor	kinetics;
 	
+	@Backup					../Step1/Output/Output.xml;
+	@HMOM					hmom;
+	
 	@FuelStream 	fuel-stream;
 	@OxidizerStream	oxidizer-stream;
 	
-	@FuelVelocity		14  	cm/s;
-	@OxidizerVelocity	1e-4	cm/s;
-	
-	@Soret    		true;
-	@PolimiSoot		polimi-soot;
+	@FuelVelocity		19.5 cm/s;
+	@OxidizerVelocity	19.5 cm/s;
 	
 	@Grid			grid;
 	
 	@Output			Output;
 	
-	@InitialTemperatureProfile T-Profile;
-	
-	@EigenValueStartingGuess	-200 kg/m3/s2;
+	@EigenValueStartingGuess	-100 kg/m3/s2;
 	@PeakMixture				peak-mixture;
 	@InitialProfiles			linear;
-	@PeakPosition				3 mm;
-	@MixingZoneWidth			5 mm;
+	@PeakPosition				 8 mm;
+	@MixingZoneWidth			 8 mm;
 	
 	@DaeParameters				dae-parameters;
-	
-	@LewisNumbers				lewis-numbers;
 }
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
-	@Transport 		../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+	@Kinetics		../../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_C2H4_53_AR.CKI;
+	@Thermodynamics	../../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+	@Transport 		../../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
 	@Output			kinetics;
 }
 
-Dictionary polimi-soot
+Dictionary hmom
 {
-	@ThermophoreticEffect 	true;
-	@RadiativeHeatTransfer	false;
+	@HMOM	true;
+
+	@PAH					C10H8;
+	@NumberOfCarbonPAH		   16;
+	@CollisionDiameterModel		2;
+	@FractalDiameterModel		1;
+	@ThermophoreticModel		1;
+	
+	@NucleationModel			1;
+	@SurfaceGrowthModel			1;
+	@OxidationModel				1;
+	@CondensationModel			1;
+	@CoagulationModel			1;
+	@ContinousCoagulationModel	1;
+	
+	@PAHConsumption				true;
 }
 
 Dictionary fuel-stream
 {
-	@Moles			C3H6    0.114748 
-					O2 		0.250663 
-					AR 		0.634589;
+	@Moles			C2H4 1;
 						
-	@Temperature	473 K;
+	@Temperature	300 K;
 	@Pressure		1 atm;
 }
 
 Dictionary oxidizer-stream
 {
-	@Moles			AR 1;
+	@Moles			O2 0.24 N2 0.76;
 					
-	@Temperature	564 K;
+	@Temperature	300 K;
 	@Pressure		1 atm;
 }
 
 Dictionary peak-mixture
 {
-	@Moles			CO2 0.15 H2O 0.15 AR 0.70;
+	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
 					
 	@Temperature	2000 K;
 	@Pressure		1 atm;
@@ -85,49 +93,19 @@ Dictionary peak-mixture
 
 Dictionary grid
 {
-	@Length					0.8 cm;
-	@InitialPoints			10;
+	@Length					1.42 cm;
+	@InitialPoints			15;
 	@Type					equispaced;
 	
 	@MaxPoints				500;
 	@MaxAdaptivePoints		15;
-	@GradientCoefficient	0.1;
-	@CurvatureCoefficient	0.5;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.25;
 }
 
 Dictionary dae-parameters
 {
 	@DaeSolver				OpenSMOKE++;
-	@RelativeTolerance		1e-6;
-	@AbsoluteTolerance		1e-12;
+	@RelativeTolerance		1e-7;
+	@AbsoluteTolerance		1e-14;
 }
-
-Dictionary T-Profile
-{	
-	@XVariable length;
-	@YVariable temperature;
-		
-	@XUnits cm;
-	@YUnits K;
-		
-	@Profile
-	0       473
-	0.1    1950
-	0.2    1950
-	0.3    1940
-	0.4    1870
-	0.5    1750
-	0.6    1550
-	0.7    1220
-	0.8     564	;
-}
-
-Dictionary lewis-numbers
-{
-	@Default	1;
-	
-	@Species	CH4 	1.2	
-				C2H4	1.1
-				H2      0.3;
-}
-

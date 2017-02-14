@@ -22,9 +22,9 @@ Dictionary SurfacePerfectlyStirredReactor
 		
 		@ResidenceTime			1 s;
 		
-//		@MassFlowRate			2e-5	g/s;
+		@MassFlowRate			2e-5	g/s;
 
-		@Volume                 100 cm3;
+		//@Volume                 100 cm3;
 
 
 		@InternalSurfaceArea	100 cm2;
