@@ -16,7 +16,7 @@ Dictionary LicenseGenerator
 {
 		
 		@StartingDate		2017-Mar-01;
-		@ExpirationDate		2017-Mar-01;
+		@ExpirationDate		2018-Mar-01;
 		@UserName			creck_students;
 		@UserEmail			none;
 		@UserOrganization	none;
