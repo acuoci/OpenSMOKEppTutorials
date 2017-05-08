@@ -15,14 +15,14 @@
 Dictionary LicenseGenerator
 {
 		
-		@StartingDate		2017-Mar-01;
-		@ExpirationDate		2018-Mar-01;
+		@StartingDate		2017-May-01;
+		@ExpirationDate		2018-May-01;
 		@UserName			academic_user;
 		@UserEmail			none;
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.7.0;
-		@MaxSpecies		2000;
+		@Version		0.8.0;
+		@MaxSpecies		1000;
 		@Solvers		All;
 }
