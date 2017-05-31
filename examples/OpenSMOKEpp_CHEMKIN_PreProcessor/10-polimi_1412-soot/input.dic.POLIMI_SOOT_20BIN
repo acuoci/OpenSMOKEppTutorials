@@ -12,16 +12,13 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
-		
-		@StartingDate		2015-May-20;
-		@ExpirationDate		2016-May-20;
-		@UserName			procida;
-		@UserEmail			none;
-		@UserOrganization	none;
-		@Type				Academic;
-		@Version			0.2;
-		@MaxSpecies			5000;
-		@Solvers			All;
+		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+		@Kinetics 		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
+		@OutputOldStyle	true;
+		@Output			kinetics-POLIMI_SOOT_25BIN;
 }
+
+

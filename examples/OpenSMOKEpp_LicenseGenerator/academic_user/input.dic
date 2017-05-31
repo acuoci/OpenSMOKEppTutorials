@@ -22,7 +22,7 @@ Dictionary LicenseGenerator
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.8.0;
-		@MaxSpecies		1000;
+		@Version		0.9.0;
+		@MaxSpecies		2000;
 		@Solvers		All;
 }

@@ -14,25 +14,11 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-		@Transport		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
-		@Kinetics 		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_C1C3HT_1412.CKI;
+		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+		@Transport		../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+		@Kinetics 		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_0BIN.CKI;
 		
-		@Output				kinetics-POLIMI_C1C3HT_1412;
-		
-		@Comments 			CRECK-Signature;
-		
-		@TransportFittingCoefficients true;
-		
-		@ReactionTables 					true;
-		@ReactionTablesListOfTemperatures	500 600 700 800 K;
-		
-		@ReverseFitting true;
+		@Output			kinetics-POLIMI_SOOT_0BIN;
 }
 
-Dictionary CRECK-Signature
-{
-	@Author 	CRECK Modeling Group;
-	@Place  	Politecnico di Milano (Italy);
-	@Comments	This kinetic mechanism can be downloaded at: www.creckmodeling.chem.polimi.it;
-}
+

@@ -24,6 +24,8 @@ Dictionary PerfectlyStirredReactor
 
 		@Volume                 100 cm3;
 		
+		@EndTime				100 s;
+		
 		@InitialStatus          initial-mixture;
 }
 

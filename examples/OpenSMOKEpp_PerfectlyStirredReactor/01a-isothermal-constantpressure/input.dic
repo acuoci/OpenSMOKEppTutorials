@@ -21,6 +21,7 @@ Dictionary PerfectlyStirredReactor
 		@InletStatus            inlet-mixture;
 		
 		@ResidenceTime			1 s;
+		@EndTime				100 s;
 
 		@Volume                 100 cm3;
 }

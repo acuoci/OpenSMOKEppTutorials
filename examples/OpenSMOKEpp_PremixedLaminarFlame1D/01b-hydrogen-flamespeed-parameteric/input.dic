@@ -38,7 +38,7 @@ Dictionary kinetics
 
 Dictionary inlet-stream
 {
-	@EquivalenceRatio	1 1.025 1.05 1.1 1.15 0.975 0.95;
+	@EquivalenceRatio	1 1.025 1.05 1.1 1.15 1 0.975 0.95;
 
 	@FuelMoles			H2 1;
 	@OxidizerMoles		O2 0.21 
