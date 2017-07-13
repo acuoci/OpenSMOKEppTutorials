@@ -34,14 +34,14 @@ Dictionary CounterFlowFlame1D
 	@PeakPosition				10 mm;
 	@MixingZoneWidth			15 mm;
 	
-	@DaeParameters				dae-parameters;
+	//@DaeParameters				dae-parameters;
 }
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms\POLIMI_Skeletal_1410/Kinetics/POLIMI_NC7_REDUCED106_1410.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms\POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
-	@Transport 		../../../kinetic-mechanisms\POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+	@Kinetics		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_NC7_REDUCED106_1410.CKI;
+	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+	@Transport 		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
 	
 	@Output			kinetics;
 }
