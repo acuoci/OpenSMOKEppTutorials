@@ -16,15 +16,15 @@ Dictionary CounterFlowFlame1D
 	@Type					CounterFlowDiffusion;
 	@KineticsPreProcessor	kinetics;
 	
-	@FuelStream 	fuel-stream;
-	@OxidizerStream	oxidizer-stream;
+	@FuelStream 			fuel-stream;
+	@OxidizerStream			oxidizer-stream;
 	
-	@FuelVelocity		10 cm/s;
-	@OxidizerVelocity	30 cm/s;
+	@FuelVelocity			25 cm/s;
+	@OxidizerVelocity		25 cm/s;
 	
-	@Grid			grid;
+	@Grid					grid;
 	
-	@Output			Output;
+	@Output					Output;
 	
 	@InitialTemperatureProfile T-Profile;
 	
@@ -34,21 +34,28 @@ Dictionary CounterFlowFlame1D
 	@PeakPosition				10 mm;
 	@MixingZoneWidth			15 mm;
 	
-	//@DaeParameters				dae-parameters;
+	@OnTheFlyPostProcessing		on-the-fly-pp;
+}
+
+Dictionary on-the-fly-pp
+{
+	@FormationRates		ALL;
+	@ReactionRates		ALL;
 }
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_NC7_REDUCED106_1410.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
-	@Transport 		../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+	@Kinetics		../../../kinetic-mechanisms/Additional-Mechanisms/H2_AR.inp;
+	@Thermodynamics	../../../kinetic-mechanisms/Additional-Mechanisms/therm.dat;
+	@Transport 		../../../kinetic-mechanisms/Additional-Mechanisms/tran.dat;
 	
 	@Output			kinetics;
 }
 
 Dictionary fuel-stream
 {
-	@Moles			NC7H16 1;
+	@Moles			AR 2
+					H2 1;
 						
 	@Temperature	300 K;
 	@Pressure		1 atm;
@@ -56,7 +63,8 @@ Dictionary fuel-stream
 
 Dictionary oxidizer-stream
 {
-	@Moles			O2 0.21 N2 0.79;
+	@Moles			O2  1 
+					AR  2;
 					
 	@Temperature	300 K;
 	@Pressure		1 atm;
@@ -64,7 +72,8 @@ Dictionary oxidizer-stream
 
 Dictionary peak-mixture
 {
-	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
+	@Moles			H2O  1 
+					AR   2;
 					
 	@Temperature	2000 K;
 	@Pressure		1 atm;
@@ -80,30 +89,6 @@ Dictionary grid
 	@MaxAdaptivePoints		15;
 	@GradientCoefficient	0.05;
 	@CurvatureCoefficient	0.5;
-}
-
-Dictionary dae-parameters
-{
-	@DaeSolver				OpenSMOKE++;
-//	@Jacobian				Sparse;
-//	@SparseSolver			Pardiso;
-//	@Preconditioner			ILUT;
-	
-	//Sparse solvers: EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
-	//                Pardiso       | SuperLUSerial | UMFPack
-	
-	//Preconditioners: ILUT | diagonal
-	
-	@RelativeTolerance		1e-6;
-	@AbsoluteTolerance		1e-10;
-//	@MaximumNumberOfSteps	100000;
-//	@MaximumStep			1e3;
-//	@MinimumStep			1e-9;
-//	@InitialStep			1e-9;
-//	@MaximumOrder			5;
-	
-//	@MeanResidualThreshold		1e-5;
-//	@VerbosityLevel				1;
 }
 
 Dictionary T-Profile

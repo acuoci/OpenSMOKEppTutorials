@@ -16,25 +16,28 @@ Dictionary CounterFlowFlame1D
 	@Type					CounterFlowDiffusion;
 	@KineticsPreProcessor	kinetics;
 	
-	@FuelStream 	fuel-stream;
-	@OxidizerStream	oxidizer-stream;
+	@FuelStream 			fuel-stream;
+	@OxidizerStream			oxidizer-stream;
 	
-	@FuelVelocity		10 cm/s;
-	@OxidizerVelocity	30 cm/s;
+	@FuelVelocity			13.42 cm/s;
+	@OxidizerVelocity		25.00 cm/s;
 	
-	@Grid			grid;
+	@Grid					grid;
 	
-	@Output			Output;
+	@Output					Output;
 	
-	@InitialTemperatureProfile T-Profile;
+	//@InitialTemperatureProfile T-Profile;
 	
 	@EigenValueStartingGuess	-100 kg/m3/s2;
 	@PeakMixture				peak-mixture;
-	@InitialProfiles			linear;
+	@InitialProfiles			triangular;
 	@PeakPosition				10 mm;
-	@MixingZoneWidth			15 mm;
+	@MixingZoneWidth			10 mm;
 	
-	//@DaeParameters				dae-parameters;
+	@UseDaeSolver				true;
+	@UseNlsSolver				false;
+	
+//	@DaeParameters				dae-parameters;
 }
 
 Dictionary kinetics
@@ -66,14 +69,14 @@ Dictionary peak-mixture
 {
 	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
 					
-	@Temperature	2000 K;
+	@Temperature	3000 K;
 	@Pressure		1 atm;
 }
 
 Dictionary grid
 {
-	@Length					2 cm;
-	@InitialPoints			15;
+	@Length					15 mm;
+	@InitialPoints			10;
 	@Type					equispaced;
 	
 	@MaxPoints				500;
@@ -85,56 +88,8 @@ Dictionary grid
 Dictionary dae-parameters
 {
 	@DaeSolver				OpenSMOKE++;
-//	@Jacobian				Sparse;
-//	@SparseSolver			Pardiso;
-//	@Preconditioner			ILUT;
-	
-	//Sparse solvers: EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
-	//                Pardiso       | SuperLUSerial | UMFPack
-	
-	//Preconditioners: ILUT | diagonal
+	@Jacobian				Band;
 	
 	@RelativeTolerance		1e-6;
-	@AbsoluteTolerance		1e-10;
-//	@MaximumNumberOfSteps	100000;
-//	@MaximumStep			1e3;
-//	@MinimumStep			1e-9;
-//	@InitialStep			1e-9;
-//	@MaximumOrder			5;
-	
-//	@MeanResidualThreshold		1e-5;
-//	@VerbosityLevel				1;
+	@AbsoluteTolerance		1e-12;
 }
-
-Dictionary T-Profile
-{	
-	@XVariable length;
-	@YVariable temperature;
-		
-	@XUnits cm;
-	@YUnits K;
-		
-	@Profile
-	0       300
-	0.1     300
-	0.2     300
-	0.3     300
-	0.4     300
-	0.5     500
-	0.6    1000
-	0.7    1400
-	0.8    1700
-	0.9    1900
-	1.0    2000
-	1.1    1900
-	1.2    1700
-	1.3    1400
-	1.4    1000
-	1.5     500
-	1.6     300
-	1.7     300
-	1.8     300
-	1.9     300
-	2.0     300	;
-}
-

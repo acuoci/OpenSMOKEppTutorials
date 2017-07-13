@@ -18,7 +18,7 @@ Dictionary LaminarFlamelets
 	@FuelSide 								fuel-side;
 	@OxidizerSide							oxidizer-side;
 	@StoichiometricScalarDissipationRates	1e-6 1e-5 1e-3 1e-1 1e0 1e0 1e2 1e3 1e4 Hz;
-	@EnthalpyDefects						250 500 750 1000 kJ/kg;
+	@EnthalpyDefects						0 250 500 750 1000 kJ/kg;
 
 	@Grid		grid;
 	
