@@ -18,7 +18,7 @@ Dictionary LaminarFlamelets
 	@FuelSide 								fuel-side;
 	@OxidizerSide							oxidizer-side;
 	@StoichiometricScalarDissipationRates	1e-6 1e-5 1e-3 1e-1 1e0 1e0 1e2 1e3 1e4 Hz;
-	@EnthalpyDefects						0 250 500 750 1000 kJ/kg;
+	@EnthalpyDefects						0 kJ/kg;
 
 	@Grid		grid;
 	
@@ -33,14 +33,13 @@ Dictionary kinetics
 	@Output			kinetics;
 
 	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
-	
-	@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-	@Transport 			../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
+	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+	@Transport 		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
 }
 
 Dictionary fuel-side
 {
-	@Moles			H2 1;					
+	@Moles			H2 0.30 CO 0.40 N2 0.30;					
 	@Temperature	300 K;
 	@Pressure		1 atm;
 }
@@ -54,9 +53,9 @@ Dictionary oxidizer-side
 
 Dictionary grid
 {
-	@Length				1 m;
-	@InitialPoints		50;
-	@Type				equispaced;
+	@Length					1 m;
+	@InitialPoints			50;
+	@Type					equispaced;
 	
 	@MaxPoints				500;
 	@MaxAdaptivePoints		15;
