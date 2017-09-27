@@ -1,0 +1,17 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+NC7H16     NC10H22	NC12H26		H2O
+O2         CO2
+CO		   N2                                                      
+END
+
+REACTIONS
+
+END
+
