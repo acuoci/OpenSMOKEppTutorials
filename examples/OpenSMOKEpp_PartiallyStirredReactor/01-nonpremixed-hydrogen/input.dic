@@ -1,0 +1,75 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PartiallyStirredReactor
+{
+		@KineticsPreProcessor	POLIMI_H2CO_1412;
+		@Output					Output;
+		
+		@Reactions				true;
+		@Isothermal				false;
+		
+		@InletStreamFractions	0.028312571 
+								0.971687429;
+
+		@InitialThermodynamicEquilibrium	true;
+		@InitialStatus          			initial-mixture;
+		@InletStatus            			inlet-mixture;
+		
+		@ResidenceTime						10 ms;
+		@MixingTime				 			1 ms;
+		
+		@TimeStep							0.1 ms;
+		@EndTime							0.5 s;
+
+		@NumberOfParticles					200;
+		@NumberOfSamplingParticles			 50;
+		
+		@LocalIntegrationTimePolicy			exponential;		
+		@MixingModel						CD;
+		
+		@Volume								1 cm3;
+		
+		@StepsVideo							10;
+		@StepsSampling						 5;
+}
+
+Dictionary inlet-mixture1
+{
+		@Temperature   	300 K ; 
+		@Pressure    	1 atm ;
+		@MoleFractions	H2 1;
+}
+
+Dictionary inlet-mixture2
+{
+		@Temperature   	300 K ; 
+		@Pressure    	1 atm ;
+		@MoleFractions	O2 0.21 N2 0.79;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	300. K ; 
+		@Pressure    	1 atm ;
+		@Moles			H2 2 O2 1 N2 3.76;
+}
+
+Dictionary POLIMI_H2CO_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
