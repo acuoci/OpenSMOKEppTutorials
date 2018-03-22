@@ -1,0 +1,92 @@
+ELEMENTS
+C 
+H 
+CL
+O 
+N 
+AR
+HE
+END
+
+
+
+SPECIES
+HE             AR             N2             O2             H2             
+H2O            H2O2           CO             CO2            CH2O           
+CH4            CH3OH          CH3OOH         C2H2           CH2CO          
+C2H2O2         C2H4           C2H4O          CH3CHO         C2H4O2         
+C2-OQOOH       C2H6           C2H5OH         C2H5OOH        C3H2           
+AC3H4          PC3H4          C2H3CHO        C3H6           CH3COCH3       
+C3H6O          C2H5CHO        C3H8           C4H2           C4H4           
+C4H6           IC4H8          NC4H8          CYC5H4O        CYC5H6         
+C6H6           MCPTD          C10H8          
+O              H              OH             HO2            C              
+CH             HCO            CH2            CH2S           CH3            
+CH3O           CH2OH          CH3OO          C2H            HCCO           
+C2H3           CH3CO          CH2CHO         C2H5           CH3CHOH        
+C2H4OH         C2H5OO         C2-QOOH        C2-OOQOOH      C3H3           
+CH2CCH3        CH2CHCH2       CHCHCH3        RALD3B         RALD3G         
+CH3COCH2       IC3H7          NC3H7          C4H3           C4H5           
+SC4H7          IC4H7          CH2C3H5        CYC5H5         C5H5O          
+C6H5           
+END
+
+REACTIONS
+
+! Regular reactions
+H+O2=OH+O                				2.21e11 	0	16650			!# This is a strong comment
+O+H2=OH+H                				4.33e10 	0  	10000      		!  This is a weak comment
+
+! Abstraction reactions
+R+H2 => RH+H							HNUMBER=2	HTYPE=3				
+R+CH4 => RH+CH3                   		HNUMBER=4	HTYPE=4
+R+C2H2 => RH+C2H                 		HNUMBER=1	HTYPE=7                                         
+R+C2H4 => RH+C2H3                  		HNUMBER=4	HTYPE=7
+R+C2H6 => RH+C2H5                 		HNUMBER=9	HTYPE=0                                            
+R+C4H4=>C4H3+RH                 	    HNUMBER=8   HTYPE=4             		                                             
+R+H2O=>RH+OH                    		HNUMBER=2	HTYPE=type5                                          
+R+H2O2=>RH+HO2                  		HNUMBER=2	HTYPE=6                                           
+R+CH3OH=>RH+CH3O                		HNUMBER=1	HTYPE=9                                           
+R+CH2O=>RH+HCO                  		HNUMBER=2	HTYPE=type8                                           
+R+PC3H4=>RH+C3H3           				HNUMBER=30	HTYPE=7  
+R+AC3H4=>RH+C3H3            			HNUMBER=30	HTYPE=type7   
+R+CH2CO=>RH+HCCO           				HNUMBER=5	HTYPE=7
+
+END
+
+
+ABSTRACTIONS
+	EREF	13500		! Reference E (in cal/mol)
+	ALPHA	0.333		! Fitting parameter
+	TREF	1000.		! Reference temperature (in K)
+END
+
+ABSTRACTORS
+    H		H2		1.778E+13	2.0     10500  
+	CH3     CH4     2.884E+11   2.0     11500                              
+	C2H3	C2H4	5.012E+11	2.0		11500
+	C4H3	C4H4    3.020E+11   2.0		12000 
+	O       OH      1.000E+13   2.0		 9000
+	OH      H2O     2.951E+12   2.0      3500                                             
+	HO2     H2O2    3.981E+11   2.0     19000                                            
+	CH3O    CH3OH   3.162E+11   2.0      7900                                             
+	CH2OH   CH3OH   2.089E+11   2.0     16350                                            
+	HCO     CH2O    9.333E+11   2.0     19500
+	C3H3    AC3H4   1.995E+11   2.0     22000
+	HCCO    CH2CO   3.162E+11   2.0     12000
+	C6H5    C6H6    1.000E+11   2.0      6000                                        
+END
+
+CORRECTIONS
+	type1	1.0		-2800.
+	type2	1.0		-4200.
+	pippo	7.0		 1350.
+	type4	1.75	 4000.
+	type5	5.0		 9800.
+	pluto	0.4		-7650.
+	type7	2.0		 4300.
+	type8	4.0		-4500.
+	minni	0.5		-1000.
+	type10	1.0		-2650.
+END
+

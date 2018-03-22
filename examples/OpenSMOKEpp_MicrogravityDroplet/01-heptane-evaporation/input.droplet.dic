@@ -77,6 +77,9 @@ Dictionary MicrogravityDroplet
 		
 		// Continuity equation type: 1=non-conservative(default) | 2=conservative | 3=semi-implicit
 		@ContinuityEquationType 1;
+		
+		@OutputSpecies		ALL;
+		@OutputDiffusivities	ALL;
 }
 
 Dictionary nls-parameters
