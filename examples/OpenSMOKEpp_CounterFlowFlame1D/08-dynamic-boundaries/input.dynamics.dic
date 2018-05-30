@@ -1,0 +1,201 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary CounterFlowFlame1D
+{
+	@Type					CounterFlowDiffusion;
+	@KineticsPreProcessor	kinetics;
+	
+	@Backup					Output.initial/Output.xml;
+	@DynamicBoundaries		dynamics-example-3;
+	
+	@FuelStream 			fuel-stream;
+	@OxidizerStream			oxidizer-stream;
+	
+	@FuelVelocity			25 cm/s;
+	@OxidizerVelocity		25 cm/s;
+	
+	@Grid					grid;
+	
+	@Output					Output.dynamics;
+	
+	@InitialTemperatureProfile T-Profile;
+	
+	@EigenValueStartingGuess	-100 kg/m3/s2;
+	@PeakMixture				peak-mixture;
+	@InitialProfiles			linear;
+	@PeakPosition				10 mm;
+	@MixingZoneWidth			15 mm;
+}
+
+Dictionary dynamics-example-1
+{
+	// Description: 1. the fuel temperature, the fuel velocity, the oxidizer temperature and the 
+	//                 oxidizer velocity are increased/decreased linearly
+	//              2. the strain rate changes
+	//              3. the momentum balance changes
+
+	@Type						TEMPERATURE_VELOCITY_SLOPES;	
+
+	@SlopeFuelTemperature		10 K/s;
+	@SlopeOxidizerTemperature	0 K/s;
+	@SlopeFuelVelocity			0 cm/s2;
+	@SlopeOxidizerVelocity		1 cm/s2;
+
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary dynamics-example-2
+{
+	// Description: 1. the fuel temperature is increased/decreased linearly
+	//              2. in order to keep the strain rate constant, the fuel velocity is changed accordingly
+	//              3. the oxidizer velocity is kept constant
+	//              4. the fuel temperature is kept constant
+	//              5. the momentum balance and the stagnation plane are kept constant
+
+	@Type						FIXED_STRAINRATE_FUEL_TEMPERATURE_SLOPE;	
+
+	@SlopeFuelTemperature		10 K/s;
+
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary dynamics-example-3
+{
+	// Autoignition experiments from Prof. Seshadri (University of San Diego, California)
+	// Description: 1. the oxidizer temperature is increased/decreased linearly
+	//              2. in order to keep the strain rate constant, the oxidizer velocity is changed accordingly
+	//              3. in order to keep the strain rate constant, the fuel velocity is changed too
+	//              4. the fuel temperature is kept constant
+	//              5. the momentum balance and the stagnation plane are kept constant
+
+	@Type						FIXED_STRAINRATE_OX_TEMPERATURE_SLOPE;	
+
+	@SlopeOxidizerTemperature	10 K/s;
+
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary dynamics-example-4
+{
+	// Description: 1. the fuel temperature is increased/decreased linearly
+	//              2. the momentum balance is kept constant, which means thath the oxidizer velocity is changed
+	//              3. the temperatures are kept constant
+	//              4. the strain rate changes
+
+	@Type						FIXED_BALANCE_FUEL_VELOCITY_SLOPE;	
+
+	@SlopeFuelVelocity			2 cm/s2;
+
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary dynamics-example-5
+{
+	// Description: 1. the oxidizer temperature is increased/decreased linearly
+	//              2. the momentum balance is kept constant, which means thath the fuel velocity is changed
+	//              3. the temperatures are kept constant
+	//              4. the strain rate changes
+
+	@Type						FIXED_BALANCE_OX_VELOCITY_SLOPE;	
+
+	@SlopeOxidizerVelocity		1 cm/s2;
+
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		../../../kinetic-mechanisms/Additional-Mechanisms/H2_AR.inp;
+	@Thermodynamics	../../../kinetic-mechanisms/Additional-Mechanisms/therm.dat;
+	@Transport 		../../../kinetic-mechanisms/Additional-Mechanisms/tran.dat;
+	
+	@Output			kinetics;
+}
+
+Dictionary fuel-stream
+{
+	@Moles			AR 2
+					H2 1;
+						
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary oxidizer-stream
+{
+	@Moles			O2  1 
+					AR  2;
+					
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary peak-mixture
+{
+	@Moles			H2O  1 
+					AR   2;
+					
+	@Temperature	2000 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					2 cm;
+	@InitialPoints			15;
+	@Type					equispaced;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}
+
+Dictionary T-Profile
+{	
+	@XVariable length;
+	@YVariable temperature;
+		
+	@XUnits cm;
+	@YUnits K;
+		
+	@Profile
+	0       300
+	0.1     300
+	0.2     300
+	0.3     300
+	0.4     300
+	0.5     500
+	0.6    1000
+	0.7    1400
+	0.8    1700
+	0.9    1900
+	1.0    2000
+	1.1    1900
+	1.2    1700
+	1.3    1400
+	1.4    1000
+	1.5     500
+	1.6     300
+	1.7     300
+	1.8     300
+	1.9     300
+	2.0     300	;
+}
+
