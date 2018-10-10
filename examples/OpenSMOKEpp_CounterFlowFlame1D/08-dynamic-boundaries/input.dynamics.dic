@@ -17,7 +17,7 @@ Dictionary CounterFlowFlame1D
 	@KineticsPreProcessor	kinetics;
 	
 	@Backup					Output.initial/Output.xml;
-	@DynamicBoundaries		dynamics-example-3;
+	@DynamicBoundaries		dynamics-example-6;
 	
 	@FuelStream 			fuel-stream;
 	@OxidizerStream			oxidizer-stream;
@@ -115,6 +115,24 @@ Dictionary dynamics-example-5
 
 	@SlopeOxidizerVelocity		1 cm/s2;
 
+	@SnapshotTimes				1 5 s;
+	@EndTime					10 s;
+}
+
+Dictionary dynamics-example-6
+{
+	// Description: the fuel and oxidizer velocities change accordingly to a sinusoidal law
+	//              v = v0 * (1 + A*sin(2pi*(t+tD)))
+
+	@Type						SIN_VELOCITY;	
+
+	@FrequencyFuel				10 		Hz;
+	@FrequencyOxidizer			5  		Hz;
+	@SemiAmplitudeFuel			0.25;
+	@SemiAmplitudeOxidizer	   -0.1;
+	@DelayTimeFuel				0. s;
+	@DelayTimeOxidizer			0. s;
+	
 	@SnapshotTimes				1 5 s;
 	@EndTime					10 s;
 }
