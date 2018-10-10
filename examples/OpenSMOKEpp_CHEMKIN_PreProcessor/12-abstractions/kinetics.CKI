@@ -38,7 +38,7 @@ H+O2=OH+O                				2.21e11 	0	16650			!# This is a strong comment
 O+H2=OH+H                				4.33e10 	0  	10000      		!  This is a weak comment
 
 ! Abstraction reactions
-R+H2 => RH+H							HNUMBER=2	HTYPE=3				
+R+H2 => RH+H							HNUMBER=2	HTYPE=0				
 R+CH4 => RH+CH3                   		HNUMBER=4	HTYPE=4
 R+C2H2 => RH+C2H                 		HNUMBER=1	HTYPE=7                                         
 R+C2H4 => RH+C2H3                  		HNUMBER=4	HTYPE=7
@@ -56,37 +56,39 @@ END
 
 
 ABSTRACTIONS
-	EREF	13500		! Reference E (in cal/mol)
-	ALPHA	0.333		! Fitting parameter
+	EREF	11500		! Reference E (in cal/mol)
+	ALPHA	0.3333		! Fitting parameter
 	TREF	1000.		! Reference temperature (in K)
 END
 
 ABSTRACTORS
-    H		H2		1.778E+13	2.0     10500  
-	CH3     CH4     2.884E+11   2.0     11500                              
-	C2H3	C2H4	5.012E+11	2.0		11500
-	C4H3	C4H4    3.020E+11   2.0		12000 
-	O       OH      1.000E+13   2.0		 9000
-	OH      H2O     2.951E+12   2.0      3500                                             
-	HO2     H2O2    3.981E+11   2.0     19000                                            
-	CH3O    CH3OH   3.162E+11   2.0      7900                                             
-	CH2OH   CH3OH   2.089E+11   2.0     16350                                            
-	HCO     CH2O    9.333E+11   2.0     19500
-	C3H3    AC3H4   1.995E+11   2.0     22000
-	HCCO    CH2CO   3.162E+11   2.0     12000
-	C6H5    C6H6    1.000E+11   2.0      6000                                        
+    H		H2		2.41e6	    2.0          6500  
+	
+	CH3     CH4     2.884E+11   0     11500                              
+	C2H3	C2H4	5.012E+11	0		11500
+	C4H3	C4H4    3.020E+11   0		12000 
+	O       OH      1.000E+13   0		 9000
+	OH      H2O     2.951E+12   0      3500                                             
+	HO2     H2O2    3.981E+11   0     19000                                            
+	CH3O    CH3OH   3.162E+11   0      7900                                             
+	CH2OH   CH3OH   2.089E+11   0     16350                                            
+	HCO     CH2O    9.333E+11   0     19500
+	C3H3    AC3H4   1.995E+11   0     22000
+	HCCO    CH2CO   3.162E+11   0     12000
+	C6H5    C6H6    1.000E+11   0      6000                                        
 END
 
 CORRECTIONS
-	type1	1.0		-2800.
-	type2	1.0		-4200.
-	pippo	7.0		 1350.
-	type4	1.75	 4000.
-	type5	5.0		 9800.
-	pluto	0.4		-7650.
-	type7	2.0		 4300.
-	type8	4.0		-4500.
-	minni	0.5		-1000.
-	type10	1.0		-2650.
+    type0       1.0      2800.
+	type1		1.0		    0.
+	type2		1.0		-4200.
+	type3		7.0		 1350.
+	type4		1.75	 4000.
+	type5		5.0		 9800.
+	type6		0.4		-7650.
+	type7		2.0		 4300.
+	type8		4.0		-4500.
+	type9		0.5		-1000.
+	type10		1.0		-2650.
 END
 
