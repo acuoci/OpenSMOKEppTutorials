@@ -47,9 +47,18 @@ Dictionary inlet-mixture
 
 Dictionary parametric-analysis
 {	
-	@Type 				temperature; 
-	@ListOfValues       1000 1100 1200 1300 1400 K;
-	@NumberOfThreads	2;
+	@Type 				temperature-pressure; 
+
+	@Combinations		true;
+	@NumberOfPoints     5;
+	
+	@MinimumValue       1000 K;
+	@MaximumValue       1200 K;
+	
+	@MinimumValue2      1  bar;
+	@MaximumValue2      10 bar;
+
+	@NumberOfThreads	3;
 }
 
 Dictionary output-options

@@ -16,15 +16,17 @@ Dictionary PlugFlowReactor
 {
 		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
 		
-		@Type					Isothermal;
+		@Type					NonIsothermal;
 		
 		@InletStatus          	inlet-mixture;
 		
-		@Length					10 cm;
+		@ResidenceTime			1 s;
 		
 		@ConstantPressure		true;
 		
 		@Velocity				1 m/s;
+		
+		@IgnitionDelayTimes		ignition-delay-times;
 		
 		@ParametricAnalysis		parametric-analysis;
 }
@@ -38,24 +40,27 @@ Dictionary POLIMI_H2CO_NOX_1412
 
 Dictionary inlet-mixture
 {
-		@Temperature   	1000.  	K ; 
+		@Temperature   	900.  	K ; 
 		@Pressure      	101325 	Pa;
 		@Moles			H2 2 
 						O2 1 
 						N2 3.76 ;
 }
 
+Dictionary ignition-delay-times
+{
+	@Temperature	true;
+	@Pressure		true;
+	@Species		OH;
+}
+
 Dictionary parametric-analysis
 {	
 	@Type 				temperature; 
-	@ListOfValues       1000 1100 1200 1300 1400 K;
-	@NumberOfThreads	2;
-}
 
-Dictionary output-options
-{	
-		@StepsFile  1;
-		@StepsVideo 5000;
-		@VerboseASCIIFile true;
-		@VerboseVideo false;
+	@NumberOfPoints     10;
+	@MinimumValue       900  K;
+	@MaximumValue       1000 K;
+
+	@NumberOfThreads	3;
 }

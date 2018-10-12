@@ -47,8 +47,12 @@ Dictionary inlet-mixture
 
 Dictionary parametric-analysis
 {	
-	@Type 				temperature; 
+	@Type 				temperature-pressure; 
+	@Combinations		true;
+	
 	@ListOfValues       1000 1100 1200 1300 1400 K;
+	@ListOfValues2      1    2    3    4    5    bar;
+
 	@NumberOfThreads	2;
 }
 

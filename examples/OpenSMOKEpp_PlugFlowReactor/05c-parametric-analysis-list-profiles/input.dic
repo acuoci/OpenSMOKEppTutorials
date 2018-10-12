@@ -47,8 +47,14 @@ Dictionary inlet-mixture
 
 Dictionary parametric-analysis
 {	
-	@Type 				temperature; 
-	@ListOfValues       1000 1100 1200 1300 1400 K;
+	@Type 				temperature-pressure; 
+	
+	@ListOfProfiles		Temperature_PFR_1.csv 
+						Temperature_PFR_2.csv  
+						Temperature_PFR_3.csv
+						Temperature_PFR_4.csv
+						Temperature_PFR_5.csv ;
+
 	@NumberOfThreads	2;
 }
 
