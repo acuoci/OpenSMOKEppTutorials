@@ -1,0 +1,59 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BatchReactor
+{
+		@KineticsPreProcessor		PRF_PAH_ALCOHOLS_ETHERS_LT_1412;
+		@Type						NonIsothermal-UserDefinedVolume;
+		@InitialStatus          	initial-mixture;
+		@EndTime					0.5 s;
+		@OdeParameters          	ode-parameters;
+		@Volume						1 cm3;
+		
+		@ParametricAnalysis    		parametric-analysis;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	333.15	K;  			
+		@Pressure      	1.014557118	atm; 		
+
+		@Moles	N1C4H9OH    1	
+				N2			15.8	
+				O2			6	
+				CO2			6.77;          
+}
+
+Dictionary PRF_PAH_ALCOHOLS_ETHERS_LT_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/PRF_PAH_ALCOHOLS_ETHERS_LT_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
+Dictionary parametric-analysis
+{
+		@Type 			temperature-pressure; 
+	
+		@ListOfProfiles Volumes_RCM_1.csv
+						Volumes_RCM_2.csv
+						Volumes_RCM_3.csv ;
+}
