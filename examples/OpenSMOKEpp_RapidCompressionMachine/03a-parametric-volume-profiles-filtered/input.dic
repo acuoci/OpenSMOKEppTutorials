@@ -22,7 +22,6 @@ Dictionary BatchReactor
 		@Volume						1 cm3;
 		
 		@ParametricAnalysis    		parametric-analysis;
-		@IgnitionDelayTimes			ignition-delay-times;
 }
 
 Dictionary initial-mixture
@@ -57,16 +56,4 @@ Dictionary parametric-analysis
 		@ListOfProfiles Volumes_RCM_1.csv
 						Volumes_RCM_2.csv
 						Volumes_RCM_3.csv ;
-}
-
-Dictionary ignition-delay-times
-{
-	@Temperature						true;
-	@Pressure							false;
-	
-	@RapidCompressionMachine			true;
-	@FilterWidth						0.1 ms;
-	@RegularizationTimeInterval			1.0 ms;
-	@TemperatureDerivativeThreshold		1.0 K/ms;
-	@Verbose							true;
 }
