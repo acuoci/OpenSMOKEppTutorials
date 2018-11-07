@@ -107,7 +107,7 @@ Dictionary dynamics-example-4
 Dictionary dynamics-example-5
 {
 	// Description: 1. the oxidizer temperature is increased/decreased linearly
-	//              2. the momentum balance is kept constant, which means thath the fuel velocity is changed
+	//              2. the momentum balance is kept constant, which means that the fuel velocity is changed
 	//              3. the temperatures are kept constant
 	//              4. the strain rate changes
 

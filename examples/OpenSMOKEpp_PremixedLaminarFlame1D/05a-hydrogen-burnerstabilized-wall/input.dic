@@ -1,0 +1,97 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary PremixedLaminarFlame1D
+{
+	@Type					BurnerStabilized;
+	@KineticsPreProcessor	kinetics;
+	
+	@InletStream 		inlet-stream;
+	@OutletStream		outlet-stream;
+	
+	@InletVelocity		151 cm/s;
+	
+	@Grid			grid;
+	
+	@Output			Output;
+
+	@UseDaeSolver		true;
+	
+	@WallHeatNusseltNumber			3.66;
+	@InternalDiameter				10 mm;
+	@WallTemperatureProfile			T-Profile;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		../../../kinetic-mechanisms/Additional-Mechanisms/H2_AR.inp;
+	@Thermodynamics		../../../kinetic-mechanisms/Additional-Mechanisms/therm.dat;
+	@Transport 		../../../kinetic-mechanisms/Additional-Mechanisms/tran.dat;
+	@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+	@Moles		AR 0.63
+				H2 0.28
+				O2 0.09;
+						
+	@Temperature	373.7 K;
+	@Pressure		0.0329 atm;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			H2O 1 
+				AR  2;
+
+	@Temperature		2300 K;
+	@Pressure		0.0329 atm;
+}
+
+Dictionary grid
+{
+	@Length				10 cm;
+	@InitialPoints			13;
+	@Type				equispaced;
+	
+	@MaxPoints		500;
+	@MaxAdaptivePoints	15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}
+
+Dictionary T-Profile
+{	
+	@XVariable length;
+	@YVariable temperature;
+		
+	@XUnits cm;
+	@YUnits K;
+		
+	@Profile
+	0       373.7
+	0.125   484.5
+	0.250   583.7
+	0.375   672.2
+	0.500   753.5
+	0.750   901.4
+	1.000  1027.0
+	1.250  1120.0
+	1.500  1184.0
+	2.000  1260.0 
+	3.000  1348.0
+	6.000  1475.0
+   	10.000  1524.0;
+}
+
