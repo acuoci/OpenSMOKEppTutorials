@@ -14,14 +14,14 @@
 
 Dictionary LicenseGenerator
 {
-		@StartingDate		2018-Jun-01;
-		@ExpirationDate		2019-Jun-01;
+		@StartingDate		2019-Jan-01;
+		@ExpirationDate		2020-Jan-01;
 		@UserName			creck_lab;
 		@UserEmail			none;
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.10.0;
+		@Version		0.11.0;
 		@MaxSpecies		100000;
 		@Solvers		All;
 }

@@ -27,7 +27,7 @@ Dictionary PremixedLaminarFlame1D
 	
 	@FixedTemperatureProfile T-Profile;
 	
-	@Backup         ../05a-hydrogen-burnerstabilized/Output/Output.xml;
+	@Backup         ../05a-hydrogen-burnerstabilized-wall/Output/Output.xml;
 }
 
 Dictionary kinetics
