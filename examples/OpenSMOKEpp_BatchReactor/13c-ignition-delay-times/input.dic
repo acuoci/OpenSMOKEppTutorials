@@ -58,6 +58,7 @@ Dictionary ignition-delay-times
 	
 	@TargetMoleFractions			OH 1e-5  CH 1e-6;
 	@TargetRelativeMoleFractions	OH 0.80  CH 0.80;
+	@TargetConcentrations			OH 1e-4  CH 2e-7  kmol/m3;
 	
 	@SpeciesMaxIntercept	OH CH;
 	@SpeciesMinIntercept	O2 NC7H16;
