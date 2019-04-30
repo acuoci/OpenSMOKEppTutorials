@@ -44,7 +44,7 @@ Dictionary initial-mixture
 
 Dictionary ode-parameters
 {	
-		@OdeSolver OpenSMOKE;
+		@OdeSolver CVODE;
 		@AbsoluteTolerance 1e-14;
 		@RelativeTolerance 1e-9;
 }

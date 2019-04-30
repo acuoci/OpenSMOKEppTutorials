@@ -78,11 +78,11 @@ Dictionary polimi-soot
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_1800/Kinetics/POLIMI_SOOT_1800.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1800/Thermodynamics/POLIMI_SOOT_1800.CKT;
-	@Transport 		../../../kinetic-mechanisms/POLIMI_1800/Transport/POLIMI_SOOT_1800.TRC;
-	
-	@Output			kinetics;
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019_BIN25.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019.CKT;
+		@Transport 		../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019.TRA;
+
+		@Output			kinetics;
 }
 
 Dictionary fuel-stream

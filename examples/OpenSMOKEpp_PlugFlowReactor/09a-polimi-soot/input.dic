@@ -14,7 +14,7 @@
 
 Dictionary PlugFlowReactor
 {
-		@KineticsPreProcessor	POLIMI_SOOT_BIN25;
+		@KineticsPreProcessor	POLIMI_SOOT_PCI2019_BIN25;
 		
 		@Type					NonIsothermal;
 		
@@ -53,10 +53,10 @@ Dictionary polimi-soot
 	@ThresholdForPSDF	1e-11;
 }
 
-Dictionary POLIMI_SOOT_BIN25
+Dictionary POLIMI_SOOT_PCI2019_BIN25
 {
-		@Kinetics		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
-		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019_BIN25.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019.CKT;
 		@Output			kinetics;
 }
 
