@@ -17,5 +17,5 @@ Solvers currently available
  - **OpenSMOKE_ShockTubeReactor**: solution of shock tube reactors
  - **OpenSMOKE_MicrogravityDroplet**: numerical simulation of isolated fuel droplets burning in microgravity conditions
 
-  [1]: http://opensmokepp.polimi.it/
+  [1]: https://www.opensmokepp.polimi.it/
   [2]: http://creckmodeling.chem.polimi.it/
