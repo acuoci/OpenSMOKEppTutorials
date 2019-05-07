@@ -1,8 +1,8 @@
 OpenSMOKE++ Solvers Project!
 =====================
 
-The OpenSMOKE++ Solvers Project is a collection of numerical solvers built on the top of the OpenSMOKE++ framework.
-The project is managed by the [CRECK Modeling Group][1] at the Department of Chemistry, Materials, and 
+The OpenSMOKE++ Solvers Project is a collection of numerical solvers built on the top of the [OpenSMOKE++ framework][1].
+The project is managed by the [CRECK Modeling Group][2] at the Department of Chemistry, Materials, and 
 Chemical Engineering of the Politecnico di Milano (Italy).
 
 
@@ -17,4 +17,5 @@ Solvers currently available
  - **OpenSMOKE_ShockTubeReactor**: solution of shock tube reactors
  - **OpenSMOKE_MicrogravityDroplet**: numerical simulation of isolated fuel droplets burning in microgravity conditions
 
-  [1]: http://creckmodeling.chem.polimi.it/
+  [1]: http://opensmokepp.polimi.it/
+  [2]: http://creckmodeling.chem.polimi.it/
