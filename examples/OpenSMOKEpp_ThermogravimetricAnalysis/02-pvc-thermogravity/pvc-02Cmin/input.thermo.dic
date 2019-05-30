@@ -1,0 +1,96 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			kinetics;
+		@OutputFolder			    		Output;
+		
+		// Simulation time
+		@EndTime							250 min;
+		
+		// Correction of activation energy
+		@EnergyCorrectionBasedOnHCl			7000 cal/mol;
+		
+		// List of evaporating species
+		@BoilingTemperatures	H2		 	 20.28 K
+								CL2 		239.11 K
+								HCL 		188.15 K	
+								C2H2  		189.60 K
+								C2H4  		169.00 K
+								C6H6    	353.30 K
+								C8H8		419.00 K
+								C12H10		527.00 K
+								C14H10		613.00 K
+								C6H5CL  	404.90 K
+								C11H9CL		443.20 K
+								C15H11CL	493.00 K
+								GASC        321.00 K; 
+
+		// Initial conditions
+		@FuelMassFractions			PC2H3CL		1;					
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				../LiquidProperties/;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+		
+		// Ode parameters
+		@OdeParameters				ode-parameters;
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	473.15  K ; 
+		@Pressure      	1. 		bar ;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+		@Density	AdditiveVolumes;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable 	time;
+	@XUnits		min;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile
+    0    	473.15
+	250		973.15
+	;
+}
+
+Dictionary ode-parameters
+{
+	@OdeSolver			OpenSMOKE++;
+	@RelativeTolerance	1e-6;
+	@AbsoluteTolerance  1e-12;
+}
