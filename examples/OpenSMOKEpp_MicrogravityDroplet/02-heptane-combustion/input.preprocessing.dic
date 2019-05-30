@@ -14,11 +14,11 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
-		@Transport		../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
-		@Kinetics 		chem.inp;	
+		@Thermodynamics ../kinetic-mechanism/thermo.tdc;
+		@Transport		../kinetic-mechanism/transport.tra;
+		@Liquid			../kinetic-mechanism/kinetics.liquid.noreactions;
+		@Kinetics 		../kinetic-mechanism/kinetics.gas;
 		
-		@ReverseFitting	true;
 		@Output			kinetics;
 }
 
