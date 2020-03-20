@@ -82,7 +82,7 @@ Dictionary MicrogravityDroplet
 Dictionary nls-parameters
 {
 	// NL solver: OpenSMOKE++ | BzzNls | KinSol
-	@NlsSolver				KinSol;
+	@NlsSolver				OpenSMOKE++;
 	
 	// Tolerances
 	@RelativeTolerance		1e-5;
@@ -123,7 +123,7 @@ Dictionary nls-parameters
 Dictionary dae-parameters
 {
 	// DAE solver: OpenSMOKE++ | BzzDae | Ida | DASPK
-	@DaeSolver				DASPK;
+	@DaeSolver				OpenSMOKE++;
 	
 	// Jacobian sparsity pattern: Band | Sparse
 	@Jacobian				Band;
