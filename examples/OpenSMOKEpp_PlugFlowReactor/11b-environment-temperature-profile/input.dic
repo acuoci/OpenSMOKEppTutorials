@@ -1,0 +1,82 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
+		
+		@Type					NonIsothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length					100 mm;
+		
+		@ConstantPressure		true;
+		
+		@Velocity				1 m/s;
+		
+		@EnvironmentTemperatureProfile				EnvironmentTemperature-Profile;
+		@GlobalThermalExchangeCoefficientProfile	GlobalThermalExchangeCoefficient-Profile;
+		@CrossSectionOverPerimeter					0.01 m;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	500.  	K ; 
+		@Pressure      	101325 	Pa;
+		@Moles			H2 2 
+						O2 1 
+						N2 3.76 ;
+}
+
+Dictionary EnvironmentTemperature-Profile
+{	
+		@XVariable length;
+		@YVariable temperature;
+		
+		@XUnits cm;
+		@YUnits K;
+		
+		@Profile
+		0    700
+		2	 700
+		2.01 1800
+		8.99 1800
+		9.00 700
+		10   700;		
+}
+
+Dictionary GlobalThermalExchangeCoefficient-Profile
+{	
+		@XVariable length;
+		@YVariable heat-transfer-coefficient;
+		
+		@XUnits cm;
+		@YUnits W/m2/K;
+		
+		@Profile
+		0    10
+		2	 10
+		2.01 100
+		8.99 100
+		9.00 10
+		10   10;		
+}
