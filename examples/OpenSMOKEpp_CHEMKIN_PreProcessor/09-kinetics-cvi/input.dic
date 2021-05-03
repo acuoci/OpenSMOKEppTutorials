@@ -14,9 +14,9 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics therm.dat;
-		@Kinetics 		chem.inp;
-		@Surface 		surf.inp;
+		@Thermodynamics chemistry-CVI/therm.dat;
+		@Kinetics 		chemistry-CVI/chem.inp;
+		@Surface 		chemistry-CVI/surf.inp;
 		
-		@Output			kinetics-CVD;
+		@Output			kinetics-CVI;
 }

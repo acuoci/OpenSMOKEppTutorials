@@ -14,8 +14,8 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics thermo.CKT;
-		@Kinetics 		kinetics.CKI;
+		@Thermodynamics chemistry/thermo.CKT;
+		@Kinetics 		chemistry/kinetics.CKI;
 		
 		@Output			kinetics;
 		
