@@ -34,7 +34,7 @@ Dictionary CounterFlowFlame1D
 	@PeakPosition				10 mm;
 	@MixingZoneWidth			15 mm;
 	
-	//@DaeParameters				dae-parameters;
+	@DaeParameters				dae-parameters;
 }
 
 Dictionary kinetics

@@ -45,9 +45,9 @@ Dictionary CounterFlowFlame1D
 
 Dictionary kinetics
 {
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_SOOT_25BIN.CKI;
-	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
-	@Transport 		../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+	@Kinetics		../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019_BIN25.CKI;
+	@Thermodynamics	../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019.CKT;
+	@Transport 		../../../kinetic-mechanisms/POLIMI_Soot_PCI2019/POLIMI_Soot_PCI2019.TRA;
 	@Output			kinetics;
 }
 
