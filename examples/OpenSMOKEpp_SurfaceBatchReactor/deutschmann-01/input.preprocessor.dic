@@ -14,10 +14,10 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics thermo.ckt;
-		@Transport		transport.tra;
-		@Kinetics 		homogeneous.kin;
-		@Surface 		surface.kin;
+		@Thermodynamics chemistry/thermo.ckt;
+		@Transport		chemistry/transport.tra;
+		@Kinetics 		chemistry/homogeneous.kin;
+		@Surface 		chemistry/surface.kin;
 		
 		@Output			kinetics-Deutschmann_CH4_O2_over_Pt;
 }

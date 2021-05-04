@@ -36,10 +36,10 @@ Dictionary polimi-soot
 	@FractalDimension 	1.8;
 
 	// Index of minimum discrete section which is considered soot (default: 5)
-	@SootMinimumSection		5;
+	@SootMinimumSectionSphericalParticles	5;
 	
 	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
-	@SootMinimumFractalDimension	12;
+	@SootMinimumSectionAggregates			13;
 
 	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
 	@Density	10 1500. 20 1700.;

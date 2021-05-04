@@ -14,9 +14,9 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/therm.dat;
-		@Kinetics 		../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/chem.inp;
-		@Surface 		../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/surf.inp;
+		@Thermodynamics ../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/chemistry-CVD/therm.dat;
+		@Kinetics 		../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/chemistry-CVD/chem.inp;
+		@Surface 		../../OpenSMOKEpp_CHEMKIN_PreProcessor/09-kinetics-cvd/chemistry-CVD/surf.inp;
 		
 		@Output			kinetics-cvd;
 }

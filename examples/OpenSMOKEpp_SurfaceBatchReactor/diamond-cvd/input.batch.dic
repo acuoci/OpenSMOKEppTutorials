@@ -14,7 +14,7 @@
 
 Dictionary SurfaceBatchReactor
 {
-		@KineticsFolder			kinetics-Deutschmann_CH4_SR_over_Rh;
+		@KineticsFolder			kinetics-Diamond-CVD;
 		
 		@Type					Isothermal-ConstantVolume;
 		
@@ -30,19 +30,16 @@ Dictionary SurfaceBatchReactor
 
 Dictionary initial-mixture
 {
-		@MoleFractions			CH4		0.10
-								H2		0.10
-								H2O		0.10
-								O2		0.10
-								N2		0.60;
+		@MoleFractions			CH4		0.90
+								H2		0.10;
 								
 		@Temperature			700 K;
 		@Pressure				1	atm;
 }
 
-Dictionary Surface-Rh_surface
+Dictionary Surface-DIAMOND
 {
-		@SurfaceFractions	Rh(s)	1.00;
+		@SurfaceFractions	CH(S)	1.00;
 }
 
 Dictionary ode-parameters

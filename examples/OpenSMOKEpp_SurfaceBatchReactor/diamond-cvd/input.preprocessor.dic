@@ -14,9 +14,9 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics thermo.ckt;
-		@Kinetics 		homogeneous.kin;
-		@Surface 		surface.kin;
+		@Thermodynamics chemistry/thermo.ckt;
+		@Kinetics 		chemistry/homogeneous.kin;
+		@Surface 		chemistry/surface.kin;
 		
 		@Output			kinetics-Diamond-CVD;
 }
