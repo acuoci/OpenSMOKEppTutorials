@@ -62,9 +62,9 @@ Dictionary dae-parameters
 
 Dictionary kinetics
 {
-	@Kinetics		../../../../kinetic-mechanisms/POLIMI_SOOT/Kinetics/POLIMI_C2H4_53_AR.CKI;
-	@Thermodynamics	../../../../kinetic-mechanisms/POLIMI_SOOT/Thermodynamics/POLIMI_SOOT.CKT;
-	@Transport 		../../../../kinetic-mechanisms/POLIMI_SOOT/Transport/POLIMI_SOOT.TRC;
+	@Kinetics		../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_C2H4_53_AR.CKI;
+	@Thermodynamics	../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+	@Transport 		../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
 	@Output			kinetics;
 }
 
