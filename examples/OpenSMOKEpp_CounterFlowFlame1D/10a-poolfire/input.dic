@@ -1,0 +1,110 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary CounterFlowFlame1D
+{
+	@Type					CounterFlowDiffusion;
+	@KineticsFolder			kinetics;
+	
+	@FuelStream 			fuel-stream;
+	@OxidizerStream			oxidizer-stream;
+	
+	@FuelVelocity			 5.00 cm/s;
+	@OxidizerVelocity		 5.00 cm/s;
+	
+	@Grid					grid;
+	
+	@Output					Output;
+	
+	@EigenValueStartingGuess	-100 kg/m3/s2;
+	@PeakMixture				peak-mixture;
+	@InitialProfiles			triangular;
+	@PeakPosition				4 mm;
+	@MixingZoneWidth			6 mm;
+	
+	@UseDaeSolver				true;
+	@UseNlsSolver				false;
+	
+	@DaeParameters				dae-parameters;
+	
+	@PoolFire					pool-fire;
+	@LiquidMixture				liquid-properties;
+}
+
+Dictionary pool-fire
+{
+	@Type								boiling-temperature; 		// none | equilibrium | boiling-temperature | liquid-pool
+
+	@SpeciesFolder                      ../../OpenSMOKEpp_MicrogravityDroplet/LiquidProperties;
+	@InertSpecies						N2; 
+
+	@FeedTemperature    				298.15 K;
+	@PoolDepth          				1 cm;
+
+	@CorrectionVaporizationHeat         1.;
+	@CorrectionVaporPressure            1.;
+	@CorrectionSpecificHeat             1.;
+	@CorrectionThermalConductivity      1.;
+}
+
+Dictionary liquid-properties
+{
+	@Fugacity	Raoult;
+	@Activity	Ideal;
+}
+
+Dictionary fuel-stream
+{
+	@Moles			NC7H16 1;
+						
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary oxidizer-stream
+{
+	@Moles			O2 0.21 N2 0.79;
+					
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary peak-mixture
+{
+	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
+					
+	@Temperature	2500 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					12 mm;
+	
+	@InitialPoints			30;
+	@MaxPoints				100;
+	@Type					liquid-pool;	
+	
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.5;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver				OpenSMOKE++;
+	@Jacobian				Band;
+	
+//	@RelativeTolerance		1e-6;
+//	@AbsoluteTolerance		1e-10;
+}
