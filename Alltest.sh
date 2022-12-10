@@ -1,9 +1,14 @@
+BASEDIR=$PWD
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 GRAY='\033[0;37m'
 RESET='\033[0m'
 
-BASEDIR=$PWD
+NTEST=0
+NPASS=0
+NFAIL=0
+NSKIP=0
 
 function printHeader {
   printf "============================================================================\n"
@@ -11,7 +16,7 @@ function printHeader {
   printf "============================================================================\n"
 }
 
-function check_installation {
+function checkInstallation {
   if ! command -v $1 &> /dev/null
     then
       echo "$1 could not be found in your system"
@@ -19,12 +24,6 @@ function check_installation {
   fi
 }
 
-NTEST=0
-NPASS=0
-NFAIL=0
-NSKIP=0
-
-# Init variables
 function runTestTarget {
 
   NTESTHERE=0
@@ -32,7 +31,7 @@ function runTestTarget {
   NFAILHERE=0
   NSKIPHERE=0
 
-  export TARGETNAME=$1
+  TARGETNAME=$1
   printHeader "Running tests for $TARGETNAME"
 
   TARGETDIR=$BASEDIR/examples/$TARGETNAME
@@ -62,17 +61,30 @@ function runTestTarget {
   cd $BASEDIR
 }
 
-check_installation numdiff
-check_installation OpenSMOKEpp_CHEMKIN_PreProcessor.sh
-runTestTarget OpenSMOKEpp_BatchReactor
-runTestTarget OpenSMOKEpp_PlugFlowReactor
-runTestTarget OpenSMOKEpp_MicrogravityDroplet
+function printSummary {
+  NPERF=$(($NTEST-$NSKIP))
+  printHeader "Summary"
+  if [ $NPERF == $NPASS ]; then
+    printf "${GREEN} ($NPASS/$NPERF) test passed${RESET}\n"
+  else
+    printf "${RED} ($NFAIL/$NPERF) test failed${RESET}\n"
+  fi
+}
 
-# Print summary
-NPERF=$(($NTEST-$NSKIP))
-printHeader "Summary"
-if [ $NPERF == $NPASS ]; then
-  printf "${GREEN} ($NPASS/$NPERF) test passed\n"
+checkInstallation numdiff
+checkInstallation OpenSMOKEpp_CHEMKIN_PreProcessor.sh
+
+if [ -z "$@" ]; then
+  runTestTarget OpenSMOKEpp_BatchReactor
+  runTestTarget OpenSMOKEpp_PlugFlowReactor
+  runTestTarget OpenSMOKEpp_MicrogravityDroplet
 else
-  printf "${RED} ($NFAIL/$NPERF) test failed\n"
+  for var in "$@"; do
+    TARGETNAME=${var%.*}
+    checkInstallation $var
+    runTestTarget $TARGETNAME
+  done
 fi
+
+printSummary
+
