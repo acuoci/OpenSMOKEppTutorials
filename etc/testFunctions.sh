@@ -25,6 +25,10 @@ function runDifference {
   fi
 }
 
+function getColumn {
+  awk -F ' ' -v COLUMN="$1" '{ print $COLUMN }' $2 
+}
+
 function cleanSimulation {
   rm -f log.*
 }
