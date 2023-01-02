@@ -76,6 +76,7 @@ checkInstallation OpenSMOKEpp_CHEMKIN_PreProcessor.sh
 
 if [ -z "$@" ]; then
   runTestTarget OpenSMOKEpp_BatchReactor
+  runTestTarget OpenSMOKEpp_PerfectlyStirredReactor
   runTestTarget OpenSMOKEpp_PlugFlowReactor
   runTestTarget OpenSMOKEpp_MicrogravityDroplet
 else

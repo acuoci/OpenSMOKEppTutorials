@@ -2,13 +2,29 @@ function move_to_base_dir {
   cd $(dirname "$0")
 }
 
-function runDifference {
-  numdiff target $1 \
-    --absolute-tolerance 1.e-4 \
-    --relative-tolerance 0. \
-    --output log.out \
-    --warnings log.warnings
+function runApplication {
+  SOLVERNAME=$1
+  DEFAULTINPUT="input.dic"
+  SOLVERINPUT=${2-$DEFAULTINPUT}
+  echo | $($SOLVERNAME --input $SOLVERINPUT > log.$SOLVERNAME)
+}
 
+function runNumdiff {
+  numdiff target $1 \
+    --absolute-tolerance 10000. \
+    --relative-tolerance 1.e-3 \
+    --strict \
+    --output log.out \
+    --warnings log.warnings \
+    $2
+}
+
+# -- Main function for testing
+# Provide inputs as follows:
+# 1) Name of the file to be compared against "target"
+# 2) String with additional args for numdiff
+function runDifference {
+  runNumdiff $1 $2
   LINESOUT=$(wc -l log.out | awk '{ print $1 }')
   LINESREF=2
   if [ $LINESOUT == $LINESREF ]; then
@@ -32,3 +48,33 @@ function getColumn {
 function cleanSimulation {
   rm -f log.*
 }
+
+function generateTarget {
+  THISPATH=${PWD}
+  SOLVERNAME=$(basename $(dirname $THISPATH))
+
+  TESTFILE=Test.sh
+  CLEANFILE=Clean.sh
+  TARGETFILE=Output.out
+  TARGETPATH=Output/${1:-$TARGETFILE}
+
+  echo 'cd $(dirname "$0")' > $TESTFILE
+  echo '' >> $TESTFILE
+  echo '. $OPENSMOKE_TUTORIALS/etc/testFunctions.sh' >> $TESTFILE
+  echo '' >> $TESTFILE
+  echo 'cleanSimulation' >> $TESTFILE
+  echo '' >> $TESTFILE
+  echo $SOLVERNAME.sh '--input input.dic >' log.$SOLVERNAME.sh >> $TESTFILE
+  echo '' >> $TESTFILE
+  echo 'runDifference' $TARGETPATH >> $TESTFILE
+
+  echo 'rm -rf kinetics BzzFile.txt Output log.*' > $CLEANFILE
+
+  chmod +x $TESTFILE
+  chmod +x $CLEANFILE
+
+  ./Test.sh
+  cp $TARGETPATH target
+  echo 'Target generated on' $TARGETPATH
+}
+

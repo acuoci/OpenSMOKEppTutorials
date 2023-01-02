@@ -4,6 +4,6 @@ cd $(dirname "$0")
 
 cleanSimulation
 
-OpenSMOKEpp_BatchReactor.sh --input input.dic > log.OpenSMOKEpp_BatchReactor.sh
+runApplication OpenSMOKEpp_BatchReactor.sh 
 
 runDifference Output/Output.out
