@@ -6,4 +6,6 @@ cleanSimulation
 
 runApplication OpenSMOKEpp_BatchReactor.sh 
 
-runDifference Output/Output.out
+filterValues Output/Output.out > Output/Output.filtered
+
+runDifference Output/Output.filtered

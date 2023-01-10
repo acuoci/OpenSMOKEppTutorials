@@ -49,6 +49,18 @@ function cleanSimulation {
   rm -f log.*
 }
 
+function filterValues {
+  # TODO: remove hard-coded tolerance
+  FILTERFILE=$1
+  awk -F' ' '\
+  { \
+    for(i=1;i<=NF;i++) \
+    { \
+      printf "%s ", $i*($i>1.e-12) \
+    }; printf "\n"}' \
+  $FILTERFILE
+}
+
 function generateTarget {
   THISPATH=${PWD}
   SOLVERNAME=$(basename $(dirname $THISPATH))
