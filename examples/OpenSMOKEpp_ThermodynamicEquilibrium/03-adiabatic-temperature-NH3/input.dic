@@ -1,0 +1,42 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary Equilibrium
+{
+	@KineticsPreProcessor	KineticMechanism;
+	@Type					Fixed_H_P;
+	@InitialStatus			initial-status;
+	
+	@OutputSpecies			ALL;
+}
+
+Dictionary initial-status
+{
+	@Temperature		300. K;
+	@Pressure			1 atm;
+	@EquivalenceRatio	0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.20;
+
+	@FuelMassFractions		NH3 1;
+	@OxidizerMassFractions  N2 0.767 O2 0.233;
+}
+
+Dictionary KineticMechanism
+{
+		@Thermodynamics	nh3_rce_therm.ckt;
+		@Kinetics		nh3_rce_chem.cki;
+
+		@Output			kinetics;
+}
+
+
