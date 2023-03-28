@@ -1,0 +1,24 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CHEMKIN_PreProcessor
+{
+		@Thermodynamics ../../../kinetic-mechanisms/CRECK_2003/POLYMERS/HDPE.tdc;
+		@Transport		../../../kinetic-mechanisms/CRECK_2003/POLYMERS/HDPE.tra;
+		@Kinetics 		../../../kinetic-mechanisms/CRECK_2003/POLYMERS/HDPE.gas;
+		@Liquid			../../../kinetic-mechanisms/CRECK_2003/POLYMERS/HDPE_evaporation.liquid;
+		
+		@Output			kinetics;
+}
+

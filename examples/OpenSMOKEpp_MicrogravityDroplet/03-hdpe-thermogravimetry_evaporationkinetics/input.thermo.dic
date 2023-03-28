@@ -1,0 +1,70 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			kinetics;
+		@OutputFolder			    		Output;
+		
+		// Simulation time
+		@EndTime							40 min;
+		
+        // Evaporation Model
+		@GlobalMassExchangeCoefficient		0 m3/s;   //Set 0 for evaporation kinetics
+		
+		// Initial conditions
+		@FuelMassFractions					P-C21H42-P 1;
+									
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				..\LiquidPropertiesHDPE_evaporationkinetics\; //Pvap are set to 0 compared to the other one
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	287.65  K ; 
+		@Pressure      	1. 		bar ;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable 	time;
+	@XUnits		min;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile
+    0 600
+	40 1000;
+}
