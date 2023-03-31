@@ -12,30 +12,31 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary Equilibrium
 {
-<<<<<<< HEAD
-		@StartingDate		2023-Mar-30;
-		@ExpirationDate		2024-Apr-01;
-		@UserName		website_license;
-		@UserEmail		none;
-		@UserOrganization	none;
-
-		@Type			Academic;
-		@Version		0.15.0;
-		@MaxSpecies		300;
-		@Solvers		BatchReactor CHEMKIN_PreProcessor;
-=======
-		@StartingDate		2023-Mar-01;
-		@ExpirationDate		2024-Mar-01;
-		@UserName			website_license;
-		@UserEmail			none;
-		@UserOrganization	none;
-
-		@Type				Academic;
-		@Version			0.18.0;
-		@MaxSpecies			300;
-		@Solvers			BatchReactor CHEMKIN_PreProcessor;
->>>>>>> 552b1432e4b19d76bbf6ba2e8c14ef19286cc4ca
+	@KineticsPreProcessor	KineticMechanism;
+	@Type					Fixed_H_P;
+	@InitialStatus			initial-status;
+	
+	@OutputSpecies			ALL;
 }
+
+Dictionary initial-status
+{
+	@Temperature		300. K;
+	@Pressure			1 atm;
+	@EquivalenceRatio	0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.20;
+
+	@FuelMassFractions		NH3 1;
+	@OxidizerMassFractions  N2 0.767 O2 0.233;
+}
+
+Dictionary KineticMechanism
+{
+		@Thermodynamics	nh3_rce_therm.ckt;
+		@Kinetics		nh3_rce_chem.cki;
+
+		@Output			kinetics;
+}
+
 

@@ -12,30 +12,29 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary Equilibrium
 {
-<<<<<<< HEAD
-		@StartingDate		2023-Mar-30;
-		@ExpirationDate		2024-Apr-01;
-		@UserName		website_license;
-		@UserEmail		none;
-		@UserOrganization	none;
+	@KineticsPreProcessor	KineticMechanism;
+	@Type					Fixed_Tx_P;
+	@InitialStatus			initial-status;
+	
+	@OutputSpecies			N2 O2 CH4;
+}
 
-		@Type			Academic;
-		@Version		0.15.0;
-		@MaxSpecies		300;
-		@Solvers		BatchReactor CHEMKIN_PreProcessor;
-=======
-		@StartingDate		2023-Mar-01;
-		@ExpirationDate		2024-Mar-01;
-		@UserName			website_license;
-		@UserEmail			none;
-		@UserOrganization	none;
+Dictionary initial-status
+{
+	@Temperature		2000. K;
+	@Pressure			1 atm;
+	@EquivalenceRatio	0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.20;
 
-		@Type				Academic;
-		@Version			0.18.0;
-		@MaxSpecies			300;
-		@Solvers			BatchReactor CHEMKIN_PreProcessor;
->>>>>>> 552b1432e4b19d76bbf6ba2e8c14ef19286cc4ca
+	@FuelMassFractions		CH4 1;
+	@OxidizerMassFractions  N2 0.767 O2 0.233;
+}
+
+Dictionary KineticMechanism
+{
+		@Thermodynamics	../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_C1C3LT_1412.CKI;
+		@Output			kinetics;
 }
 

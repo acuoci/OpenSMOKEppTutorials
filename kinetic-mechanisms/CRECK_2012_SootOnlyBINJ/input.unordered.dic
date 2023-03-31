@@ -12,30 +12,24 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
-<<<<<<< HEAD
-		@StartingDate		2023-Mar-30;
-		@ExpirationDate		2024-Apr-01;
-		@UserName		website_license;
-		@UserEmail		none;
-		@UserOrganization	none;
+		@Thermodynamics 	thermo.CHEMKIN.CKT;
+		@Kinetics 			kinetics.CHEMKIN.unordered.CKI;
+		@Transport			trans.CHEMKIN.TRC;
+		
+		@Output				kinetics-unordered;
+		
+		@Comments 			CRECK-Signature;
 
-		@Type			Academic;
-		@Version		0.15.0;
-		@MaxSpecies		300;
-		@Solvers		BatchReactor CHEMKIN_PreProcessor;
-=======
-		@StartingDate		2023-Mar-01;
-		@ExpirationDate		2024-Mar-01;
-		@UserName			website_license;
-		@UserEmail			none;
-		@UserOrganization	none;
-
-		@Type				Academic;
-		@Version			0.18.0;
-		@MaxSpecies			300;
-		@Solvers			BatchReactor CHEMKIN_PreProcessor;
->>>>>>> 552b1432e4b19d76bbf6ba2e8c14ef19286cc4ca
+		@SpeciesBundling		true;
+		@ReverseFitting			true;
+		@CollisionRateAnalysis 	true;
 }
 
+Dictionary CRECK-Signature
+{
+	@Author 	CRECK Modeling Group;
+	@Place  	Politecnico di Milano (Italy);
+	@Comments	This kinetic mechanism can be downloaded at: www.creckmodeling.chem.polimi.it;
+}
