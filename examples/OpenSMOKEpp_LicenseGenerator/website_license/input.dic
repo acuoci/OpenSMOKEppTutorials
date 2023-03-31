@@ -14,7 +14,6 @@
 
 Dictionary LicenseGenerator
 {
-<<<<<<< HEAD
 		@StartingDate		2023-Mar-30;
 		@ExpirationDate		2024-Apr-01;
 		@UserName		website_license;
@@ -22,20 +21,8 @@ Dictionary LicenseGenerator
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.15.0;
+		@Version		0.19.0;
 		@MaxSpecies		300;
 		@Solvers		BatchReactor CHEMKIN_PreProcessor;
-=======
-		@StartingDate		2023-Mar-01;
-		@ExpirationDate		2024-Mar-01;
-		@UserName			website_license;
-		@UserEmail			none;
-		@UserOrganization	none;
-
-		@Type				Academic;
-		@Version			0.18.0;
-		@MaxSpecies			300;
-		@Solvers			BatchReactor CHEMKIN_PreProcessor;
->>>>>>> 552b1432e4b19d76bbf6ba2e8c14ef19286cc4ca
 }
 
