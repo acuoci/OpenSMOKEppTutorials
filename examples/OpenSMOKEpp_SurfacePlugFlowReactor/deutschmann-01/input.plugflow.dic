@@ -30,7 +30,7 @@ Dictionary SurfacePlugFlowReactor
 		@OdeParameters          ode-parameters;
 		@DaeParameters          dae-parameters;
 
-		@OnTheFlyRopa		on-the-fly-ropa;
+//		@OnTheFlyRopa		on-the-fly-ropa;
 }
 
 Dictionary inlet-mixture

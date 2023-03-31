@@ -25,12 +25,12 @@ Dictionary MicrogravityDroplet
 		@NumberOfNLS						1;
 		
 		// Ignition
-		@Type								Spark;
-		@SparkTemperature					2000. K;
+		@Type					Spark;
+		@SparkTemperature			2000. K;
 		
 		// Radiative heat transfer
-		@FlameRadiation         			P1;
-		@ExtinctionCoefficient				WSGG-Smith;
+		@FlameRadiation         		P1;
+		@ExtinctionCoefficient			WSGG-Smith;
 		@RadiationCorrectionCoefficient		1.00;
 		
 		// Operating conditions

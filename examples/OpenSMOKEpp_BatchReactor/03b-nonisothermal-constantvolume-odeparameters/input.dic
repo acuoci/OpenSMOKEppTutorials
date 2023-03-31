@@ -46,5 +46,5 @@ Dictionary ode-parameters
 {	
 		@OdeSolver CVODE;
 		@AbsoluteTolerance 1e-14;
-		@RelativeTolerance 1e-9;
+		@RelativeTolerance 1e-7;
 }

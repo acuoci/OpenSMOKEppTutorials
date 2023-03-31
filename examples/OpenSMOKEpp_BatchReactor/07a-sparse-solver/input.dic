@@ -34,9 +34,9 @@ Dictionary kinetics
 
 Dictionary ode-parameters
 {	
-		@OdeSolver CVODE;
+		@OdeSolver OpenSMOKE;
 
-		@SparseSolver UMFPack;
+		@SparseSolver EigenDGMRES;
 		@SparsePreconditioner ILUT;
 		
 		@AbsoluteTolerance 1e-12;
