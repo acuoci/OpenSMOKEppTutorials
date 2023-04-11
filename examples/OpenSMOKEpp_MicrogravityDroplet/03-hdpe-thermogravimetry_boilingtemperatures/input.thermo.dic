@@ -1,0 +1,71 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			kinetics;
+		@OutputFolder			    		Output;
+		
+		// Simulation time
+		@EndTime							40 min;
+		
+        // Evaporation Model
+		@BoilingTemperatures	 N2 234.4036154692477 K CH4 302.6137663344012 K C2H6 234.4036154692477 K C2H4 234.4036154692477 K C3H8 270.6659809803834 K C3H6 270.6659809803834 K NC4H10 302.6137663344012 K C4H8-1 302.6137663344012 K C4H6 302.6137663344012 K NC5H12 331.4967720658979 K NC5H10 331.4967720658979 K LC5H8 331.4967720658979 K C6H14 358.0574370197164 K NC6H12 358.0574370197164 K DIALLYL 358.0574370197164 K NC7H16 382.77950117547636 K NC7H14 382.77950117547636 K C7H12 382.77950117547636 K C8H18 405.9989714705751 K C8H16 405.9989714705751 K C8H14 405.9989714705751 K C9H20 427.9604925109129 K C9H18 427.9604925109129 K C9H16 427.9604925109129 K NC10H22 448.84875121270136 K NC10H20 448.84875121270136 K C10H18 448.84875121270136 K  C15H32 541.3319619607668 K C15H30 541.3319619607668 K C15H28 541.3319619607668 K  C21H44 634.7679914192295 K C21H42 634.7679914192295 K C21H40 634.7679914192295 K C30H62 753.5022015665036 K C30H60 753.5022015665036 K C30H58 753.5022015665036 K  C39H80 855.9209850218258 K C39H78 855.9209850218258 K C39H76 855.9209850218258 K ;
+		
+		// Initial conditions
+		@FuelMassFractions					P-C21H42-P 1;
+									
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				..\LiquidPropertiesHDPE\;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	287.65  K ; 
+		@Pressure      	1. 		bar ;
+		@Moles  		N2 		1.00;
+}
+
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable 	time;
+	@XUnits		min;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile
+    0 600
+	40 1000;
+}
