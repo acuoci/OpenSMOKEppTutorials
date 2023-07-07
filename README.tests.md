@@ -64,7 +64,7 @@ filterValues Output/Output.out > Output/Output.filtered
 which removes all the values lower than $1\times 10^{-12}$ (the default tolerance can be easily specified by the user), creating a new file called `Output/Output.filtered`. This file can be compared by the `runDifference` function, simply by replacing the input file name when the function is used.
 
 ### Specify the relative tolerance
-At this point it should be clear that the core of the tests are the `Test.sh` files, which implements the rules to run the simulation, and to compare the output file that we want with a specific target. The difference is based on the relative tolerance which, by default, is equal to $1\times 10^{-3}. If a different tolerance need to be set for a specific test case, it can be specified as:
+At this point it should be clear that the core of the tests are the `Test.sh` files, which implements the rules to run the simulation, and to compare the output file that we want with a specific target. The difference is based on the relative tolerance which, by default, is equal to $1\times 10^{-3}$. If a different tolerance need to be set for a specific test case, it can be specified as:
 ```
 runDifference Output_to_compare --relative-tolerance 1.e-4
 ```
