@@ -14,7 +14,7 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../KineticMechanisms/thermo.enriched.CKT;
+		@Thermodynamics 	../KineticMechanisms/thermo.enriched.CKT;
 		@Transport		../KineticMechanisms/transport.enriched.TRC;
 		@Kinetics 		../KineticMechanisms/gas.n-heptane-evaporation.CKI;
 		@Liquid			../KineticMechanisms/liquid.n-heptane-noreactions.CKI;
