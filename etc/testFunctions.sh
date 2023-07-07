@@ -57,7 +57,8 @@ function filterValues {
     for(i=1;i<=NF;i++) \
     { \
       printf "%s ", $i*($i>1.e-12) \
-    }; printf "\n"}' \
+    }; printf "\n"
+  }'\
   $FILTERFILE
 }
 
