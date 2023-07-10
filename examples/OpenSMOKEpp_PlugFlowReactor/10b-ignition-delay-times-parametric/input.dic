@@ -62,5 +62,5 @@ Dictionary parametric-analysis
 	@MinimumValue       900  K;
 	@MaximumValue       1000 K;
 
-	@NumberOfThreads	3;
+	@NumberOfThreads	1;
 }

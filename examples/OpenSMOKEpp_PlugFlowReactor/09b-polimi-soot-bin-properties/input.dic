@@ -1,0 +1,61 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+		@KineticsFolder         ../../OpenSMOKEpp_CHEMKIN_PreProcessor/10b-polimi-soot-bin-properties/kinetics;
+		
+		@Type					NonIsothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@ResidenceTime			0.1 s;
+		
+		@ConstantPressure		true;
+		
+		@Velocity				1 m/s;
+		
+		@PolimiSoot				polimi-soot;
+}
+
+Dictionary polimi-soot
+{
+	// Label indicating the soot particles (default: BIN)
+	@SootLabel	BIN;
+
+	// Fractal dimension of soot particles (default: 1.8)
+	@FractalDimension 	1.8;
+
+	// Index of minimum discrete section which is considered soot (default: 5)
+	@SootMinimumSectionSphericalParticles		5;
+	
+	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
+	@SootMinimumSectionAggregates				13;
+
+	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
+	@Density	5 1100. 25 1850.;
+
+	// Write the soot particle size distribution function (PSDF) on file (default: true)
+	@WritePSDF	true;
+
+	// Threshold (soot volume fraction) for writing the PSDF on file (default: 1e-11)
+	@ThresholdForPSDF	1e-11;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1127.  	K ; 
+		@Pressure       10		atm;
+		@Moles			C3H6 	1.0;
+}

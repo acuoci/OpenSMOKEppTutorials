@@ -14,7 +14,7 @@
 
 Dictionary PerfectlyStirredReactor
 {
-		@KineticsFolder			../../OpenSMOKE_CHEMKIN_PreProcessor/06-polimi_1412/kinetics-POLIMI_H2CO_NOX_1412;
+		@KineticsFolder			../../OpenSMOKEpp_CHEMKIN_PreProcessor/06-polimi_1412/kinetics-POLIMI_H2CO_1412;
 		
 		@Type					Isothermal-ConstantPressure;
 		

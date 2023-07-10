@@ -49,7 +49,7 @@ Dictionary parametric-analysis
 {	
 	@Type 				temperature; 
 	@ListOfValues       1000 1100 1200 1300 1400 K;
-	@NumberOfThreads	2;
+	@NumberOfThreads	1;
 }
 
 Dictionary output-options

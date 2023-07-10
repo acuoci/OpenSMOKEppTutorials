@@ -1,0 +1,63 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BatchReactor
+{
+		@KineticsFolder		../../OpenSMOKEpp_CHEMKIN_PreProcessor/10c-polimi-soot-polydispersity/kinetics;
+		
+		@Type					NonIsothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				0.01 s;
+		
+		@PolimiSoot				polimi-soot;
+}
+
+Dictionary polimi-soot
+{
+	// Label indicating the soot particles (default: BIN)
+	@SootLabel	BIN;
+
+	// Fractal dimension of soot particles (default: 1.8)
+	@FractalDimension 	1.8;
+
+	// Index of minimum discrete section which is considered soot (default: 5)
+	@SootMinimumSectionSphericalParticles		5;
+	
+	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
+	@SootMinimumSectionAggregates	13;
+
+	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
+	@Density	5 1100. 25 1850.;
+
+	// Write the soot particle size distribution function (PSDF) on file (default: true)
+	@WritePSDF	true;
+
+	// Threshold (soot volume fraction) for writing the PSDF on file (default: 1e-11)
+	@ThresholdForPSDF	1e-11;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	1200.   K ; 
+		@Pressure      	5       atm ;
+
+		@EquivalenceRatio 	5.;	
+		@FuelMasses 		C3H6 1.;
+		@OxidizerMoles      O2   21 
+                            N2   79;
+}
+
+

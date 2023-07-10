@@ -53,7 +53,7 @@ Dictionary parametric-analysis
 	@MinimumValue       1000 K;
 	@MaximumValue       1200 K;
 
-	@NumberOfThreads	3;
+	@NumberOfThreads	1;
 }
 
 Dictionary output-options

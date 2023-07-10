@@ -1,0 +1,267 @@
+ELEMENTS 
+C  
+H  
+CL 
+O  
+N  
+AR 
+HE 
+END 
+SPECIES 
+HE             AR             N2             O2             H2              
+H2O            H2O2           CO             CO2            CH2O            
+CH4            CH3OH          CH3OOH         C2H2           CH2CO           
+C2H2O2         C2H4           C2H4O          CH3CHO         C2H4O2          
+C2-OQOOH       C2H6           C2H5OH         C2H5OOH        C3H2            
+AC3H4          PC3H4          C2H3CHO        C3H6           CH3COCH3        
+C3H6O          C2H5CHO        C3H8           C4H2           C4H4            
+C4H6           IC4H8          NC4H8          CYC5H4O        CYC5H6          
+C6H6           MCPTD          C10H8           
+O              H              OH             HO2            C               
+CH             HCO            CH2            CH2S           CH3             
+CH3O           CH2OH          CH3OO          C2H            HCCO            
+C2H3           CH3CO          CH2CHO         C2H5           CH3CHOH         
+C2H4OH         C2H5OO         C2-QOOH        C2-OOQOOH      C3H3            
+CH2CCH3        CH2CHCH2       CHCHCH3        RALD3B         RALD3G          
+CH3COCH2       IC3H7          NC3H7          C4H3           C4H5            
+SC4H7          IC4H7          CH2C3H5        CYC5H5         C5H5O           
+C6H5            
+END 
+REACTIONS 
+H+O2=OH+O                    2.21e11  0 16650    !# This is a strong comment
+O+H2=OH+H                    4.33e10  0   10000         
+
+! ABSTRACTION REACTION: R + H2 => H + RH 
+! Number of H abstracted: 2.00
+! Type of H abstracted:   [0] 
+! H     + H2 => H + H2        4.82000e+06       2.000    9128.264    DUMMY
+  CH3   + H2 => H + CH4       5.76800e+11       0.000   14177.331
+  C2H3  + H2 => H + C2H4      1.00240e+12       0.000   14168.131
+  C4H3  + H2 => H + C4H4      6.04000e+11       0.000   14717.333
+! O     + H2 => H + OH        2.00000e+13       0.000   11580.337    OVERWRITTEN
+  OH    + H2 => H + H2O       5.90200e+12       0.000    5082.961
+  HO2   + H2 => H + H2O2      7.96200e+11       0.000   22544.665
+  CH3O  + H2 => H + CH3OH     6.32400e+11       0.000   10401.291
+  CH2OH + H2 => H + CH3OH     4.17800e+11       0.000   19529.089
+  HCO   + H2 => H + CH2O      1.86660e+12       0.000   22976.845
+  C3H3  + H2 => H + AC3H4     3.99000e+11       0.000   25343.948
+  HCCO  + H2 => H + CH2CO     6.32400e+11       0.000   14708.133
+  C6H5  + H2 => H + C6H6      2.00000e+11       0.000    8254.163
+
+
+! ABSTRACTION REACTION: R + CH4 => CH3 + RH 
+! Number of H abstracted: 4.00
+! Type of H abstracted:   [4] 
+  H     + CH4 => CH3 + H2        1.68700e+07       2.000   10377.331
+! CH3   + CH4 => CH3 + CH4       2.01880e+12       0.000   15500.000    DUMMY
+  C2H3  + CH4 => CH3 + C2H4      3.50840e+12       0.000   15500.000
+  C4H3  + CH4 => CH3 + C4H4      2.11400e+12       0.000   16057.145
+  O     + CH4 => CH3 + OH        7.00000e+13       0.000   12686.196
+  OH    + CH4 => CH3 + H2O       2.06570e+13       0.000    6190.712
+  HO2   + CH4 => CH3 + H2O2      2.78670e+12       0.000   23728.659
+  CH3O  + CH4 => CH3 + CH3OH     2.21340e+12       0.000   11429.462
+  CH2OH + CH4 => CH3 + CH3OH     1.46230e+12       0.000   20847.745
+  HCO   + CH4 => CH3 + CH2O      6.53310e+12       0.000   24269.775
+  C3H3  + CH4 => CH3 + AC3H4     1.39650e+12       0.000   26965.453
+  HCCO  + CH4 => CH3 + CH2CO     2.21340e+12       0.000   16057.145
+  C6H5  + CH4 => CH3 + C6H6      7.00000e+11       0.000    9220.232
+
+
+! ABSTRACTION REACTION: R + C2H2 => C2H + RH 
+! Number of H abstracted: 1.00
+! Type of H abstracted:   [7] 
+  H     + C2H2 => C2H + H2        4.82000e+06       2.000   10668.131
+  CH3   + C2H2 => C2H + CH4       5.76800e+11       0.000   15800.000
+  C2H3  + C2H2 => C2H + C2H4      1.00240e+12       0.000   15800.000
+  C4H3  + C2H2 => C2H + C4H4      6.04000e+11       0.000   16361.431
+  O     + C2H2 => C2H + OH        2.00000e+13       0.000   12962.661
+  OH    + C2H2 => C2H + H2O       5.90200e+12       0.000    6392.516
+  HO2   + C2H2 => C2H + H2O2      7.96200e+11       0.000   24083.308
+  CH3O  + C2H2 => C2H + CH3OH     6.32400e+11       0.000   11694.172
+  CH2OH + C2H2 => C2H + CH3OH     4.17800e+11       0.000   21185.076
+  HCO   + C2H2 => C2H + CH2O      1.86660e+12       0.000   24627.509
+  C3H3  + C2H2 => C2H + AC3H4     3.99000e+11       0.000   27337.862
+  HCCO  + C2H2 => C2H + CH2CO     6.32400e+11       0.000   16361.431
+  C6H5  + C2H2 => C2H + C6H6      2.00000e+11       0.000    9461.750
+
+
+! ABSTRACTION REACTION: R + C2H4 => C2H3 + RH 
+! Number of H abstracted: 4.00
+! Type of H abstracted:   [7] 
+  H     + C2H4 => C2H3 + H2        1.92800e+07       2.000   10668.131
+  CH3   + C2H4 => C2H3 + CH4       2.30720e+12       0.000   15800.000
+! C2H3  + C2H4 => C2H3 + C2H4      4.00960e+12       0.000   15800.000    DUMMY
+  C4H3  + C2H4 => C2H3 + C4H4      2.41600e+12       0.000   16361.431
+  O     + C2H4 => C2H3 + OH        8.00000e+13       0.000   12962.661
+  OH    + C2H4 => C2H3 + H2O       2.36080e+13       0.000    6392.516
+  HO2   + C2H4 => C2H3 + H2O2      3.18480e+12       0.000   24083.308
+  CH3O  + C2H4 => C2H3 + CH3OH     2.52960e+12       0.000   11694.172
+  CH2OH + C2H4 => C2H3 + CH3OH     1.67120e+12       0.000   21185.076
+  HCO   + C2H4 => C2H3 + CH2O      7.46640e+12       0.000   24627.509
+  C3H3  + C2H4 => C2H3 + AC3H4     1.59600e+12       0.000   27337.862
+  HCCO  + C2H4 => C2H3 + CH2CO     2.52960e+12       0.000   16361.431
+  C6H5  + C2H4 => C2H3 + C6H6      8.00000e+11       0.000    9461.750
+
+
+! ABSTRACTION REACTION: R + C2H6 => C2H5 + RH 
+! Number of H abstracted: 9.00
+! Type of H abstracted:   [0] 
+  H     + C2H6 => C2H5 + H2        2.16900e+07       2.000    9214.132
+  CH3   + C2H6 => C2H5 + CH4       2.59560e+12       0.000   14300.000
+  C2H3  + C2H6 => C2H5 + C2H4      4.51080e+12       0.000   14300.000
+  C4H3  + C2H6 => C2H5 + C4H4      2.71800e+12       0.000   14840.001
+  O     + C2H6 => C2H5 + OH        9.00000e+13       0.000   11580.337
+  OH    + C2H6 => C2H5 + H2O       2.65590e+13       0.000    5383.499
+  HO2   + C2H6 => C2H5 + H2O2      3.58290e+12       0.000   22310.061
+  CH3O  + C2H6 => C2H5 + CH3OH     2.84580e+12       0.000   10370.623
+  CH2OH + C2H6 => C2H5 + CH3OH     1.88010e+12       0.000   19498.422
+  HCO   + C2H6 => C2H5 + CH2O      8.39970e+12       0.000   22838.843
+  C3H3  + C2H6 => C2H5 + AC3H4     1.79550e+12       0.000   25475.817
+  HCCO  + C2H6 => C2H5 + CH2CO     2.84580e+12       0.000   14840.001
+  C6H5  + C2H6 => C2H5 + C6H6      9.00000e+11       0.000    8254.163
+
+
+! ABSTRACTION REACTION: R + C4H4 => C4H3 + RH 
+! Number of H abstracted: 8.00
+! Type of H abstracted:   [4] 
+  H     + C4H4 => C4H3 + H2        3.37400e+07       2.000   10417.333
+  CH3   + C4H4 => C4H3 + CH4       4.03760e+12       0.000   15557.145
+  C2H3  + C4H4 => C4H3 + C2H4      7.01680e+12       0.000   15561.431
+! C4H3  + C4H4 => C4H3 + C4H4      4.22800e+12       0.000   16114.290    DUMMY
+  O     + C4H4 => C4H3 + OH        1.40000e+14       0.000   12686.196
+  OH    + C4H4 => C4H3 + H2O       4.13140e+13       0.000    6330.717
+  HO2   + C4H4 => C4H3 + H2O2      5.57340e+12       0.000   23619.369
+  CH3O  + C4H4 => C4H3 + CH3OH     4.42680e+12       0.000   11415.176
+  CH2OH + C4H4 => C4H3 + CH3OH     2.92460e+12       0.000   20833.459
+  HCO   + C4H4 => C4H3 + CH2O      1.30662e+13       0.000   24205.488
+  C3H3  + C4H4 => C4H3 + AC3H4     2.79300e+12       0.000   27026.884
+  HCCO  + C4H4 => C4H3 + CH2CO     4.42680e+12       0.000   16118.576
+  C6H5  + C4H4 => C4H3 + C6H6      1.40000e+12       0.000    9220.232
+
+
+! ABSTRACTION REACTION: R + H2O => OH + RH 
+! Number of H abstracted: 2.00
+! Type of H abstracted:   [5] 
+  H     + H2O => OH + H2        2.41000e+07       2.000   15082.961
+  CH3   + H2O => OH + CH4       2.88400e+12       0.000   19990.712
+  C2H3  + H2O => OH + C2H4      5.01200e+12       0.000   19892.516
+  C4H3  + H2O => OH + C4H4      3.02000e+12       0.000   20630.717
+  O     + H2O => OH + OH        1.00000e+14       0.000   18031.180
+! OH    + H2O => OH + H2O       2.95100e+13       0.000    6884.491    DUMMY
+  HO2   + H2O => OH + H2O2      3.98100e+12       0.000   33089.227
+  CH3O  + H2O => OH + CH3OH     3.16200e+12       0.000   16874.504
+  CH2OH + H2O => OH + CH3OH     2.08900e+12       0.000   27696.798
+  HCO   + H2O => OH + CH2O      9.33300e+12       0.000   32658.898
+  C3H3  + H2O => OH + AC3H4     1.99500e+12       0.000   32757.876
+  HCCO  + H2O => OH + CH2CO     3.16200e+12       0.000   20532.521
+  C6H5  + H2O => OH + C6H6      1.00000e+12       0.000   13889.569
+
+
+! ABSTRACTION REACTION: R + H2O2 => HO2 + RH 
+! Number of H abstracted: 2.00
+! Type of H abstracted:   [6] 
+  H     + H2O2 => HO2 + H2        1.92800e+06       2.000    -405.335
+  CH3   + H2O2 => HO2 + CH4       2.30720e+11       0.000    4578.659
+  C2H3  + H2O2 => HO2 + C2H4      4.00960e+11       0.000    4633.308
+  C4H3  + H2O2 => HO2 + C4H4      2.41600e+11       0.000    4969.369
+  O     + H2O2 => HO2 + OH        8.00000e+12       0.000    1950.150
+  OH    + H2O2 => HO2 + H2O       2.36080e+12       0.000     139.227
+! HO2   + H2O2 => HO2 + H2O2      3.18480e+11       0.000    8562.880    DUMMY
+  CH3O  + H2O2 => HO2 + CH3OH     2.52960e+11       0.000     967.739
+  CH2OH + H2O2 => HO2 + CH3OH     1.67120e+11       0.000    7565.897
+  HCO   + H2O2 => HO2 + CH2O      7.46640e+11       0.000    9558.063
+  C3H3  + H2O2 => HO2 + AC3H4     1.59600e+11       0.000   13286.879
+  HCCO  + H2O2 => HO2 + CH2CO     2.52960e+11       0.000    5024.019
+  C6H5  + H2O2 => HO2 + C6H6      8.00000e+10       0.000    -158.694
+
+
+! ABSTRACTION REACTION: R + CH3OH => CH3O + RH 
+! Number of H abstracted: 1.00
+! Type of H abstracted:   [9] 
+  H     + CH3OH => CH3O + H2        1.20500e+06       2.000    5201.291
+  CH3   + CH3OH => CH3O + CH4       1.44200e+11       0.000   10029.462
+  C2H3  + CH3OH => CH3O + C2H4      2.50600e+11       0.000    9994.172
+  C4H3  + CH3OH => CH3O + C4H4      1.51000e+11       0.000   10515.176
+  O     + CH3OH => CH3O + OH        5.00000e+12       0.000    8078.451
+  OH    + CH3OH => CH3O + H2O       1.47550e+12       0.000    1674.504
+  HO2   + CH3OH => CH3O + H2O2      1.99050e+11       0.000   18717.739
+! CH3O  + CH3OH => CH3O + CH3OH     1.58100e+11       0.000    7135.269    DUMMY
+  CH2OH + CH3OH => CH3O + CH3OH     1.04450e+11       0.000   15343.198
+  HCO   + CH3OH => CH3O + CH2O      4.66650e+11       0.000   18836.911
+  C3H3  + CH3OH => CH3O + AC3H4     9.97500e+10       0.000   20252.808
+  HCCO  + CH3OH => CH3O + CH2CO     1.58100e+11       0.000   10479.885
+  C6H5  + CH3OH => CH3O + C6H6      5.00000e+10       0.000    5194.942
+
+
+! ABSTRACTION REACTION: R + CH2O => HCO + RH 
+! Number of H abstracted: 2.00
+! Type of H abstracted:   [8] 
+  H     + CH2O => HCO + H2        1.92800e+07       2.000    2676.845
+  CH3   + CH2O => HCO + CH4       2.30720e+12       0.000    7769.775
+  C2H3  + CH2O => HCO + C2H4      4.00960e+12       0.000    7827.509
+  C4H3  + CH2O => HCO + C4H4      2.41600e+12       0.000    8205.488
+  O     + CH2O => HCO + OH        8.00000e+13       0.000    4853.029
+  OH    + CH2O => HCO + H2O       2.36080e+13       0.000    2358.898
+  HO2   + CH2O => HCO + H2O2      3.18480e+12       0.000   12208.063
+  CH3O  + CH2O => HCO + CH3OH     2.52960e+12       0.000    3736.911
+  CH2OH + CH2O => HCO + CH3OH     1.67120e+12       0.000   11097.593
+! HCO   + CH2O => HCO + CH2O      7.46640e+12       0.000   13268.005    DUMMY
+  C3H3  + CH2O => HCO + AC3H4     1.59600e+12       0.000   17241.374
+  HCCO  + CH2O => HCO + CH2CO     2.52960e+12       0.000    8263.221
+  C6H5  + CH2O => HCO + C6H6      8.00000e+11       0.000    2377.239
+
+
+! ABSTRACTION REACTION: R + PC3H4 => C3H3 + RH 
+! Number of H abstracted: 30.00
+! Type of H abstracted:   [7] 
+  H     + PC3H4 => C3H3 + H2        1.44600e+08       2.000   11343.948
+  CH3   + PC3H4 => C3H3 + CH4       1.73040e+13       0.000   16765.453
+  C2H3  + PC3H4 => C3H3 + C2H4      3.00720e+13       0.000   16837.862
+  C4H3  + PC3H4 => C3H3 + C4H4      1.81200e+13       0.000   17326.884
+  O     + PC3H4 => C3H3 + OH        6.00000e+14       0.000   12962.661
+  OH    + PC3H4 => C3H3 + H2O       1.77060e+14       0.000    8757.876
+  HO2   + PC3H4 => C3H3 + H2O2      2.38860e+13       0.000   22236.879
+  CH3O  + PC3H4 => C3H3 + CH3OH     1.89720e+13       0.000   11452.808
+  CH2OH + PC3H4 => C3H3 + CH3OH     1.25340e+13       0.000   20943.713
+  HCO   + PC3H4 => C3H3 + CH2O      5.59980e+13       0.000   23541.374
+  C3H3  + PC3H4 => C3H3 + AC3H4     1.19700e+13       0.000   28375.724
+  HCCO  + PC3H4 => C3H3 + CH2CO     1.89720e+13       0.000   17399.293
+  C6H5  + PC3H4 => C3H3 + C6H6      6.00000e+12       0.000    9461.750
+
+
+! ABSTRACTION REACTION: R + AC3H4 => C3H3 + RH 
+! Number of H abstracted: 30.00
+! Type of H abstracted:   [7] 
+  H     + AC3H4 => C3H3 + H2        1.44600e+08       2.000   11343.948
+  CH3   + AC3H4 => C3H3 + CH4       1.73040e+13       0.000   16765.453
+  C2H3  + AC3H4 => C3H3 + C2H4      3.00720e+13       0.000   16837.862
+  C4H3  + AC3H4 => C3H3 + C4H4      1.81200e+13       0.000   17326.884
+  O     + AC3H4 => C3H3 + OH        6.00000e+14       0.000   12962.661
+  OH    + AC3H4 => C3H3 + H2O       1.77060e+14       0.000    8757.876
+  HO2   + AC3H4 => C3H3 + H2O2      2.38860e+13       0.000   22236.879
+  CH3O  + AC3H4 => C3H3 + CH3OH     1.89720e+13       0.000   11452.808
+  CH2OH + AC3H4 => C3H3 + CH3OH     1.25340e+13       0.000   20943.713
+  HCO   + AC3H4 => C3H3 + CH2O      5.59980e+13       0.000   23541.374
+! C3H3  + AC3H4 => C3H3 + AC3H4     1.19700e+13       0.000   28375.724    DUMMY
+  HCCO  + AC3H4 => C3H3 + CH2CO     1.89720e+13       0.000   17399.293
+  C6H5  + AC3H4 => C3H3 + C6H6      6.00000e+12       0.000    9461.750
+
+
+! ABSTRACTION REACTION: R + CH2CO => HCCO + RH 
+! Number of H abstracted: 5.00
+! Type of H abstracted:   [7] 
+  H     + CH2CO => HCCO + H2        2.41000e+07       2.000   10708.133
+  CH3   + CH2CO => HCCO + CH4       2.88400e+12       0.000   15857.145
+  C2H3  + CH2CO => HCCO + C2H4      5.01200e+12       0.000   15861.431
+  C4H3  + CH2CO => HCCO + C4H4      3.02000e+12       0.000   16418.576
+  O     + CH2CO => HCCO + OH        1.00000e+14       0.000   12962.661
+  OH    + CH2CO => HCCO + H2O       2.95100e+13       0.000    6532.521
+  HO2   + CH2CO => HCCO + H2O2      3.98100e+12       0.000   23974.019
+  CH3O  + CH2CO => HCCO + CH3OH     3.16200e+12       0.000   11679.885
+  CH2OH + CH2CO => HCCO + CH3OH     2.08900e+12       0.000   21170.790
+  HCO   + CH2CO => HCCO + CH2O      9.33300e+12       0.000   24563.221
+  C3H3  + CH2CO => HCCO + AC3H4     1.99500e+12       0.000   27399.293
+! HCCO  + CH2CO => HCCO + CH2CO     3.16200e+12       0.000   16422.861    DUMMY
+  C6H5  + CH2CO => HCCO + C6H6      1.00000e+12       0.000    9461.750
+
+END 

@@ -55,7 +55,7 @@ Dictionary parametric-analysis
 						Temperature_PFR_4.csv
 						Temperature_PFR_5.csv ;
 
-	@NumberOfThreads	2;
+	@NumberOfThreads	1;
 }
 
 Dictionary output-options

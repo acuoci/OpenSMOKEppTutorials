@@ -1,0 +1,143 @@
+<h1 id="opensmoke-test">OpenSMOKE++ Test</h1>
+<p>This page describes how to run and create new tests for OpenSMOKE++.
+The main idea is that this repository, which collects a number of
+tutorials that can be used to learn how to setup OpenSMOKE++
+simulations, can also be used to test the modifications to the
+OpenSMOKE++ source code.</p>
+<h2 id="requirements">Requirements</h2>
+<p>The testing system is based on <a
+href="https://www.nongnu.org/numdiff/">numdiff</a>, which is an advanced
+version of the linux command line tool <em>diff</em>, which allows
+comparison between two files ignoring small numeric differences and
+different numeric formats.</p>
+<h2 id="how-to-run-a-test">How to run a test</h2>
+<p>To run the whole test suite it’s sufficient to execute the bash file
+<em>AllTest.sh</em>:</p>
+<pre><code>chmod +x AllTest.sh
+./AllTest.sh</code></pre>
+<p>The testing system will loop through all the solver tutorials
+(i.e. BatchReactor, PlugFlowReactor, ecc) and it will prompt the folder
+of the simulation and the result of the test with a clear
+<code>[PASS]</code> or <code>[FAIL]</code> indication. If a test fails,
+you can easily verify what’s wrong inspecting the file
+<code>log.diff</code>, created in the folder of the failed test.</p>
+<p>If you want to run a single set of tests, for example just the batch
+reactors, you can specify the name of the solver that you want to
+test:</p>
+<pre><code>./AllTest.sh OpenSMOKEpp_BatchReactor.sh</code></pre>
+<p>considering that the bash script accepts multiple input solvers. When
+you are done with testing, you can clean all the output folders and
+files using the bash script <code>AllClean.sh</code>:</p>
+<pre><code>./AllClean.sh</code></pre>
+<h2 id="how-to-create-a-new-test">How to create a new test</h2>
+<p>Not all the simulations in this repository are included in the
+current version of the testing system. To add a new test you have to
+enter in a simulation folder, for example:</p>
+<pre><code>cd examples/OpenSMOKEpp_BatchReactor/01a-isothermal-constantvolume</code></pre>
+<p>and perform the simulation using the corresponding solver:</p>
+<pre><code>OpenSMOKEpp_BatchReactor.sh</code></pre>
+<p>the simulation results will be saved in the <code>Output</code>
+folder. Among the files which are in this folder, one (or more) of them
+must be selected for being the current reference solution of the test
+case. This file must be saved as <code>target</code>. For example, if
+the file <code>Output/Output.out</code> is selected as target, it will
+be copied as follows:</p>
+<pre><code>cp Output/Output.out target</code></pre>
+<p>At this point you have the target file, and you just need to add a
+file called <code>Test.sh</code> which contains the instructions to
+perform a test. Indeed, when the bash script <code>AllTest.sh</code> is
+called, it loops over all the example subfolders and, when the file
+<code>Test.sh</code> is found, it run a simulation and performs a
+comparison with the target file. If such file is not present, the test
+case is skipped and not considered among the tests. A simple
+<code>Test.sh</code> file contains the following lines:</p>
+<pre><code>cd $(dirname &quot;$0&quot;)
+
+. $OPENSMOKE_TUTORIALS/etc/testFunctions.sh
+
+cleanSimulation
+
+runApplication OpenSMOKEpp_BatchReactor.sh
+
+runDifference Output/Output.out</code></pre>
+<p>where the first three lines adjust the path of the simulation,
+include the functions defined in <code>etc/testFunctions.sh</code>, and
+clean the test case from previous results. The function
+<code>runApplication</code> takes a solver as argument, which is the
+solver that must be used for this simulation, and perform the simulation
+creating a new <code>Output</code> folder. At this point
+<code>runDifference</code> takes the new results in
+<code>Output/Output.out</code> and compare them with the target
+file.</p>
+<p>At this point, a new test case was created and the bash script
+<code>AllTest.sh</code> will automatically add it to the list of test to
+perform. However, there are situations in which the basic
+<code>Test.sh</code> file explained above is not sufficient. The two
+files are compared using <em>numdiff</em> imposing a default relative
+tolerance between the number of the two files. If the numbers in
+<code>Output/Output.out</code> and those in <code>target</code> differ
+with a higher relative constant the test fails. Using this approach,
+instead of a simple difference of characters in those two files, we
+avoid small numerical differences depending on the operative system and
+the hardware were the simulation runs to fail the test. The next
+paragraph explain how to refine the basic <code>Test.sh</code> explained
+above.</p>
+<h3 id="filter-values">Filter values</h3>
+<p>The comparison between the target file and the new results is based
+on a relative error, which is defined as: <span class="math display">$$
+\varepsilon = \dfrac{|v_{target}-v_{new}|}{v_{target}}
+$$</span> this implies that, if <code>v_{target}</code> is null, while
+<code>v_{new}</code> is not, due for example to a small approximation
+error, the calculation of the relative error will lead to a division by
+zero which will cause the test to fail. Therefore, the idea to overcome
+this problem is to filter out <em>spurious values</em> from the new
+output file. This is perfomed using the function
+<code>filterValues</code>:</p>
+<pre><code>filterValues Output/Output.out &gt; Output/Output.filtered</code></pre>
+<p>which removes all the values lower than <code>1\times 10^{-12}</code>
+(the default tolerance can be easily specified by the user), creating a
+new file called <code>Output/Output.filtered</code>. This file can be
+compared by the <code>runDifference</code> function, simply by replacing
+the input file name when the function is used.</p>
+<h3 id="specify-the-relative-tolerance">Specify the relative
+tolerance</h3>
+<p>At this point it should be clear that the core of the tests are the
+<code>Test.sh</code> files, which implements the rules to run the
+simulation, and to compare the output file that we want with a specific
+target. The difference is based on the relative tolerance which, by
+default, is equal to <code>1\times 10^{-2}</code>. If a different
+tolerance need to be set for a specific test case, it can be specified
+as:</p>
+<pre><code>runDifference Output_to_compare --relative-tolerance 1.e-4</code></pre>
+<p>The same approach can be used to specify other options for
+<em>numdiff</em>, which are documented <a
+href="https://www.nongnu.org/numdiff/numdiff.html">here</a>.</p>
+<h3 id="select-specific-columns-to-compare">Select specific columns to
+compare</h3>
+<p>If you don’t want to compare the whole <code>Output/Output.out</code>
+file with the target, you can select only a column using the following
+function:</p>
+<pre><code>getColumn 2 Output/Output.out &gt; Output/Output.filtered</code></pre>
+<p>Which extract the second column from the file
+<code>Output/Output.out</code> and saves that column in the file
+<code>Output/Output.filtered</code>. This last file can be used by the
+<code>runDifference</code> function. Pay attention to create the target
+file accordingly: if you use just a single column of the output file,
+then the target file should be created just with that column.</p>
+<h3 id="ignore-a-number-of-rows">Ignore a number of rows</h3>
+<p>In some cases, you may want to compare the <code>stdout</code> from
+the OpenSMOKE++ simulation. However, OpenSMOKE++ writes on the
+<code>stdout</code> information which are specific to the machine where
+the simulation runs (for example, it prints the time required by the
+simulations, which is an information that changes at every run). Let’s
+suppose that those information are in the first 35 lines of the output
+file. Therefore, we can cut off those lines using the command:</p>
+<pre><code>awk &#39;NR&gt;35&#39; Output/ROPA.out &gt; log.ROPA</code></pre>
+<p>which removes the first 35 lines from the file
+<code>Output/ROPA.out</code> creating a new file called
+<code>log.ROPA</code> which can be used by the
+<code>runDifference</code> function.</p>
+<p>Therefore, the tools for improving the output and target files are
+provided. Using these functions we can improve the performance of the
+testing system by specifying what we want to compare for every specific
+test, and using which tolerances.</p>

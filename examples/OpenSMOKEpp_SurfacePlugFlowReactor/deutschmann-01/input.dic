@@ -1,0 +1,68 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary SurfacePlugFlowReactor
+{
+		@KineticsFolder		../../OpenSMOKEpp_CHEMKIN_PreProcessor/14-catalytic-deutschmann/deutschmann-01/kinetics-Deutschmann_CH4_O2_over_Pt;
+		
+		@Type					NonIsothermal;
+		@ConstantPressure		true;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length					0.2 cm;
+		
+		@Diameter				1 cm;
+		
+		@Velocity				10 cm/s;
+		
+		@OdeParameters          ode-parameters;
+		@DaeParameters          dae-parameters;
+
+		@OnTheFlyRopa		on-the-fly-ropa;
+}
+
+Dictionary inlet-mixture
+{
+		@MoleFractions			H2		0.10
+								O2		0.10	
+								CO		0.10
+								CO2		0.10
+								N2		0.60;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-PT_SURFACE
+{					
+	@SurfaceFractions	_Pt_ 	1;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver DASPK;
+//		@AbsoluteTolerance 1e-14;
+//		@RelativeTolerance 1e-7;
+}
+
+Dictionary dae-parameters
+{	
+		@DaeSolver DASPK;
+	//	@AbsoluteTolerance 1e-14;
+	//	@RelativeTolerance 1e-7;		
+}
+
+
+

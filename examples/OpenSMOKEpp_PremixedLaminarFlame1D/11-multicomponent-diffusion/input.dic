@@ -1,0 +1,82 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PremixedLaminarFlame1D
+{
+	@Type					FlameSpeed;
+	@KineticsPreProcessor	kinetics;
+	
+	@InletStream 			inlet-stream;
+	@OutletStream			outlet-stream;
+	
+	@InletVelocity			100 cm/s;
+	
+	@Grid					grid;
+	
+	@Output					Output; // mix-averaged
+	
+	@UseDaeSolver			true;
+	@DaeParameters			dae-parameters;
+	
+	@Soret					true;
+	@SoretKuoCorrelation	false;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		KineticMechanism/CRECK_H2_2003_noinerts.CKI;
+	@Thermodynamics	KineticMechanism/CRECK_H2_2003.CKT;
+	@Transport 		KineticMechanism/CRECK_H2_2003.TRC;
+	@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+	@EquivalenceRatio	1.;
+
+	@FuelMoles			H2 1;
+	@OxidizerMoles		O2 0.21 
+						N2 0.79;
+						
+	@Temperature	298 K;
+	@Pressure		1 atm;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			H2O 1 
+					N2  2;
+	@Temperature	2300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					3 cm;
+	@InitialPoints			9;
+	@Type					equispaced;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.025;
+	@CurvatureCoefficient	0.125;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver				OpenSMOKE++;
+	@Jacobian				Band;
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-10;
+}

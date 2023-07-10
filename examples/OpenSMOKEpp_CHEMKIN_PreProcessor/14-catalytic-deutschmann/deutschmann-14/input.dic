@@ -1,0 +1,23 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CHEMKIN_PreProcessor
+{
+		@Thermodynamics		../../../../kinetic-mechanisms/Deutschmann-catalytic-kinetics/deutschmann-14/thermo.ckt;
+		@Transport		../../../../kinetic-mechanisms/Deutschmann-catalytic-kinetics/deutschmann-14/transport.tra;
+		@Kinetics 		../../../../kinetic-mechanisms/Deutschmann-catalytic-kinetics/deutschmann-14/homogeneous.kin;
+		@Surface 		../../../../kinetic-mechanisms/Deutschmann-catalytic-kinetics/deutschmann-14/surface.kin;
+		
+		@Output			kinetics-Deutschmann_C16H34_CH4_SR_CPO_over_Rh;
+}

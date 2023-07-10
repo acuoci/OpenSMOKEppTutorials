@@ -8,6 +8,7 @@ BzzFile.txt
 Output/
 Output-*/
 kinetics-*/
+kinetics/
 license.dat
 test_*/
 webuser_license/

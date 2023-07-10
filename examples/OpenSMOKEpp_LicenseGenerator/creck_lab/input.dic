@@ -21,7 +21,7 @@ Dictionary LicenseGenerator
 		@UserOrganization	Politecnico di Milano;
 
 		@Type			Academic;
-		@Version		0.18.0;
+		@Version		0.20.0;
 		@MaxSpecies		100000;
 		@Solvers		All;
 }

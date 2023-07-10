@@ -58,7 +58,7 @@ Dictionary parametric-analysis
 	@MinimumValue2       1  bar;
 	@MaximumValue2       10 bar;
 
-	@NumberOfThreads	3;
+	@NumberOfThreads	1;
 }
 
 Dictionary output-options

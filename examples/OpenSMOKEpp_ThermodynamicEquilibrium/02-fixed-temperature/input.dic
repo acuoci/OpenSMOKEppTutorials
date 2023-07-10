@@ -15,7 +15,7 @@
 Dictionary Equilibrium
 {
 	@KineticsPreProcessor	KineticMechanism;
-	@Type					Fixed_Tx_P;
+	@Type					Fixed_T_P;
 	@InitialStatus			initial-status;
 	
 	@OutputSpecies			N2 O2 CH4;

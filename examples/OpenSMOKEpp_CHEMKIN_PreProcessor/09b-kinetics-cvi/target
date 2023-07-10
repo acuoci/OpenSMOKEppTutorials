@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+6
+</reaction-number>
+<reaction-names>
+NH3+HN_SIF(S)=>HF+HN_NH2(S)+SI(D)
+SIF4+HN_NH2(S)=>HF+F3SI_NH2(S)+N(D)
+F3SI_NH2(S)=>HF+F2SINH(S)
+NH3+F2SINH(S)=>HF+H2NFSINH(S)
+F2SINH(S)+H2NFSINH(S)=>HF+HN(FSINH)2(S)
+F2SINH(S)+HN(FSINH)2(S)=>HF+3HN_SIF(S)+N(D)
+</reaction-names>
+</opensmoke>
