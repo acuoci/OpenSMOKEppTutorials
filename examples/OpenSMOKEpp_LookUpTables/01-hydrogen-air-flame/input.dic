@@ -16,7 +16,7 @@ Dictionary LookUpTables
 {
 	@KineticsPreProcessor	KineticMechanism;
 	
-	@Input				../../OpenSMOKEpp_LaminarFlamelets/01-hydrogen-air-flame/Output/;
+	@Input			../../OpenSMOKEpp_LaminarFlamelet/01-hydrogen-air-flame/Output;
 	@OutputASCII 		Output;
 	@OutputLookUpTable	OutputXML;
 }

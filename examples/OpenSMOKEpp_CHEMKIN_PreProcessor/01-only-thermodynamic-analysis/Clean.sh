@@ -1,1 +1,1 @@
-rm -rf kinetics BzzFile.txt Output log.*
+rm -rf kinetics* BzzFile.txt Output log.*

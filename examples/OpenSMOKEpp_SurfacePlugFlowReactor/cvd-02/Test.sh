@@ -6,6 +6,6 @@ cd $(dirname "$0")
 
 cleanSimulation
 
-runApplication OpenSMOKEpp_Surface_PlugFlowReactor.sh
+runApplication OpenSMOKEpp_SurfacePlugFlowReactor.sh
 
 runDifference Output/InletSummary.out

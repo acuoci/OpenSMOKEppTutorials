@@ -16,7 +16,7 @@ Dictionary LookUpTables
 {
 	@KineticsPreProcessor	KineticMechanism;
 	
-	@Input				../../OpenSMOKEpp_LaminarFlamelets/02-syngas-air-flame-adiabatic/Output/;
+	@Input				../../OpenSMOKEpp_LaminarFlamelet/02-syngas-air-flame-adiabatic/Output/;
 	@OutputASCII 		Output;
 	@OutputLookUpTable	OutputXML;
 }

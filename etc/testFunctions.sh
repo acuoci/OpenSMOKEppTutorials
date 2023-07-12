@@ -9,6 +9,14 @@ function runApplication {
   echo | $($SOLVERNAME --input $SOLVERINPUT > log.$SOLVERNAME)
 }
 
+function runApplicationPlusInfo {
+  SOLVERNAME=$1
+  DEFAULTINPUT="input.dic"
+  SOLVERINPUT=${2-$DEFAULTINPUT}
+  INFO=$3
+  echo | $($SOLVERNAME --input $SOLVERINPUT --type $3 > log.$SOLVERNAME)
+}
+
 function runNumdiff {
   numdiff target $1 \
     --absolute-tolerance 10000. \

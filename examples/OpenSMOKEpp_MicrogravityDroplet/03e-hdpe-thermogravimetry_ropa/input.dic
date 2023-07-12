@@ -1,0 +1,99 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			../../OpenSMOKEpp_CHEMKIN_PreProcessor/13d-liquid-hdpe/kinetics;
+		@OutputFolder			    Output;
+		
+		// Simulation time
+		@EndTime	89.0 min;
+        
+        // Mass transfer options
+		@GlobalMassExchangeCoefficient		3.5e-2 m3/s;		
+		 
+		// Initial conditions
+		@FuelMassFractions	        P-C21H42-P 1;					
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				../../../kinetic-mechanisms/CRECK_2003/POLYMERS/LiquidProperties/HDPE;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+		
+		// Ode parameters
+		@OdeParameters				ode-parameters;
+        @PrintLiquidReactions       false;
+        
+        // On the fly ROPA
+        @OnTheFlyROPA			onthefly-ropa;
+        
+}
+
+Dictionary onthefly-ropa
+{
+		@Species							C2H4;
+		@Threshold							0.05;
+		@ReferenceSpecies					P-C21H42-P;
+        @ReferenceLiquidMass                true;
+		@MergeForwardAndBackwardReactions	true;
+		
+        @Conversions    0.05 0.1 0.25 0.5 0.75;
+        
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	473.15  K ; 
+		@Pressure	1 atm;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+		@Density	AdditiveVolumes;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable	time;
+	@XUnits	min;
+	
+	@YVariable	temperature;
+	@YUnits	K;
+	
+	@Profile	
+			0 510
+			 89.0 1400;
+}
+
+Dictionary ode-parameters
+{
+	@OdeSolver			OpenSMOKE++;
+	@RelativeTolerance	1e-10;
+	@AbsoluteTolerance  1e-14;
+	
+}
+

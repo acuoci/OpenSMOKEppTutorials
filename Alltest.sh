@@ -87,8 +87,8 @@ if [ -z "$@" ]; then
   runTestTarget OpenSMOKEpp_SurfacePlugFlowReactor
   runTestTarget OpenSMOKEpp_SurfacePerfectlyStirredReactor
   runTestTarget OpenSMOKEpp_MicrogravityDroplet
+  runTestTarget OpenSMOKEpp_LaminarFlamelet
   runTestTarget OpenSMOKEpp_LookUpTables
-  runTestTarget OpenSMOKEpp_LaminarFlamelets
   runTestTarget OpenSMOKEpp_ShockTubeReactor
 #  runTestTarget OpenSMOKEpp_RapidCompressionMachine # Sistemare o spostare nei batch. Non va essendo casi simulati con il batch
 else

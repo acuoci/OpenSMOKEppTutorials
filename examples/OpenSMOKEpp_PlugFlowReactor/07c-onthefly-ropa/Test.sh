@@ -6,6 +6,8 @@ cd $(dirname "$0")
 
 cleanSimulation
 
+runApplication OpenSMOKEpp_PlugFlowReactor.sh
+
 awk 'NR>34' Output/ROPA.out > log.ROPA
 
 runDifference log.ROPA
