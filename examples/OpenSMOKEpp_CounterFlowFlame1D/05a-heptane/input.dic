@@ -84,7 +84,7 @@ Dictionary grid
 
 Dictionary dae-parameters
 {
-	@DaeSolver				OpenSMOKE++;
+	@DaeSolver				Ida;
 //	@Jacobian				Sparse;
 //	@SparseSolver			Pardiso;
 //	@Preconditioner			ILUT;

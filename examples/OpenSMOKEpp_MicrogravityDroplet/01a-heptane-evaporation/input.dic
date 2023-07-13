@@ -50,6 +50,9 @@ Dictionary MicrogravityDroplet
 		@StepsMap3D					30;
 		@SnapshotTimes				0.3 0.5 0.7 0.9;
 		@SnapshotSpecies			NC7H16 O2 CO2 H2O CO;
+		
+		@OutputSpecies				ALL;
+		@OutputDiffusivities			ALL;
 
 		// Soret effect
 		@Soret						true;
@@ -77,9 +80,6 @@ Dictionary MicrogravityDroplet
 		
 		// Continuity equation type: 1=non-conservative(default) | 2=conservative | 3=semi-implicit
 		@ContinuityEquationType 1;
-		
-		@OutputSpecies		ALL;
-		@OutputDiffusivities	ALL;
 }
 
 Dictionary nls-parameters
@@ -168,10 +168,10 @@ Dictionary polimi-soot
 Dictionary Initial-Composition
 {
 		@Temperature   	833.    K ; 
-		@Pressure      	1. 		bar ;
+		@Pressure      	1. 	bar ;
 
-		@Moles  		N2 0.79
-						O2 0.21;
+		@Moles  	N2 0.79
+				O2 0.21;
 }
 
 Dictionary fiber
@@ -190,3 +190,4 @@ Dictionary gas-properties
 {
 		@Fugacity	Raoult;
 }
+
