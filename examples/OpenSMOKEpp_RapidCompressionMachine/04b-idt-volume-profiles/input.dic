@@ -1,0 +1,73 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BatchReactor
+{
+		@KineticsPreProcessor		CRECK_HT_LT_492_17790;
+		@Type				NonIsothermal-UserDefinedVolume;
+		@InitialStatus		initial-mixture;
+		@EndTime			1 s;
+		@OdeParameters		ode-OpenSMOKE;
+		@Volume				1 cm3;
+		@ParametricAnalysis	parametric-analysis;
+		@IgnitionDelayTimes	ignition-delay-times;
+}
+
+Dictionary CRECK_HT_LT_492_17790 
+{
+		@Kinetics		../../../kinetic-mechanisms/CRECK_2003/TOT_HT_LT_492_17790/CRECK_2003_TOT_HT_LT.CKI;
+		@Thermodynamics	../../../kinetic-mechanisms/CRECK_2003/TOT_HT_LT_492_17790/CRECK_2003_TOT_HT_LT.CKT;
+		@Output			kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature	303.15	K; 
+		@Pressure		0.301011596	atm;
+		@Moles			C5H11OH	1	N2	28.214	O2	7.5;          
+}
+
+Dictionary parametric-analysis
+{
+		@Type 			temperature-pressure;
+
+		@ListOfProfiles profiles/profile_1.csv
+					profiles/profile_2.csv
+					profiles/profile_3.csv
+					profiles/profile_4.csv
+					profiles/profile_5.csv
+					profiles/profile_6.csv 
+					profiles/profile_7.csv
+					profiles/profile_8.csv;
+}
+
+Dictionary ignition-delay-times
+{
+	@Temperature						true;
+	@Pressure							true;
+
+	@RapidCompressionMachine			true;
+	@MultipleStageIgnition				true;
+	@FilterWidth						0.1 ms;
+	@RegularizationTimeInterval			0.1 ms;
+	@Verbose							true;
+}
+
+Dictionary ode-OpenSMOKE
+{
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-7;
+}
+
