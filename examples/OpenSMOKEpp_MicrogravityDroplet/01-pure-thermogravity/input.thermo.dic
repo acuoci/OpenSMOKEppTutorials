@@ -34,7 +34,7 @@ Dictionary ThermogravimetricAnalysis
 		// Liquid/Vapor equilibrium
 		@LiquidMixture				liquid-properties;
 		@GasMixture					gas-properties;
-		@SpeciesFolder				..\LiquidProperties\;
+		@SpeciesFolder				../LiquidProperties/;
 		
 		// Temperature profile
 		@TemperatureProfile			temperature-profile;

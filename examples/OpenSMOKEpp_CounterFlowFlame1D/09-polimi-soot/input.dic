@@ -105,7 +105,7 @@ Dictionary peak-mixture
 {
 	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
 					
-	@Temperature	3000 K;
+	@Temperature	2200 K;
 	@Pressure		1 atm;
 }
 
