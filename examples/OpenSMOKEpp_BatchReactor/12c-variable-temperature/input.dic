@@ -1,0 +1,82 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary KineticMech
+{
+		@Kinetics			../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_TOT_NOX_1412.CKI;
+		@Thermodynamics			../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output				kinetics;
+}
+
+Dictionary initial-mixture
+{
+		@Temperature   	500.15  K ; 
+		@Pressure      	1 	atm ;
+
+		@EquivalenceRatio	0.25;
+		@FuelMoleFractions	H2 1.;
+		@OxidizerMoleFractions	N2 0.79 O2 0.21;        
+}
+
+Dictionary BatchReactor
+{
+		@KineticsPreProcessor	KineticMech;
+		
+		@Type			NonIsothermal-UserDefinedVolume;
+		@InitialStatus          initial-mixture;
+		@EndTime		0.05907 s;
+		@OdeParameters          ode-OpenSMOKE;
+		@Volume			674.00133581 cm3;
+		
+		@TemperatureProfile	Temperature-Profile;
+		
+		//@SensitivityAnalysis	sensitivity-options;
+}
+
+Dictionary sensitivity-options
+{	
+	@Type 			arrhenius-parameters; 
+	
+	@DenseFullPivoting 	false;
+	@DenseSolver 		Eigen;
+	@SubSteps 		1;
+
+	@Species 		H2;
+}
+
+Dictionary ode-OpenSMOKE
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-14;
+		@RelativeTolerance 1e-9;
+}
+
+Dictionary Temperature-Profile
+{
+	@XVariable 	time;
+	@XUnits		s;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile
+        0		500.15
+	0.01		600.15
+	0.02		700.15
+	0.03		800.15
+	0.04		800.15
+	0.05		700.15
+	0.06		600.15 ;
+}
+
