@@ -99,7 +99,7 @@ Dictionary dae-parameters
 Dictionary nls-parameters
 {
 	@NlsSolver					OpenSMOKE++;
-	@Jacobian					Band;
+	@Jacobian					TridiagonalBlock;
 	
 	@FunctionTolerance			1e-7;
 	@StepTolerance				3e-11;
@@ -118,7 +118,7 @@ Dictionary nls-parameters
 Dictionary falsetransient-parameters
 {
 	@FalseTransientSolver		OpenSMOKE++;
-	@Jacobian					Band;
+	@Jacobian					TridiagonalBlock;
 	
 	@FunctionTolerance			1e-8;
 	@StepTolerance				3e-11;

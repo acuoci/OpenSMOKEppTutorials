@@ -91,7 +91,7 @@ Dictionary grid
 {
 	@Length					12 mm;
 	
-	@InitialPoints			30;
+	@InitialPoints			45;
 	@MaxPoints				100;
 	@Type					liquid-pool;	
 	
@@ -103,8 +103,5 @@ Dictionary grid
 Dictionary dae-parameters
 {
 	@DaeSolver				OpenSMOKE++;
-	@Jacobian				Band;
-	
-//	@RelativeTolerance		1e-6;
-//	@AbsoluteTolerance		1e-10;
+	@Jacobian				TridiagonalBlock;
 }

@@ -128,8 +128,8 @@ Dictionary dae-parameters
 	// DAE solver: OpenSMOKE++ | BzzDae | Ida | DASPK
 	@DaeSolver				OpenSMOKE++;
 	
-	// Jacobian sparsity pattern: Band | Sparse
-	@Jacobian				Band;
+	// Jacobian sparsity pattern: Band | TridiagonalBlock | Sparse
+	@Jacobian				TridiagonalBlock;
 	
 	//Sparse solvers  (direct):    Pardiso       | UMFPack | SuperLUSerial
 	//                (iterative): EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES

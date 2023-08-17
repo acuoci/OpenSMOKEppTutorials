@@ -7,10 +7,13 @@
 BzzFile.txt
 Output/
 Output-*/
+Output.*/
 kinetics-*/
 license.dat
 test_*/
 webuser_license/
+kinetics*/
+log*
 
 #Microsoft Visual studio
 ########################
@@ -259,8 +262,10 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-
+# Tests
 tests
+
+# NetBeans IDE
 /projects/NetBeans/OpenSMOKE_BatchReactor/dist/
 /projects/NetBeans/OpenSMOKE_PlugFlowReactor/dist/
 /projects/NetBeans/OpenSMOKE_SurfaceBatchReactor/dist/
