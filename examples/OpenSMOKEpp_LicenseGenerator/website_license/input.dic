@@ -21,7 +21,7 @@ Dictionary LicenseGenerator
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.20.0;
+		@Version		0.21.0;
 		@MaxSpecies		300;
 		@Solvers		BatchReactor CHEMKIN_PreProcessor;
 }
