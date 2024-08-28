@@ -14,14 +14,14 @@
 
 Dictionary LicenseGenerator
 {
-		@StartingDate		2023-Aug-01;
-		@ExpirationDate		2025-Aug-01;
+		@StartingDate		2024-Aug-01;
+		@ExpirationDate		2026-Aug-01;
 		@UserName		website_license;
 		@UserEmail		none;
 		@UserOrganization	none;
 
 		@Type			Academic;
-		@Version		0.21.0;
+		@Version		0.22.0;
 		@MaxSpecies		300;
 		@Solvers		BatchReactor CHEMKIN_PreProcessor;
 }
