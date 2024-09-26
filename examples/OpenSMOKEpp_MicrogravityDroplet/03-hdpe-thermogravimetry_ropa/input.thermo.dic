@@ -1,0 +1,85 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			kinetics;
+		@OutputFolder			    		Output;
+		
+		// Simulation time
+		@EndTime							110 min;
+		
+		// Mass transfer options
+		@GlobalMassExchangeCoefficient		3.5e-2 m3/s;
+		
+		// Initial conditions
+		@FuelMassFractions					P-C21H42-P_S 1;
+									
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				..\LiquidPropertiesHDPE\;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+        
+        // On the fly ROPA
+        @OnTheFlyROPA			onthefly-ropa;
+}
+
+Dictionary onthefly-ropa
+{
+		@Species							C2H4;
+		@Threshold							0.05;
+		@ReferenceSpecies					P-C21H42-P_S;
+        @ReferenceLiquidMass                true;
+		@MergeForwardAndBackwardReactions	true;
+		
+        @Conversions    0.05 0.1 0.25 0.5 0.75;
+        
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	287.65  K ; 
+		@Pressure      	1. 		bar ;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable 	time;
+	@XUnits		min;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile
+    0 298
+	110 1400;
+}
