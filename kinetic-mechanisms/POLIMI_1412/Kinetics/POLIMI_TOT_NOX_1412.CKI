@@ -33,7 +33,7 @@ AR
 HE
 END
 SPECIES
-HE             AR             N2             NO             N2O            
+C3H7CHO HE             AR             N2             NO             N2O            
 O2             NO2            HNO            HNNO           HONO           
 HNO2           HONO2          H2             N2H2           H2O            
 H2O2           NH3            N2H4           CO             CO2            
@@ -50,7 +50,7 @@ C3H6O          C3H5OOH        ACETOL         C3H6O2         C3-OQOOH
 C3H8           IC3H7OH        NC3H7OH        C3H7OOH        GLYCEROL       
 C4H2           C4H4           CH2CCHCHO      C4H4O          C4H6           
 IC3H5CHO       C3H5CHO        C4H6O2         MACRIL         IC4H8          
-NC4H8          C4H7OH         C4H8O          MEK            C3H7CHO        
+NC4H8          C4H7OH         C4H8O          MEK            ! C3H7CHO        
 IC3H7CHO       NC4-OQOOH      IC4-OQOOH      KEHYBU1        IC4H10         
 NC4H10         N1C4H9OH       N2C4H9OH       TC4H9OH        IC4H9OH        
 C4H9OOH        CYC5H4O        C5H4O2         CYC5H6         MEFU2          
