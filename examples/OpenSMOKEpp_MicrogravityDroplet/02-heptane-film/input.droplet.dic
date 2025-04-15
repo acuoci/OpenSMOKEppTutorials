@@ -25,12 +25,12 @@ Dictionary MicrogravityDroplet
 		@NumberOfNLS						1;
 		
 		// Ignition
-		@Type					Spark;
-		@SparkTemperature			2000. K;
+		@Type								NoSpark;
+		@SparkTemperature					2000. K;
 		
 		// Radiative heat transfer
-		@FlameRadiation         		P1;
-		@ExtinctionCoefficient			WSGG-Smith;
+		@FlameRadiation         			P1;
+		@ExtinctionCoefficient				WSGG-Smith;
 		@RadiationCorrectionCoefficient		1.00;
 		
 		// Operating conditions
@@ -126,7 +126,7 @@ Dictionary dae-parameters
 	@DaeSolver				OpenSMOKE++;
 	
 	// Jacobian sparsity pattern: Band | Sparse
-	@Jacobian				TridiagonalBlock;
+	@Jacobian				Band;
 	
 	//Sparse solvers  (direct):    Pardiso       | UMFPack | SuperLUSerial
 	//                (iterative): EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
@@ -164,10 +164,10 @@ Dictionary polimi-soot
 
 Dictionary Initial-Composition
 {
-		@Temperature   	300    K ; 
+		@Temperature   	600.    K ; 
 		@Pressure      	1. 	bar ;
 
-		@Moles  N2 0.79 O2 0.21;
+		@Moles  N2 1;
 }
 
 Dictionary fiber

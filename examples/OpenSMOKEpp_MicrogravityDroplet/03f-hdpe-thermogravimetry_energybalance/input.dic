@@ -1,0 +1,102 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   	../../OpenSMOKEpp_CHEMKIN_PreProcessor/13b-hdpe_evaporationkinetics/kinetics;
+		@OutputFolder			    Output;
+		
+		// Simulation time
+		@EndTime	89.0 min;
+        
+        // Mass transfer options
+		@GlobalMassExchangeCoefficient	   5e-1 m3/s;		
+		 
+		// Initial conditions
+		@FuelMassFractions	        P-HDPE-P 0.2 P-HDPE-P_S 0.8;					
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				../../../kinetic-mechanisms/CRECK_2003/POLYMERS/LiquidProperties/HDPE_evaporationkinetics;
+		
+		// Temperature profile (overwrites external temperature if active)
+		//@TemperatureProfile			temperature-profile; 
+		
+		// Ode parameters
+		@OdeParameters				ode-parameters;
+        @PrintLiquidReactions       false;
+        
+        // Energy Balance
+        @EnergyBalance  energy-balance;
+        
+}
+
+Dictionary energy-balance
+{                
+        
+        @ExternalTemperature 900 C;
+        @EmissivityViewFactor 0.985;
+        
+        @ConvectiveTransferCoefficient  91 W/m2/K;
+        
+        @FixedInletSpecificHeatFlux 0 kW/m2;
+        
+        @SolidSurfaceToVolume   1000 m2/m3;
+        @InitialSolidTemperature    50 C;  
+         
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	473.15  K ; 
+		@Pressure	1 atm;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+		@Density	AdditiveVolumes;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable	time;
+	@XUnits	min;
+	
+	@YVariable	temperature;
+	@YUnits	K;
+	
+	@Profile	
+			0 510
+			 89.0 1400;
+}
+
+Dictionary ode-parameters
+{
+	@OdeSolver			OpenSMOKE++;
+	@RelativeTolerance	1e-6;
+	@AbsoluteTolerance  1e-10;
+	
+}
+

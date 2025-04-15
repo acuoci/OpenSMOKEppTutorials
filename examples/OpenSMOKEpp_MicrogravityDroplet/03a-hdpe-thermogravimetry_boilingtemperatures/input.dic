@@ -1,0 +1,89 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			../../OpenSMOKEpp_CHEMKIN_PreProcessor/13a-hdpe/kinetics;
+		@OutputFolder			    		Output;
+		
+		// Simulation time
+		@EndTime	110.2 min;
+		
+		// Correction of activation energy
+		//@EnergyCorrectionBasedOnHCl			7000 cal/mol;
+		
+		// List of evaporating species
+		@BoilingTemperatures	 N2 135.33 K CH4 191.39 K C2H6 234.40 K C2H4 234.40 K C3H8 270.67 K C3H6 270.67 K C4H10 302.61 K C4H8-1 302.61 K C4H6 302.61 K C5H12 331.50 K C5H10 331.50 K C5H8 331.50 K C6H14 358.06 K C6H12 358.06 K C6H10 358.06 K C7H16 382.78 K C7H14 382.78 K C7H12 382.78 K C8H18 406.00 K C8H16 406.00 K C8H14 406.00 K C9H20 427.96 K C9H18 427.96 K C9H16 427.96 K C10H22 448.85 K C10H20 448.85 K C10H18 448.85 K C11H24 468.81 K C11H22 468.81 K C11H20 468.81 K C12H26 487.95 K C12H24 487.95 K C12H22 487.95 K C16H34 557.99 K C16H32 557.99 K C16H30 557.99 K C30H62 753.50 K C30H60 753.50 K C30H58 753.50 K C45H92 917.87 K C45H90 917.87 K C45H88 917.87 K C60H122 1056.98 K C60H120 1056.98 K C60H118 1056.98 K NC4H10 302.61 K C4H8-1 302.61 K C4H6 302.61 K NC5H12 331.50 K NC5H10 331.50 K LC5H8 331.50 K NC6H14 358.06 K NC6H12 358.06 K DIALLYL 358.06 K NC7H16 382.78 K NC7H14 382.78 K NC7H12 382.78 K NC8H18 406.00 K NC8H16 406.00 K NC8H14 406.00 K NC9H20 427.96 K NC9H18 427.96 K NC9H16 427.96 K NC10H22 448.85 K NC10H20 448.85 K NC10H18 448.85 K NC11H24 468.81 K NC11H22 468.81 K NC11H20 468.81 K NC12H26 487.95 K NC12H24 487.95 K NC12H22 487.95 K NC16H34 557.99 K NC16H32 557.99 K NC16H30 557.99 K NC30H62 753.50 K NC30H60 753.50 K NC30H58 753.50 K NC45H92 917.87 K NC45H90 917.87 K NC45H88 917.87 K NC60H122 1056.98 K NC60H120 1056.98 K NC60H118 1056.98 K;
+
+		// Initial conditions
+		@FuelMassFractions	        P-HDPE-P 0.2 P-HDPE-P_S 0.8;					
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				../../../kinetic-mechanisms/CRECK_2003/POLYMERS/LiquidProperties/HDPE;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+		
+		// Ode parameters
+		@OdeParameters				ode-parameters;        
+        
+        //@OnTheFlyPostProcessing	onthefly-post-processing;
+        
+        @NumSimulationsCPUTime 1;
+        
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	473.15  K ; 
+		@Pressure	1 atm;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+		@Density	AdditiveVolumes;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable	time;
+	@XUnits	min;
+	
+	@YVariable	temperature;
+	@YUnits	K;
+	
+	@Profile	
+			0 298
+			 110.2 1400;
+}
+
+Dictionary ode-parameters
+{
+	@OdeSolver			OpenSMOKE++;
+	@RelativeTolerance	1e-10;
+	@AbsoluteTolerance  1e-14;
+	
+}
