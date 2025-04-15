@@ -28,6 +28,9 @@ Dictionary PremixedLaminarFlame1D
 	@FixedTemperatureProfile T-Profile;
 
 	@UseDaeSolver		true;
+
+	@TaylorArisCorrection	mass-heat;
+	@InternalDiameter	0.01 m;
 }
 
 Dictionary kinetics

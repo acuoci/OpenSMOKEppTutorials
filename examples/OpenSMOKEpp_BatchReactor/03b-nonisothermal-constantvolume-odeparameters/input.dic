@@ -38,13 +38,14 @@ Dictionary initial-mixture
 		@Pressure      	101325. Pa ;
 
 		@EquivalenceRatio 1.;	
-		@FuelMasses H2 10.;
-		@OxidizerMoles O2 21 N2 79;
+		@FuelMasses 	H2 1.;
+		@OxidizerMoles 	O2 0.21 
+				N2 0.79;
 }
 
 Dictionary ode-parameters
 {	
 		@OdeSolver CVODE;
 		@AbsoluteTolerance 1e-14;
-		@RelativeTolerance 1e-9;
+		@RelativeTolerance 1e-7;
 }

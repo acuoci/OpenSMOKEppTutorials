@@ -15,25 +15,30 @@ Dictionary LaminarFlamelets
 {
 	@KineticsPreProcessor					kinetics;
 	
+    @Grid		                            grid;
 	@FuelSide 								fuel-side;
 	@OxidizerSide							oxidizer-side;
 	@StoichiometricScalarDissipationRates	1e-6 1e-5 1e-3 1e-1 1e0 1e0 1e2 1e3 1e4 Hz;
 	@EnthalpyDefects						0 250 500 750 1000 kJ/kg;
+    
+    
+    @EquilibriumCalculations 	true;
+	@Output		                Output;
+	
+	@UseOdeSolver	            true;
+	@UseNlsSolver	            false;
+	@OdeParameters	            ode-parameters;
+    @OdeIntegrationTime		    1e6 s;
 
-	@Grid		grid;
-	
-	@Output		Output;
-	
-	@UseOdeSolver	true;
-	@UseNlsSolver	false;
+	@UseNlsSolverAfterOdeSolver	            false;
+    @ScalarDissipationRateThresholdForNLS   1e-7 Hz;
 }
 
 Dictionary kinetics
 {
-	@Output			kinetics;
+	@Output			    kinetics;
 
-	@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
-	
+	@Kinetics		    ../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_1412.CKI;
 	@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
 	@Transport 			../../../kinetic-mechanisms/POLIMI_1412/Transport/POLIMI_TOT_NOX_1412.TRC;
 }
@@ -54,13 +59,21 @@ Dictionary oxidizer-side
 
 Dictionary grid
 {
-	@Length				1 m;
-	@InitialPoints		50;
-	@Type				equispaced;
-	
-	@MaxPoints				500;
-	@MaxAdaptivePoints		15;
+	@Length				    1 m;
+	@InitialPoints		    50;
+	@Type				    equispaced;
+	@MaxPoints				200;
+	@MaxAdaptivePoints		12;
 	@GradientCoefficient	0.1;
-	@CurvatureCoefficient	1;
+	@CurvatureCoefficient	0.5;
+}
+
+Dictionary ode-parameters
+{
+	@OdeSolver	            OpenSMOKE++;
+	@Jacobian	            TridiagonalBlock;
+    @MeanResidualThreshold  1e-11;
+	@AbsoluteTolerance  	1e-12;
+	@RelativeTolerance 	    1e-7;
 }
 
