@@ -15,7 +15,7 @@
 Dictionary ThermogravimetricAnalysis
 {
 		// Kinetic mechanism and output folder
-		@KineticsFolder			   	../../OpenSMOKEpp_CHEMKIN_PreProcessor/13b-hdpe_evaporationkinetics/kinetics;
+		@KineticsFolder			   	kinetics;
 		@OutputFolder			    Output;
 		
 		// Simulation time

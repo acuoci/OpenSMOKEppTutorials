@@ -54,6 +54,7 @@ Dictionary liquid-properties
 {
 		@Fugacity	Raoult;
 		@Activity	Ideal;
+        @Density    Peng-Robinson;
 }
 
 Dictionary gas-properties
