@@ -1,0 +1,98 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //	
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary Biomass
+{
+    @KineticsFolder             kinetics;
+    
+    @Analysis			Analysis;
+    @TGA			TGA;
+    @Total_Analysis		Total_Analysis;
+
+    @InletGasStatus             inlet-gas-mixture;
+
+    @InletSolidStatus           inlet-solid-mixture;
+
+    //@TemperatureProfile       temperature-profile;
+    //@OdeParameters            ode-options;
+    //@Options                  BioSMOKE-Options;
+}
+
+Dictionary inlet-gas-mixture
+{
+    @Temperature   	        300     K ;
+    @Pressure      	        101325  Pa;
+    @MassFractions              N2      1;
+}
+
+Dictionary inlet-solid-mixture
+{
+    @Temperature   	        300     K ;
+    @Density                    850     kg/m3;
+    @Pressure      	        101325  Pa;
+    @MassFractions              CELL    0.4807
+                                XYHW    0.2611
+                                LIGO    0.1325
+                                LIGH    0.0957
+                                LIGC    0.0214
+                                ASH	0.0086;
+}
+  
+Dictionary TG_Analysis
+{
+    @HeatingRate                10  K/min;
+
+    @TotalSimulationTime        10000  s;
+}
+
+Dictionary  temperature-profile
+{	
+    @XVariable time;
+    @YVariable temperature;
+    
+    @XUnits s;
+    @YUnits K;
+    
+    @Profile
+    0.0             300.0
+    21.12125163     307.8432056
+    61.01694915     321.7804878
+    91.52542373     358.3658537
+    154.8891786     410.630662
+    204.1720991     455.9268293
+    258.148631      501.2229965
+    309.7783572     541.2926829
+    384.8761408     588.3310105
+    450.5867014     628.4006969
+    528.0312907     645.8222997
+    626.5971317     673.6968641
+    701.6949153     724.2195122
+    837.809648      736.4146341
+    943.4159061     718.9930314
+    1039.634941     708.5400697
+    1241.460235     701.5714286
+    1452.672751     699.8292683
+    1600.521512     698.087108
+    1788.265971     698.087108;
+}
+
+Dictionary ode-options
+{
+    @RelativeTolerance          1.0e-6;
+}
+
+Dictionary BioSMOKE-Options
+{
+    @OutputSpecies              H2O CHAR;
+}

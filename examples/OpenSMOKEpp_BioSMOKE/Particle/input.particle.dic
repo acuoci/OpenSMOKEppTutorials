@@ -1,0 +1,76 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //	
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BioSMOKE
+{
+	@KineticsFolder 	       kinetics;
+	
+	@Type		               Total_Analysis;
+
+	@TGA			       TG_Analysis;
+
+	@Particle		       Particle_Analysis;
+
+	@InletGasStatus                inlet-gas-mixture;
+	
+	@InletSolidStatus              inlet-solid-mixture;		
+}
+
+Dictionary inlet-gas-mixture
+{
+	@Temperature   	             743     K ; 
+	@Pressure      	             101325  Pa;
+	@MassFractions		     N2      1;
+}
+
+Dictionary inlet-solid-mixture
+{
+	@Temperature   	        300     K ;    
+	@Density		850     kg/m3; 	   			 
+	@Pressure      	        101325  Pa;
+	@MassFractions		CELL	0.4807
+				XYHW	0.2611 
+				LIGO	0.1325 
+				LIGH	0.0957
+				LIGC	0.0214
+				ASH	0.0086 ;
+}
+  
+Dictionary TG_Analysis
+{
+	@HeatingRate      	        10  K/min;
+
+	@TotalSimulationTime		10000  s;
+}
+
+Dictionary Particle_Analysis
+{
+	@Type			Non_Isothermal;
+
+	@ConstantVolume		true;
+
+	@Porosity               0.4;
+	
+	@Nlayer	                10 ;
+
+	@InitialRadius		12.7 mm;
+	
+	@TotalSimulationTime	1200 s;
+
+	@Darcy_number		1e-14 ;
+	
+	@Lambda			0.1937 W/m/K;
+	
+	@hext			1e5 W/m2/K;  
+}

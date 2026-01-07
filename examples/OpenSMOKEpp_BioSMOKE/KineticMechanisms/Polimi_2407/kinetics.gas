@@ -1,0 +1,25 @@
+ELEMENTS
+C 
+H 
+O
+N
+K
+END
+
+SPECIES
+CH2OHCH2CHO    FURFURAL    CH3CO2H   C24H28O4   C2H3CHO
+C6H5OCH3       U2ME12      MLINO     CH2OHCHO 	CHOCHO		
+CH3CHO		   C6H6O3      C2H5CHO   CH3OH		CH2O		
+HCOOH          C6H10O5     C2H5OH    C5H8O4		C6H5OH
+VANILLIN       CRESOL      FURAN     CH3COCH3   LVG
+H2O            TARN
+CO			   CO2         H2        CH4        C2H4
+C2H6           C6H6        NH3       HCN        NO          
+N2             O2                       
+END
+
+REACTIONS
+
+N2 => N2 1.E1 .000 10000.0
+
+END

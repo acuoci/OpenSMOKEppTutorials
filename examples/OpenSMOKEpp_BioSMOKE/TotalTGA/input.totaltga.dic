@@ -1,0 +1,115 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary Biomass
+{
+	@KineticsFolder		kinetics;
+
+	@Analysis		Total_Analysis;		// Type of simulation: TG_Analysis | Total_Analysis
+
+	@TGA			TG_Analysis;		// Dictionary name in case of TG_Analysis
+
+	@Total_Analysis		Total_Analysis;		// Dictionary name in case of Total_Analysis
+
+	@InletGasStatus         inlet-gas-mixture;
+
+	@InletSolidStatus       inlet-solid-mixture;
+
+	@TemperatureProfile     temperature-profile;	// Temperature profile	
+}
+
+Dictionary inlet-gas-mixture
+{
+	@Temperature   	           300     K; 		// Initial temperature
+	@Pressure      	           101325 Pa;		// Pressure
+	@MassFractions		   N2      1;		// Gas composition (no reactions in gaseous phase)
+}
+
+Dictionary inlet-solid-mixture
+{
+	@Temperature		300 K; 			// Initial temperature
+	@Pressure                 1 atm;		// Pressure
+
+	@hext                   100  W/m2/K;    	// Convective heat exchange coefficient (external side)
+	@Density                850  kg/m3;		// Skeletal density of solid phase (i.e. ASH 400 kg/m3 CELL 850 kg/m3)
+	@lambda			0.25 W/m/K;		// Solid thermal conductivity
+
+	// Composition (@MassFractions | @MoleFractions | @Masses | @Moles)
+	@MassFractions	CELL	0.4807
+			XYGR	0.2611
+			LIGO	0.1325
+			LIGH	0.0957
+			LIGC	0.0214
+			TANN	0
+			TGL	0
+			MOIST	0
+			ASH	0.0086;					  	
+}
+
+Dictionary TG_Analysis
+{
+	@Heat_Rates		100   K/min;		// Heating rate
+	@SimulationTime		1200  s;		// Simulation time
+}
+
+Dictionary Total_Analysis
+{
+	@Type			Non_Isothermal;		// Simulation type: Isothermal | Non_Isothermal
+
+	@Volume			ConstantVolume;		// Volume treatment: ConstantVolume | VariableVolume
+
+	@Epsi	               	0.4;   			// Void fraction (in case of VariableVolume epsi remains constant, 
+							//                in case of ConstantVolume epsi changes according the massloss)
+//	@Nlayer	                20 ;			// Number of layers used in the particle discretization
+	@Nlayer			 5 ;	
+//	@Radius                	19.05 mm;		// Radius of the particle
+	@Radius			5 mm;
+
+	@SimulationTime		1600 s;			// Total simulation time
+
+	@Darcy_number		1e-14 ;			// Darcy number
+}
+
+Dictionary  temperature-profile
+{	
+	@XVariable time;
+	@YVariable temperature;
+
+	@XUnits s;
+	@YUnits K;
+
+	@Profile
+        0		300.0000000
+	21.12125163	307.8432056
+	61.01694915	321.7804878
+	91.52542373	358.3658537
+	154.8891786	410.6306620
+	204.1720991	455.9268293
+	258.148631	501.2229965
+	309.7783572	541.2926829
+	384.8761408	588.3310105
+	450.5867014	628.4006969
+	528.0312907	645.8222997
+	626.5971317	673.6968641
+	701.6949153	724.2195122
+	837.809648	736.4146341
+	943.4159061	718.9930314
+	1039.634941	708.5400697
+	1241.460235	701.5714286
+	1452.672751	699.8292683
+	1600.521512	698.0871080
+	1788.265971	698.0871080	
+	;
+}
+
