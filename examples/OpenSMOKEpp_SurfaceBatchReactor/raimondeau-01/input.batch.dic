@@ -12,18 +12,44 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary SurfaceBatchReactor
 {
-		@StartingDate		2026-Jan-01;
-		@ExpirationDate		2028-Jan-01;
-
-		@UserName		creck_lab;
-		@UserEmail		alberto.cuoci(at)polimi.it;
-		@UserOrganization	Politecnico di Milano;
-
-		@Type			Academic;
-		@Version		0.23.0;
-		@MaxSpecies		100000;
-		@Solvers		All;
+		@KineticsFolder			kinetics-Deutschmann_CH4_O2_over_Pt;
+		
+		@Type					NonIsothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				1 s;
+		
+		@Volume					100 cm3;
+		@InternalSurfaceArea	10 cm2;
+		
+		@OdeParameters          ode-parameters;
 }
+
+Dictionary initial-mixture
+{
+		@MoleFractions			H2		0.10
+								O2		0.10	
+								CO		0.10
+								CO2		0.10
+								N2		0.60;
+								
+		@Temperature			700 K;
+		@Pressure				1	atm;
+}
+
+Dictionary Surface-PT_SURFACE
+{
+		@SurfaceFractions	_Pt_ 	1.00;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-16;
+		@RelativeTolerance 1e-8;
+}
+
 

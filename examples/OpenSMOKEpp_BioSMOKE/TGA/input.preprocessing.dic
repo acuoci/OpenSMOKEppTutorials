@@ -12,18 +12,13 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
-		@StartingDate		2026-Jan-01;
-		@ExpirationDate		2028-Jan-01;
-
-		@UserName		creck_lab;
-		@UserEmail		alberto.cuoci(at)polimi.it;
-		@UserOrganization	Politecnico di Milano;
-
-		@Type			Academic;
-		@Version		0.23.0;
-		@MaxSpecies		100000;
-		@Solvers		All;
+	@Thermodynamics ../KineticMechanisms/Polimi_2407/thermo.tdc;
+	@Transport	../KineticMechanisms/Polimi_2407/transport.tra;
+	@Kinetics 	../KineticMechanisms/Polimi_2407/kinetics.gas;
+	@Solid		../KineticMechanisms/Polimi_2407/kinetics.solid;
+	
+	@Output		kinetics;
 }
 

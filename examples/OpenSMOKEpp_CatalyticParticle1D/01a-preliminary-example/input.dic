@@ -1,0 +1,74 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CatalyticParticle1D
+{
+	@KineticsFolder			../KineticMechanisms/SMR/kinetics/;
+	@DetailedSurfaceChemistry	false;
+	
+	@Type				NonIsothermal;
+
+	@BulkStatus 			bulk-status;
+	@BulkVelocity 			1.89 m/s;
+
+	@KnudsenDiffusion		true;
+	@PorousMediumCorrection		true;
+
+	@InterfaceMassResistance	true;
+	@InterfaceHeatResistance	true;
+	@MeanMassTransferCoefficient	true;
+
+	@CatalystDensity 		2300. 	kg/m3;
+
+	@ParticlePorosity		0.528;
+	@ParticleTortuosity		3.500;	
+	@ParticleSpecificHeat		1000. 	J/kg/K;
+	@ParticleThermalConductivity 	25      W/m/K;
+	@PoreDiameter			40	nm;
+
+	@SimulationTime			0.1	s;
+
+	@Grid		grid;
+	
+	@Output		Output;
+	
+	@UseDaeSolver	true;
+	@UseNlsSolver	false;
+}
+
+Dictionary bulk-status
+{
+	@Moles			CO	6.3581e-5
+				CO2	0.0080931
+				H2	0.025567
+				H2O	0.71335
+				CH4	0.21218
+				N2	0.040755;
+						
+	@Temperature		800 K;
+	@Pressure		29 bar;
+}
+
+Dictionary grid
+{
+	@Length				1.73 cm;		// Radius
+	@InitialPoints			60;
+	@Type				equispaced;
+	
+	@MaxPoints			500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.05;
+	@CurvatureCoefficient		0.5;
+}
+

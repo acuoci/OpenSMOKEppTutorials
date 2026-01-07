@@ -179,8 +179,9 @@ Dictionary fiber
 
 Dictionary liquid-properties
 {
-		@Fugacity	Raoult;
-		@Activity	Ideal;
+	@Density	AdditiveVolumes;
+	@Fugacity	Raoult;
+	@Activity	Ideal;
 }
 
 Dictionary gas-properties

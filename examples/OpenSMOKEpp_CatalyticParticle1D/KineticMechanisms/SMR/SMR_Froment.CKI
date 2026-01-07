@@ -1,0 +1,22 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+CH4	H2	H2O	
+CO2	CO	N2                        
+END
+
+REACTIONS
+
+CH4 + H2O = CO + 3H2		1.	0.	0.
+
+CH4 + 2H2O = CO2 + 4H2		1.	0.	0.
+
+CO + H2O = CO2 + H2		1.	0.	0.
+
+END
+

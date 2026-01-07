@@ -1,0 +1,34 @@
+MATERIAL QUARTZ
+
+SITE/QUARTZ_SURFACE/    SDEN/1.31E-9/
+
+Si(s)	H(s) 	OH(s) 	O(s)
+
+END
+
+
+REACTIONS
+
+! Sticking reactions (1-3)
+
+ H   + Si(s)    => H(s)                         0.1 0 0
+	STICK
+
+ OH  + Si(s)    => OH(s)                        0.1 0 0
+	STICK
+
+ O   + Si(s)    => O(s)                         0.1 0 0
+	STICK 
+
+
+! Surface reactions (4-7)
+
+ 2H(s) => H2 + 2Si(s)			1e13 0 0
+    
+ 2OH(s) => H2O + O(s) + Si(s)		1e13 0 0
+
+ 2O(s) => O2 + 2Si(s)			1e13 0 0
+
+ OH(s) + H(s) => H2O + 2Si(s)		1e13 0 0
+
+END

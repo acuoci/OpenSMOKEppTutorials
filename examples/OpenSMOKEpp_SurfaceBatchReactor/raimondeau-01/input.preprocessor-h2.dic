@@ -12,18 +12,13 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
-		@StartingDate		2026-Jan-01;
-		@ExpirationDate		2028-Jan-01;
-
-		@UserName		creck_lab;
-		@UserEmail		alberto.cuoci(at)polimi.it;
-		@UserOrganization	Politecnico di Milano;
-
-		@Type			Academic;
-		@Version		0.23.0;
-		@MaxSpecies		100000;
-		@Solvers		All;
+		@Thermodynamics 	chemistry/thermo.ckt;
+		@Transport		chemistry/transport.tra;
+		@Kinetics 		chemistry/homogeneous.kin;
+		@Surface 		chemistry/surface-h2-quartz.kin;
+		
+		@Output			kinetics-Raimondeau_H2_O2_over_quartz;
 }
 

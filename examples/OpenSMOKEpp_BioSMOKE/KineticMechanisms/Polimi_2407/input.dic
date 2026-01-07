@@ -12,18 +12,23 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary CHEMKIN_PreProcessor
 {
-		@StartingDate		2026-Jan-01;
-		@ExpirationDate		2028-Jan-01;
+		
+	@Thermodynamics     		thermo.tdc;
+	@Kinetics 			kinetics.gas;
+	@Solid            		kinetics.solid;
+	@Transport          		transport.tra;
 
-		@UserName		creck_lab;
-		@UserEmail		alberto.cuoci(at)polimi.it;
-		@UserOrganization	Politecnico di Milano;
+	@Output				kinetics_compiled;
 
-		@Type			Academic;
-		@Version		0.23.0;
-		@MaxSpecies		100000;
-		@Solvers		All;
+	@Comments 			CRECK-Signature;
+}
+
+Dictionary CRECK-Signature
+{
+	@Author 			CRECK Modeling Group;
+	@Place  			creckmodeling.chem.polimi.it;
+	@Comments			The kinetic scheme was created by CRECK Modeling Group;
 }
 
