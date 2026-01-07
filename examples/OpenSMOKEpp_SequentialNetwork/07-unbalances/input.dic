@@ -1,0 +1,63 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ReactorNetwork
+{
+		@KineticsPreProcessor 		kinetic-mechanism;
+		
+		@MinIterations				10;
+		@MaxIterations				50;
+		
+		@AtomicErrorThreshold			1e-5;
+		@NonIsothermalErrorThreshold	1e-4;
+									
+		@PerfectlyStirredReactors	0	input.cstr.0.dic
+									1	input.cstr.1.dic
+									2	input.cstr.2.dic
+									3	input.cstr.3.dic
+									4	input.cstr.4.dic
+									5	input.cstr.5.dic
+									6	input.cstr.6.dic
+									7	input.cstr.7.dic
+									8	input.cstr.8.dic;
+		
+		@InternalConnections	0 1   	49.8
+								0 3     20.2
+								0 4     29.9
+								1 2     25.1
+								1 4     25.2
+								2 4     10.1
+								2 5     15.2
+								3 6     60.4
+								4 3     40.1
+								4 5     44.9
+								5 8     60.3
+								6 7     60.2
+								7 4     20.1
+								7 8 	40.2;
+								
+		@InputStreams			0 100.;						
+		@OutputStreams			8 100.;
+		
+		@SpeciesToMonitor		NC7H16 CH4 CO;
+		
+		@VerbosityLevel			1;					
+}
+
+Dictionary kinetic-mechanism
+{
+		@Kinetics		../kinetics/POLIMI_PRF_PAH_LT_1412.CKI;
+		@Thermodynamics	../kinetics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}

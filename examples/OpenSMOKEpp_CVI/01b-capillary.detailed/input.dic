@@ -1,0 +1,143 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CVI_Solver
+{
+	@KineticsFolder				../kinetics/Mechanisms/Lacroix.corrected.2000-POLIMI4BremboRevised/kinetics;
+	@Output					Output;
+	
+	@DetailedSurfaceChemistry	true;		// if true, semi-empirical mechanisms are used
+	@GasDaeSpecies				CH4;		// used only for detailed chemistry
+	@SurfaceDaeSpecies			Hz(S);		// used only for detailed chemistry
+
+	@Type						Capillary;
+	@Symmetry					Planar;
+	@PlugFlowReactor			plug-flow-reactor;
+	
+	@PorousMedium				porous-medium;
+	@HeterogeneousMechanism 	heterogeneous-mechanism;
+	
+	@InletStream				inlet-stream;
+	@InitialConditions			initial-conditions;
+
+	@CapillaryDiameter			1.1 mm;
+	@XPoints	        		30;	
+	@XLength					17 mm;
+	@XStretchingFactor			1.00;
+	
+	@ResidenceTime				0.08 s;
+	@TimeTotal					400 h;
+	@DaeTimeInterval			100  h;
+	
+	@TecplotTimeInterval	  	1 h;
+	
+	@DaeParameters				dae-parameters;
+	
+	@OdeEndTime					10 s;
+	@OdeParameters				ode-parameters;
+	
+	@OnTheFlyROPA				on-the-fly-ropa;
+	
+	// Unused variables (needed by 2D reactors)
+	@YPoints					10;
+	@YLength					1 mm;
+	@YStretchingFactor			1.;	
+}
+
+Dictionary on-the-fly-ropa
+{
+	@Species	C(B) C.(S) H(S) CH.CH2(S);
+}
+
+Dictionary Surface-CARBON
+{
+	@SurfaceFractions 		Hz(S) 0.50 
+							H(S)  0.50; 
+	@SiteNonConservation	false;
+}
+
+Dictionary porous-medium
+{
+	@FiberRadius			4 micron;
+	@FiberDensity			1720 kg/m3;
+	@InitialPorosity		0.775;
+	@PorousSubstrate		random_hardcore;
+	
+	// @PorousSubstrate
+	// polynomial | random | random_hardcore | polynomial_onehalf | from_spheres_to_cylinders | deutschmann_correlation
+}
+
+Dictionary heterogeneous-mechanism
+{
+	@HomogeneousReactions           true;
+	@HeterogeneousReactions         true;
+
+	@GraphiteDensity                2200 kg/m3;
+	@HeterogeneousMechanism         Huttinger;
+	@HydrogenInhibition             Becker;
+	
+	// @HeterogeneousMechanism 
+	// Huttinger | Ziegler | Vignoles |  Huttinger-extended | Ziegler-extended | Vignoles-extended
+}
+
+Dictionary plug-flow-reactor
+{
+	@Velocity					40 cm/s;
+	
+	@InletLength				10 mm;
+	@HydraulicDiameter			3.5 mm;
+	@AsymptoticNusselt			4.00;
+	@InternalBoundaryLayer		false;
+	@GeometricPattern			OneSide;
+	@Coupling					false;
+}
+
+Dictionary inlet-stream
+{	
+	@MoleFractions			CH4 1.0;
+	@Temperature			1125	C;
+	@Pressure				10e3	Pa;
+}
+
+Dictionary initial-conditions
+{	
+	@Temperature	1125	C;
+	@Pressure		10e3	Pa;
+	@MoleFractions	N2		1.00;
+}
+
+Dictionary ode-parameters
+{
+	@RelativeTolerance		1e-7;
+	@AbsoluteTolerance		1e-14;
+	@MeanResidualThreshold	1.e-8;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@Jacobian			Band;
+	@SparseSolver		Pardiso;
+	@Preconditioner		ILUT;
+	
+	//Sparse solvers: EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
+	//                Pardiso       | SuperLUSerial | UMFPack
+	
+	//Preconditioners: ILUT | diagonal
+	
+	@RelativeTolerance		1e-7;
+	@AbsoluteTolerance		1e-14;
+	@VerbosityLevel			1;
+}
+

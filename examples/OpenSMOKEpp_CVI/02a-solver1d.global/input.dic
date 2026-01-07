@@ -1,0 +1,116 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CVI_Solver
+{
+	@KineticsFolder		../kinetics/Mechanisms/Lacroix.corrected.2000-POLIMI4BremboRevised/kinetics;
+	@Output				Output;
+	
+	@DetailedSurfaceChemistry	false;		// if true, semi-empirical mechanisms are used
+	@GasDaeSpecies				CH4;		// used only for detailed chemistry
+	@SurfaceDaeSpecies			Hz(S);		// used only for detailed chemistry
+
+	@Type				1D;
+	@Symmetry			Planar;
+	@PlugFlowReactor	plug-flow-reactor;
+	
+	@PorousMedium			porous-medium;
+	@HeterogeneousMechanism heterogeneous-mechanism;
+	
+	@InletStream		inlet-stream;
+	@InitialConditions	initial-conditions;
+
+	@ResidenceTime		0.01 s;
+		
+	@XPoints			36;
+	@XLength			21 mm;
+	@XStretchingFactor	0.98;
+	
+	@TimeTotal				120 h;
+	@DaeTimeInterval		2.5 h;
+	@TecplotTimeInterval	  1 h;
+	
+	@DaeParameters		dae-parameters;
+	
+	// Unused variables (needed by 2D reactors)
+	@YPoints			36;
+	@YLength			40 mm;
+	@YStretchingFactor	1.;
+}
+
+Dictionary Surface-CARBON
+{
+	@SurfaceFractions 		Hz(S) 0.75 H(S) 0.25; 
+	@SiteNonConservation	false;
+}
+
+Dictionary porous-medium
+{
+	@FiberRadius				4 micron;
+	@FiberDensity				1720 kg/m3;
+	@InitialPorosity			0.929;
+	@PorousSubstrate			random_hardcore;
+}
+
+Dictionary heterogeneous-mechanism
+{
+	@HomogeneousReactions		true;
+	@HeterogeneousReactions		true;
+	
+	@GraphiteDensity			2200 kg/m3;
+	@HeterogeneousMechanism		Huttinger;
+	@HydrogenInhibition			Becker;
+}
+
+Dictionary plug-flow-reactor
+{
+	@Velocity					45 cm/s;
+	@InletLength				2.5 mm;
+	@HydraulicDiameter			3.5 mm;
+	@AsymptoticNusselt			4.00;
+	@InternalBoundaryLayer		false;
+	@GeometricPattern			OneSide;
+	@Coupling					false;
+}
+
+Dictionary inlet-stream
+{	
+	@Temperature	1438 K;
+	@Pressure		20e3 Pa;
+	@Masses			CH4 1;
+}
+
+Dictionary initial-conditions
+{	
+	@Temperature	1438 K;
+	@Pressure		20e3 Pa;
+	@Masses			N2 1;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@Jacobian			Band;
+
+	// @SparseSolver		Pardiso;
+	// @Preconditioner		ILUT;
+	// Sparse solvers: 		EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
+	//                		Pardiso       | SuperLUSerial | UMFPack
+	// Preconditioners: 	ILUT 		  | diagonal
+	
+	// @RelativeTolerance		1e-6;
+	// @AbsoluteTolerance		1e-10;
+	// @VerbosityLevel			1;
+}
+

@@ -1,0 +1,152 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CVI_Solver
+{
+	@KineticsFolder				../../kinetics/Mechanisms/Lacroix.corrected.2000-POLIMI4BremboRevised/kinetics;
+	@Output						Output;
+	
+	@DetailedSurfaceChemistry	false;
+	@GasDaeSpecies				CH4;
+	@SurfaceDaeSpecies			H(S);
+
+	@Type						2D;
+	@Symmetry					Cylindrical;
+		
+	@PorousMedium				porous-medium;
+	@HeterogeneousMechanism 	heterogeneous-mechanism;
+	
+	@InletStream				inlet-stream;
+	@InitialConditions			initial-conditions;
+
+	@ResidenceTime				0.1 s;
+		
+	@XPoints					15;
+	@YPoints					15;
+	@RadiusInternal				80 mm;
+	@RadiusExternal				141 mm;
+	@YLength		   			34.5 mm;
+
+	@XStretchingFactor			1;
+	@YStretchingFactor			1;
+
+	@DiskFromCFD 				Disk.xml;
+	
+	@TimeTotal			    	70  h;
+	@DaeTimeInterval		 	 6  h;
+	@TecplotTimeInterval			 6  h;
+	
+	@DaeParameters				dae-parameters;
+	
+	@OdeEndTime					30 s;
+	@OdeParameters				ode-parameters;
+	
+	@OnTheFlyROPA				on-the-fly-ropa;
+}
+
+Dictionary on-the-fly-ropa
+{
+	@Species	C(B) C.(S) H(S) CH.CH2(S) CHCH.(S) CH2CH2.(S);
+}
+
+Dictionary Surface-CARBON
+{
+	@SurfaceFractions 			Hz(S) 0.75 
+								H(S) 0.25;
+								
+	@SiteNonConservation		false;
+}
+
+Dictionary porous-medium
+{
+	@FiberRadius				4.125 micron;
+	@FiberDensity				1780 kg/m3;
+	@InitialPorosity			0.73;
+	@PorousSubstrate			polynomial_onehalf;
+}
+
+Dictionary inlet-stream
+{	
+	@Temperature	1110 C;
+	@Pressure		15e3 Pa;
+	
+	@Moles	CH4  97.842
+			C2H6 1.6160
+			C3H8 0.0700
+			N2   0.4110;
+}
+
+Dictionary initial-conditions
+{	
+	@Temperature		1110 C;
+	@Pressure			15e3 Pa;
+	
+	@MoleFractions		N2  0.04 
+						CH4 0.96;
+}
+
+Dictionary ode-parameters
+{
+	@RelativeTolerance		1e-7;
+	@AbsoluteTolerance		1e-14;
+	@MeanResidualThreshold	1.e-8;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@Jacobian			Band;
+	@SparseSolver		Pardiso;
+	@Preconditioner		ILUT;
+	
+	//Sparse solvers: EigenSparseLU | EigenBiCGSTAB | EigenGMRES | EigenDGMRES
+	//                Pardiso       | SuperLUSerial | UMFPack
+	
+	//Preconditioners: ILUT | diagonal
+	
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-11;
+	@VerbosityLevel			1;
+}
+
+// ----------------------------------------------------------- //
+//	Unused Dictionaries for 2D reactors with detailed kinetics //
+// ----------------------------------------------------------- //
+
+Dictionary heterogeneous-mechanism
+{
+	@HomogeneousReactions		true;
+	@HeterogeneousReactions		true;
+	
+	@GraphiteDensity		2000 kg/m3;
+	@HeterogeneousMechanism		Huttinger;
+	@HydrogenInhibition		Becker;
+	
+	@HeterogeneousReactionRatesMultiplier 1.;
+}
+
+// ----------------------------------------------------------- //
+//	Unused Dictionaries for 2D reactors with disk input        //
+// ----------------------------------------------------------- //
+
+Dictionary plug-flow-reactor
+{
+	@Velocity				45 cm/s;
+	@InletLength				2.5 mm;
+	@HydraulicDiameter			3.5 mm;
+	@AsymptoticNusselt			4.00;
+	@InternalBoundaryLayer			false;
+	@GeometricPattern			OneSide;
+	@Coupling				false;
+}
