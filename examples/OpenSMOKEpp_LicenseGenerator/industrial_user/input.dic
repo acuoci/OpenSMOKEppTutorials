@@ -16,12 +16,13 @@ Dictionary LicenseGenerator
 {
 		@StartingDate		2026-Jan-01;
 		@ExpirationDate		2027-Jan-01;
-		@UserName		academic_user;
+
+		@UserName		industrial_user;
 		@UserEmail		none;
 		@UserOrganization	none;
 
-		@Type			Academic;
+		@Type			Commercial;
 		@Version		0.23.0;
-		@MaxSpecies		10000;
+		@MaxSpecies		200;
 		@Solvers		All;
 }

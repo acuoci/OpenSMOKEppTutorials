@@ -14,8 +14,9 @@
 
 Dictionary LicenseGenerator
 {
-		@StartingDate		2025-Apr-01;
-		@ExpirationDate		2026-Apr-01;
+		@StartingDate		2026-Jan-01;
+		@ExpirationDate		2027-Jan-01;
+]
 		@UserName		website_license;
 		@UserEmail		none;
 		@UserOrganization	none;
