@@ -1,0 +1,59 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ReactorNetwork
+{
+		@KineticsPreProcessor 		kinetic-mechanism;
+		
+		@MinIterations				5;
+		@MaxIterations				30;
+		
+		@AtomicErrorThreshold			1e-5;
+		@NonIsothermalErrorThreshold	1e-4;
+		
+		@PlugFlowReactors			0	input.pfr.0.dic
+									1	input.pfr.1.dic
+									2	input.pfr.2.dic
+									3	input.pfr.3.dic
+									5	input.pfr.5.dic ;
+									
+		@PerfectlyStirredReactors	4	input.cstr.4.dic;
+		
+		@InternalConnections	0 1   	150.
+								1 2		190.
+								2 3     220.
+								3 3      20.
+								3 2      30.
+								3 1      40.
+								3 0      50.
+								3 5     100.
+								4 5      30.
+								5 4      10.;
+								
+		@InputStreams			0 100.
+								4  20.;
+								
+		@OutputStreams			5 120.;
+		
+		@SpeciesToMonitor		NC7H16 CH4 CO;
+		
+		@VerbosityLevel			1;					
+}
+
+Dictionary kinetic-mechanism
+{
+		@Kinetics		../kinetics/POLIMI_PRF_PAH_LT_1412.CKI;
+		@Thermodynamics	../kinetics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}

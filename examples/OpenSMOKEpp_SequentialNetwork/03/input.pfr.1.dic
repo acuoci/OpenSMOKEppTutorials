@@ -1,0 +1,37 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+		@KineticsFolder			dummy;
+		
+		@Type					NonIsothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@ResidenceTime			0.01 s;
+		@Velocity				1 cm/s;
+		
+		@ConstantPressure		true;
+		
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	300.  	K ; 
+		@Pressure      	101325 	Pa;
+		
+		@MassFractions	N2 1 ;
+}
+
