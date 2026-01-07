@@ -182,6 +182,7 @@ Dictionary fiber
 
 Dictionary liquid-properties
 {
+		@Density	AdditiveVolumes;
 		@Fugacity	Raoult;
 		@Activity	Ideal;
 }

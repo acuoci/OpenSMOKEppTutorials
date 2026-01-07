@@ -14,15 +14,15 @@
 
 Dictionary LicenseGenerator
 {
-		@StartingDate		2024-Jun-01;
-		@ExpirationDate		2027-Jun-01;
+		@StartingDate		2026-Jan-01;
+		@ExpirationDate		2028-Jan-01;
 
 		@UserName		creck_lab;
 		@UserEmail		alberto.cuoci(at)polimi.it;
 		@UserOrganization	Politecnico di Milano;
 
 		@Type			Academic;
-		@Version		0.22.0;
+		@Version		0.23.0;
 		@MaxSpecies		100000;
 		@Solvers		All;
 }

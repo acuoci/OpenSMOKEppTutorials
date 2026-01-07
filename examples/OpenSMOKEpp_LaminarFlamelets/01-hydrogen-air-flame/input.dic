@@ -21,7 +21,6 @@ Dictionary LaminarFlamelets
 	@StoichiometricScalarDissipationRates	1e-6 1e-5 1e-3 1e-1 1e0 1e0 1e2 1e3 1e4 Hz;
 	@EnthalpyDefects						0 250 500 750 1000 kJ/kg;
     
-    
     @EquilibriumCalculations 	true;
 	@Output		                Output;
 	
