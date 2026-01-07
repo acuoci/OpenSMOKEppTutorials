@@ -8,12 +8,15 @@ BzzFile.txt
 Output/
 Output-*/
 Output.*/
+OutputXML*/
 kinetics-*/
 license.dat
 test_*/
+test-*/
 webuser_license/
 kinetics*/
 log*
+PolimiSootModel.out
 
 #Microsoft Visual studio
 ########################
