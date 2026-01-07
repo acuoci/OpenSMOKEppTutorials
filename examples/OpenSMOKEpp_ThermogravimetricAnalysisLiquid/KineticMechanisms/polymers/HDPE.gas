@@ -1,0 +1,41 @@
+ELEMENTS
+C H O N HE
+END
+SPECIES
+
+N2	HE
+
+!MID-CHAINS
+ P-HDPE-P_S  P-HDPE-P    P-NC40H79-P 
+
+!END-CHAINS
+ P-NC40H81   P-NC40H79   P-NC40H80   P-NC40H80_T P-NC40H78   
+ P-NC40H78_A 
+
+!unreactive LMW
+ CH4         C2H6        C3H8        NC4H10      NC5H12      
+ NC6H14      NC7H16      NC8H18      NC9H20      NC10H22     
+ NC11H24     NC12H26     C2H4        C3H6        C4H8-1      
+ NC5H10      NC6H12      NC7H14      NC8H16      NC9H18      
+ NC10H20     NC11H22     NC12H24     C4H6        LC5H8       
+ DIALLYL     NC7H12      NC8H14      NC9H16      NC10H18     
+ NC11H20     NC12H22     
+
+!stable RLMW
+ NC16H34         NC30H62         NC45H92         NC60H122       
+ NC16H32         NC30H60         NC45H90         NC60H120       
+ NC16H30         NC30H58         NC45H88         NC60H118       
+
+!radicals RLMW
+ NC16H33         NC30H61         NC45H91         NC60H121       
+ NC16H33_T       NC30H61_T       NC45H91_T       NC60H121_T     
+ NC16H31         NC30H59         NC45H89         NC60H119       
+ NC16H31_T       NC30H59_T       NC45H89_T       NC60H119_T     
+ NC16H31_A       NC30H59_A       NC45H89_A       NC60H119_A     
+ NC16H29         NC30H57         NC45H87         NC60H117       
+ NC16H29_A       NC30H57_A       NC45H87_A       NC60H117_A     
+
+END
+
+REACTIONS
+END
