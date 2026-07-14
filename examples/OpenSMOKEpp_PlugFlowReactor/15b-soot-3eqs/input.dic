@@ -1,0 +1,80 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+	@KineticsPreProcessor   POLIMI_PRF_PAH_LT_1412;	
+	
+	@Type			NonIsothermal;
+		
+	@InletStatus          	inlet-mixture;
+		
+	@ResidenceTime		0.1 s;
+		
+	@ConstantPressure	true;
+		
+	@Velocity		1 m/s;
+
+	@MOM			ThreeEquations;	
+}
+
+Dictionary POLIMI_PRF_PAH_LT_1412
+{
+	@Kinetics               ../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_LT_1412.CKI;
+	@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+       	@Output                 kinetics;
+}
+
+Dictionary inlet-mixture
+{
+	@Temperature   	1127.  	K ; 
+	@Pressure       10		atm;
+	@Moles			C3H6 	1.0;
+}
+
+Dictionary ThreeEquations
+{
+        @ThreeEquations                 true;
+
+        @NucleationModel                1;      //          Nucleation model: 0=off, 1=on (default: 1)
+        @SurfaceGrowthModel             1;      //          Surface growth model: 0=off, 1=on (default: 1)
+        @OxidationModel                 1;      //          Oxidation model: 0=off, 1=on (default: 1)
+        @CondensationModel              1;      //          Condensation model: 0=off, 1=on (default: 1)
+        @CoagulationModel               1;      //          Coagulation model: 0=off, 1=on (default: 1)
+
+        @DimerModel                     qssa-rodrigues; // Dimer model: qssa-rodrigues
+
+        @SurfaceChemistryModel          HMOM;             // Surface chemistry model: RC-PAH (default) | HMOM
+        @SootDensity                    1800 kg/m3;       // Density of soot particles (default: 1800 kg/m3)
+        @ThermophoreticModel            1;                // Thermophoretic model: 0=off, 1=on (default: 1)
+
+        @StickingCoefficientModel       constant;
+        @StickingCoefficientConstant    2e-3;
+
+        @SimplifiedPAHMass              false;
+        @PAH                            C10H8;          // Species to be assumed as PAH (example: @PAH C10H8;)
+        @GasConsumption                 true;           // Consumption of PAH is accounted for (default: true)
+        @GasClosureDummySpecies         CSOOT;          // Gas closure dummy species
+
+//      @RadiativeHeatTransfer          true;           //      Radiative heat transfer (default: true)
+//      @PlanckCoefficient              Smooke;         //      Calculation of Planck Coefficient: Smooke (default) | Kent | Sazhin | none
+//      @SchmidtNumber                  50;             //      Schmidt number (default: 50)
+
+        @epsNucleation                  2.2;    //      Collision enhancement factor for nucleation (default: 2.5)
+        @epsCondensation                1.3;    //      Collision enhancement factor for condensation (default: 1.3)
+        @epsCoagulation                 2.2;    //      Collision enhancement factor for coagulation (default: 2.2)
+
+        @DebugMode                      false;
+}
+

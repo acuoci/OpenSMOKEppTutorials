@@ -1,0 +1,69 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+	@KineticsPreProcessor   POLIMI_PRF_PAH_LT_1412;	
+	
+	@Type			NonIsothermal;
+		
+	@InletStatus          	inlet-mixture;
+		
+	@ResidenceTime		0.1 s;
+		
+	@ConstantPressure	true;
+		
+	@Velocity		1 m/s;
+
+	@MOM			HMOM;	
+}
+
+Dictionary POLIMI_PRF_PAH_LT_1412
+{
+	@Kinetics               ../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_PRF_PAH_LT_1412.CKI;
+	@Thermodynamics ../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+       	@Output                 kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1127.  	K ; 
+		@Pressure       10		atm;
+		@Moles			C3H6 	1.0;
+}
+
+Dictionary HMOM
+{
+        @HMOM                           true;
+
+        @PAH                            C10H8;
+        @SimplifiedPAHMass              false;
+        @GasClosureDummySpecies         CSOOT;
+
+        @CollisionDiameterModel         2;
+        @FractalDiameterModel           1;
+        @ThermophoreticModel            1;
+
+        @NucleationModel                1;
+        @SurfaceGrowthModel             1;
+        @OxidationModel                 1;
+        @CondensationModel              1;
+        @CoagulationModel               1;
+        @ContinuousCoagulationModel     1;
+
+        @GasConsumption                 true;
+
+        @DebugMode                      false;
+}
+
