@@ -97,7 +97,7 @@ NC7-OOQOOH     C6H4C2H        C6H5C2H2       RXYLENE        C8H9
 IC8H17         IC8H17-OO      IC8T-QOOH      IC8-QOOH       IC8-OOQOOH     
 INDENYL        RC9H11         C10H7          C10H7O         C10H7CH2       
 C10H6CH3       CH3C10H6O      C12H7          RBIPHENYL      C14H9          
-C16H9          
+C16H9          CSOOT
 END
 REACTIONS
 H+O2=OH+O                                .9600E+15   -.200  16625.0
