@@ -1,0 +1,206 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary UnsteadyPlugFlowReactor
+{
+	@Type				SurfaceReactor;
+	@KineticsFolder			/home/chimica2/cuoci/MyRuns/SurfaceReactor2D/KineticMechanisms/Polimi4BremboRevCom-LacroixV2016NoSplit/kinetics-ske27/;
+	
+	@GasReactions			true;
+	@SurfaceReactions		true;
+	
+	@InletVelocity			10 cm/s;
+	@InletStream 			inlet-stream;
+	@MomentumEquation		true;
+
+	@InitialConditions 		initial-conditions;
+	
+	@Grid				grid;
+	
+	@Output				Output;
+	
+	@FixedTemperatureProfile 	T-Profile;
+
+	@UseDaeSolver			true;
+	@UseNlsSolver			false;
+
+	@InternalDiameterProfile	D-Profile;
+	//@InternalDiameter		45 mm;
+	@NumberOfSections		3;
+
+	@DaeParameters			dae-parameters;
+
+	@PointInterval			40 mm;
+	//@PointList			120 160 200 mm;
+	
+
+	@TimeTotal			4000 s;
+	@TimeInterval			200 s;
+	//@TimeList			10 40 100 400 s;
+}
+
+Dictionary Surface-1-CARBON
+{
+	@SurfaceFractions		H(S) 	0.50
+					Hz(S)	0.50;  
+
+	@SurfaceDensity			0 kmol/m2;
+
+	@ReactionsFromInternalSurface	false;
+	@ReactionsFromParticles		false;
+}
+
+Dictionary Surface-2-CARBON
+{
+	@SurfaceFractions		H(S) 	0.50
+					Hz(S)	0.50;  
+
+	@SurfaceDensity			1.33e-11 kmol/m2;
+
+	@VoidFraction			0.40;
+	@ParticleDiameter		2 mm;
+
+	@ReactionsFromInternalSurface	false;
+	@ReactionsFromParticles		true;		
+}
+
+Dictionary Surface-3-CARBON
+{
+	@SurfaceFractions		H(S) 	0.50
+					Hz(S)	0.50;  
+
+	@SurfaceDensity			0 kmol/m2;
+
+	@ReactionsFromInternalSurface	false;
+	@ReactionsFromParticles		false;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@Jacobian			TridiagonalBlock;
+	
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-10;
+	@MeanResidualThreshold		1e-64;
+	@VerbosityLevel			1;
+}
+
+Dictionary inlet-stream
+{
+	@Temperature   	298.  	K ; 
+	@Pressure      	15000   Pa;
+
+	@MassFractions	CH4	0.50
+			N2	0.50;
+}
+
+Dictionary initial-conditions-1
+{
+	@Temperature   	298.  	K ; 
+	@Pressure      	15000   Pa;
+
+	@MassFractions	CH4	0.50
+			N2	0.50;
+}
+
+Dictionary initial-conditions-2
+{
+	@Temperature   	1273.  	K ; 
+	@Pressure      	15000   Pa;
+
+	@MassFractions	CH4	0.50
+			N2	0.50;
+		
+}
+
+Dictionary initial-conditions-3
+{
+	@Temperature   	298.  	K ; 
+	@Pressure      	15000   Pa;
+
+	@MassFractions	CH4	0.50
+			N2	0.50;
+}
+
+Dictionary grid-1
+{
+	@Length				80 mm;
+	@InitialPoints			14;
+	@Type				stretchedA;
+		
+	@StretchingCoefficient		0.8;
+	@MaxPoints			8;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.05;
+	@CurvatureCoefficient		0.5;
+}
+
+Dictionary grid-2
+{
+	@Length				160 mm;
+	@InitialPoints			96;
+	@Type				stretchedAB;
+
+	@StretchingCoefficient		1.05;
+	@MaxPoints			32;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.05;
+	@CurvatureCoefficient		0.5;
+}
+
+Dictionary grid-3
+{
+	@Length				80 mm;
+	@InitialPoints			14;
+	@Type				stretchedA;
+	
+	@StretchingCoefficient		1.2;
+	@MaxPoints			8;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.05;
+	@CurvatureCoefficient		0.5;
+}
+
+Dictionary T-Profile
+{	
+	@XVariable length;
+	@YVariable temperature;
+		
+	@XUnits mm;
+	@YUnits K;
+		
+	@Profile
+	0       298.
+	80	1273.
+	240	1273.
+	320	298.;
+}
+
+Dictionary D-Profile
+{	
+	@XVariable length;
+	@YVariable length;
+		
+	@XUnits mm;
+	@YUnits mm;
+		
+	@Profile
+	0       45.
+	80	45.
+	240	45.
+	320	45.;
+}
+
+
+

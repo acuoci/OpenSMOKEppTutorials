@@ -12,18 +12,40 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary LicenseGenerator
+Dictionary PlugFlowReactor
 {
-		@StartingDate		2026-Jul-01;
-		@ExpirationDate		2028-Jul-01;
+		@KineticsPreProcessor	POLIMI_H2CO_NOX_1412;
+		
+		@Type			Isothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length			1 cm;
+		
+		@ConstantPressure	true;
+		
+		@Velocity		1 m/s;
 
-		@UserName		creck_lab;
-		@UserEmail		alberto.cuoci(at)polimi.it;
-		@UserOrganization	Politecnico di Milano;
-
-		@Type			Academic;
-		@Version		0.24.0;
-		@MaxSpecies		100000;
-		@Solvers		All;
+		@Options		output-options;
 }
 
+Dictionary	output-options
+{
+		@OutputFolder		Output-pfr;
+}
+
+Dictionary POLIMI_H2CO_NOX_1412
+{
+		@Kinetics		../../../kinetic-mechanisms/POLIMI_1412/Kinetics/POLIMI_H2CO_NOX_1412.CKI;
+		@Thermodynamics		../../../kinetic-mechanisms/POLIMI_1412/Thermodynamics/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	1000.  	K ; 
+		@Pressure      	101325 	Pa;
+		@Moles			H2 2 
+					O2 1 
+					N2 3.76 ;
+}

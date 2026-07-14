@@ -1,0 +1,470 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+Dictionary UnsteadyPlugFlowReactor
+{
+	@Type				BurnerStabilized;
+	@KineticsPreProcessor		POLIMI_SOOT_PCI2019_BIN25_GASIFICATION_BENZENE;
+	
+	@InletStream 			inlet-stream;
+	@CentralStream 			central-stream;
+	@OutletStream			outlet-stream;
+	
+	//@InletVelocity		10 cm/s;
+	@InletMassFlux			0.012624175 kg/m2/s;
+	
+	@Grid				grid;
+	
+	@Output				Output-gasificationc6h6-bin10;
+	
+	@FixedTemperatureProfile 	T-Profile;
+
+	@UseDaeSolver			true;
+	@UseNlsSolver			false;
+
+	@InternalDiameter		45 mm;
+	@SectionLenghts			80 160 80 mm;
+
+	@DaeParameters			dae-parameters;
+
+	@TimeTotal			4000 s;
+	@TimeList			50 100 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3500 4000 s;
+
+	@BatchSpecies			BIN5C                         
+					BIN5B                         BIN5A                         BIN6C                         
+					BIN6B                         BIN6A                         BIN7C                         
+					BIN7B                         BIN7A                         BIN8C                         
+					BIN8B                         BIN8A                         BIN9C                         
+					BIN9B                         BIN9A                         BIN10C                        
+					BIN10B                        BIN10A                        BIN11C                        
+					BIN11B                        BIN11A                        BIN12C                        
+					BIN12B                        BIN12A                        BIN13C                        
+					BIN13B                        BIN13A                        BIN14C                        
+					BIN14B                        BIN14A                        BIN15C                        
+					BIN15B                        BIN15A                        BIN16C                        
+					BIN16B                        BIN16A                        BIN17C                        
+					BIN17B                        BIN17A                        BIN18C                        
+					BIN18B                        BIN18A                        BIN19C                        
+					BIN19B                        BIN19A                        BIN20C                        
+					BIN20B                        BIN20A                        BIN21C                        
+					BIN21B                        BIN21A                        BIN22C                        
+					BIN22B                        BIN22A                        BIN23C                        
+					BIN23B                        BIN23A                        BIN24C                        
+					BIN24B                        BIN24A                        BIN25C                        
+					BIN25B                        BIN25A                        BIN1CJ                        
+					BIN1BJ                        BIN1AJ                        BIN2CJ                        
+					BIN2BJ                        BIN2AJ                        BIN3CJ                        
+					BIN3BJ                        BIN3AJ                        BIN4CJ                        
+					BIN4BJ                        BIN4AJ                        BIN5CJ                        
+					BIN5BJ                        BIN5AJ                        BIN6CJ                        
+					BIN6BJ                        BIN6AJ                        BIN7CJ                        
+					BIN7BJ                        BIN7AJ                        BIN8CJ                        
+					BIN8BJ                        BIN8AJ                        BIN9CJ                        
+					BIN9BJ                        BIN9AJ                        BIN10CJ                       
+					BIN10BJ                       BIN10AJ                       BIN11CJ                       
+					BIN11BJ                       BIN11AJ                       BIN12CJ                       
+					BIN12BJ                       BIN12AJ                       BIN13CJ                       
+					BIN13BJ                       BIN13AJ                       BIN14CJ                       
+					BIN14BJ                       BIN14AJ                       BIN15CJ                       
+					BIN15BJ                       BIN15AJ                       BIN16CJ                       
+					BIN16BJ                       BIN16AJ                       BIN17CJ                       
+					BIN17BJ                       BIN17AJ                       BIN18CJ                       
+					BIN18BJ                       BIN18AJ                       BIN19CJ                       
+					BIN19BJ                       BIN19AJ                       BIN20CJ                       
+					BIN20BJ                       BIN20AJ                       BIN21CJ                       
+					BIN21BJ                       BIN21AJ                       BIN22CJ                       
+					BIN22BJ                       BIN22AJ                       BIN23CJ                       
+					BIN23BJ                       BIN23AJ                       BIN24CJ                       
+					BIN24BJ                       BIN24AJ                       BIN25CJ                       
+					BIN25BJ                       BIN25AJ                       CSOLID ;
+
+	@PolimiSoot			polimi-soot;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+	@Jacobian			TridiagonalBlock;
+	
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-10;
+	@MeanResidualThreshold		1e-64;
+	@VerbosityLevel			1;
+}
+
+Dictionary POLIMI_SOOT_PCI2019_BIN25_GASIFICATION_BENZENE
+{
+		@Kinetics		../KineticMechanisms/POLIMI_SOOT_PCI2019_BIN25_GASIFICATION_BENZENE.CKI;
+		@Thermodynamics		../KineticMechanisms/POLIMI_SOOT_PCI2019.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-stream
+{
+		@Temperature   	273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+				N2	0.933333333
+				H2O     0.066666667;
+}
+
+Dictionary outlet-stream
+{
+		@Temperature   	273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+				N2	0.933333333
+				H2O     0.066666667;
+}
+
+Dictionary grid
+{
+	@Length				320 mm;
+	@InitialPoints			31;
+	@Type				equispaced;
+	
+	@MaxPoints			31;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient		0.05;
+	@CurvatureCoefficient		0.5;
+}
+
+Dictionary T-Profile
+{	
+	@XVariable length;
+	@YVariable temperature;
+		
+	@XUnits mm;
+	@YUnits K;
+		
+	@Profile
+	0       273.
+	80	1273.
+	240	1273.
+	320	273.;
+}
+
+
+Dictionary polimi-soot
+{
+	// Label indicating the soot particles (default: BIN)
+	@SootLabel	BIN;
+
+	// Fractal dimension of soot particles (default: 1.8)
+	@FractalDimension 	1.8;
+
+	// Index of minimum discrete section which is considered soot (default: 5)
+	@SootMinimumSectionSphericalParticles		5;
+	
+	// Index of minimum discrete section from which to apply the fractal dimension (default: 12)
+	@SootMinimumSectionAggregates				13;
+
+	// Linear density: BINstart DENSITYstart BINend DENSITYend (default: 10 1500. 20 1700.)
+	@Density	10 1500. 20 1700.;
+
+	// Write the soot particle size distribution function (PSDF) on file (default: true)
+	@WritePSDF	true;
+
+	// Threshold (soot volume fraction) for writing the PSDF on file (default: 1e-11)
+	@ThresholdForPSDF	1e-11;
+}
+
+Dictionary central-stream-bin25
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN25A          0.021985396              
+		BIN25B          0.021985396              
+		BIN25C 		0.021985396
+		BIN25AJ         0.021985396              
+		BIN25BJ         0.021985396              
+		BIN25CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin20
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN20A          0.021985396              
+		BIN20B          0.021985396              
+		BIN20C 		0.021985396
+		BIN20AJ         0.021985396              
+		BIN20BJ         0.021985396              
+		BIN20CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin16
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN16A          0.021985396              
+		BIN16B          0.021985396              
+		BIN16C 		0.021985396
+		BIN16AJ         0.021985396              
+		BIN16BJ         0.021985396              
+		BIN16CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin12
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN12A          0.021985396              
+		BIN12B          0.021985396              
+		BIN12C 		0.021985396
+		BIN12AJ         0.021985396              
+		BIN12BJ         0.021985396              
+		BIN12CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin10
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN10A          0.021985396              
+		BIN10B          0.021985396              
+		BIN10C 		0.021985396
+		BIN10AJ         0.021985396              
+		BIN10BJ         0.021985396              
+		BIN10CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin8
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN8A          0.021985396              
+		BIN8B          0.021985396              
+		BIN8C 		0.021985396
+		BIN8AJ         0.021985396              
+		BIN8BJ         0.021985396              
+		BIN8CJ		0.021985396;
+		
+}
+
+Dictionary central-stream-bin6
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN6A          0.021985396              
+		BIN6B          0.021985396              
+		BIN6C 	       0.021985396
+		BIN6AJ         0.021985396              
+		BIN6BJ         0.021985396              
+		BIN6CJ	       0.021985396;	
+}
+
+Dictionary central-stream-binOF
+{
+		@Temperature   	1273.  	K ; 
+		@Pressure      	1	atm;
+
+		@MassFractions		    
+		N2		0.810215118
+		H2O		0.057872508
+
+		BIN1C	1.01E-40
+		BIN2C	1.62E-39
+		BIN2B	3.45E-40
+		BIN2A	2.51E-46
+		BIN3C	2.41E-33
+		BIN3B	1.17E-33
+		BIN3A	1.23E-36
+		BIN4C	4.91E-33
+		BIN4B	1.21E-32
+		BIN4A	7.47E-34
+		BIN5C	1.75E-15
+		BIN5B	1.11E-17
+		BIN5A	5.69E-22
+		BIN6C	6.20E-15
+		BIN6B	5.23E-17
+		BIN6A	2.04E-21
+		BIN7C	1.96E-14
+		BIN7B	1.85E-16
+		BIN7A	5.64E-21
+		BIN8C	6.22E-14
+		BIN8B	1.16E-18
+		BIN8A	2.65E-23
+		BIN9C	1.82E-13
+		BIN9B	2.58E-18
+		BIN9A	4.55E-23
+		BIN10C	4.98E-13
+		BIN10B	5.45E-18
+		BIN10A	7.69E-23
+		BIN11C	1.30E-12
+		BIN11B	1.12E-17
+		BIN11A	1.28E-22
+		BIN12C	3.31E-12
+		BIN12B	2.33E-17
+		BIN12A	2.16E-22
+		BIN13C	8.01E-12
+		BIN13B	5.09E-17
+		BIN13A	4.10E-22
+		BIN14C	1.55E-11
+		BIN14B	1.16E-16
+		BIN14A	1.04E-21
+		BIN15C	2.78E-11
+		BIN15B	2.61E-16
+		BIN15A	2.63E-21
+		BIN16C	4.69E-11
+		BIN16B	6.10E-16
+		BIN16A	6.94E-21
+		BIN17C	7.29E-11
+		BIN17B	1.42E-15
+		BIN17A	1.83E-20
+		BIN18C	1.06E-10
+		BIN18B	3.38E-15
+		BIN18A	4.97E-20
+		BIN19C	1.42E-10
+		BIN19B	7.84E-15
+		BIN19A	1.31E-19
+		BIN20C	1.83E-10
+		BIN20B	1.76E-14
+		BIN20A	3.37E-19
+		BIN21C	2.32E-10
+		BIN21B	3.78E-14
+		BIN21A	8.25E-19
+		BIN22C	2.96E-10
+		BIN22B	7.65E-14
+		BIN22A	1.69E-18
+		BIN23C	5.70E-10
+		BIN23B	2.10E-13
+		BIN23A	4.61E-18
+		BIN24C	1.08E-07
+		BIN24B	5.05E-11
+		BIN24A	1.08E-15
+		BIN25C	2.30E-04
+		BIN25B	4.56E-10
+		BIN25A	1.68E-15
+		BIN1CJ	1.39E-22
+		BIN1BJ	6.60E-25
+		BIN1AJ	2.30E-31
+		BIN2CJ	8.75E-22
+		BIN2BJ	6.77E-24
+		BIN2AJ	1.60E-29
+		BIN3CJ	1.50E-20
+		BIN3BJ	5.89E-23
+		BIN3AJ	1.03E-28
+		BIN4CJ	2.78E-19
+		BIN4BJ	1.87E-21
+		BIN4AJ	2.34E-27
+		BIN5CJ	1.00E-18
+		BIN5BJ	2.53E-20
+		BIN5AJ	2.22E-26
+		BIN6CJ	7.10E-18
+		BIN6BJ	2.40E-19
+		BIN6AJ	1.53E-25
+		BIN7CJ	4.41E-17
+		BIN7BJ	1.66E-18
+		BIN7AJ	7.99E-25
+		BIN8CJ	2.78E-16
+		BIN8BJ	1.02E-22
+		BIN8AJ	7.22E-27
+		BIN9CJ	1.63E-15
+		BIN9BJ	4.50E-22
+		BIN9AJ	2.38E-26
+		BIN10CJ	8.90E-15
+		BIN10BJ	1.90E-21
+		BIN10AJ	7.70E-26
+		BIN11CJ	4.65E-14
+		BIN11BJ	7.84E-21
+		BIN11AJ	2.45E-25
+		BIN12CJ	2.37E-13
+		BIN12BJ	3.25E-20
+		BIN12AJ	7.90E-25
+		BIN13CJ	1.15E-12
+		BIN13BJ	1.42E-19
+		BIN13AJ	2.85E-24
+		BIN14CJ	4.45E-12
+		BIN14BJ	6.45E-19
+		BIN14AJ	1.37E-23
+		BIN15CJ	1.59E-11
+		BIN15BJ	2.91E-18
+		BIN15AJ	6.59E-23
+		BIN16CJ	5.37E-11
+		BIN16BJ	1.36E-17
+		BIN16AJ	3.28E-22
+		BIN17CJ	1.63E-10
+		BIN17BJ	6.18E-17
+		BIN17AJ	1.59E-21
+		BIN18CJ	4.73E-10
+		BIN18BJ	2.95E-16
+		BIN18AJ	8.10E-21
+		BIN19CJ	1.27E-09
+		BIN19BJ	1.37E-15
+		BIN19AJ	3.98E-20
+		BIN20CJ	3.27E-09
+		BIN20BJ	6.14E-15
+		BIN20AJ	1.89E-19
+		BIN21CJ	8.27E-09
+		BIN21BJ	2.64E-14
+		BIN21AJ	8.56E-19
+		BIN22CJ	2.11E-08
+		BIN22BJ	1.07E-13
+		BIN22AJ	3.48E-18
+		BIN23CJ	8.10E-08
+		BIN23BJ	5.87E-13
+		BIN23AJ	1.91E-17
+		BIN24CJ	3.05E-05
+		BIN24BJ	2.81E-10
+		BIN24AJ	9.03E-15
+		BIN25CJ	0.131651592834798
+		BIN25BJ	5.09E-09
+		BIN25AJ	2.82E-14
+		CSOLID	0.00E+00 ;
+}
+
+
+
