@@ -1,0 +1,126 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary CounterFlowFlame1D
+{
+	@Type					CounterFlowDiffusion;
+	@KineticsPreProcessor	kinetics;
+	
+	@Backup					../01-Baseline/Output/Output.xml;
+	@MOM					ThreeEquations;
+	
+	@FuelStream 	fuel-stream;
+	@OxidizerStream	oxidizer-stream;
+	
+	@FuelVelocity		19.5 cm/s;
+	@OxidizerVelocity	19.5 cm/s;
+	
+	@Grid			grid;
+	
+	@Output			Output;
+	
+	@EigenValueStartingGuess	-100 kg/m3/s2;
+	@PeakMixture				peak-mixture;
+	@InitialProfiles			linear;
+	@PeakPosition				 8 mm;
+	@MixingZoneWidth			 8 mm;
+	
+	@DaeParameters				dae-parameters;
+}
+
+Dictionary kinetics
+{
+	@Kinetics		../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Kinetics/POLIMI_C2H4_53_AR.CKI;
+	@Thermodynamics	../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Thermodynamics/POLIMI_REDUCED_1410.CKT;
+	@Transport 		../../../../kinetic-mechanisms/POLIMI_Skeletal_1410/Transport/POLIMI_REDUCED_1410.TRC;
+	@Output			kinetics;
+}
+
+Dictionary ThreeEquations
+{
+        @ThreeEquations                 true;
+
+        @NucleationModel                1;      //          Nucleation model: 0=off, 1=on (default: 1)
+        @SurfaceGrowthModel             1;      //          Surface growth model: 0=off, 1=on (default: 1)
+        @OxidationModel                 1;      //          Oxidation model: 0=off, 1=on (default: 1)
+        @CondensationModel              1;      //          Condensation model: 0=off, 1=on (default: 1)
+        @CoagulationModel               1;      //          Coagulation model: 0=off, 1=on (default: 1)
+
+        @DimerModel                     qssa-rodrigues; // Dimer model: qssa-rodrigues
+
+        @SurfaceChemistryModel          HMOM;             // Surface chemistry model: RC-PAH (default) | HMOM
+        @SootDensity                    1800 kg/m3;       // Density of soot particles (default: 1800 kg/m3)
+        @ThermophoreticModel            1;                // Thermophoretic model: 0=off, 1=on (default: 1)
+
+        @StickingCoefficientModel       constant;
+        @StickingCoefficientConstant    2e-3;
+
+        @SimplifiedPAHMass              false;
+        @PAH                            C10H8;          // Species to be assumed as PAH (example: @PAH C10H8;)
+        @GasConsumption                 true;           // Consumption of PAH is accounted for (default: true)
+        @GasClosureDummySpecies         CSOOT;          // Gas closure dummy species
+
+        @RadiativeHeatTransfer          true;           //      Radiative heat transfer (default: true)
+        @PlanckCoefficient              Smooke;         //      Calculation of Planck Coefficient: Smooke (default) | Kent | Sazhin | none
+        @SchmidtNumber                  50;             //      Schmidt number (default: 50)
+
+        @epsNucleation                  2.2;    //      Collision enhancement factor for nucleation (default: 2.5)
+        @epsCondensation                1.3;    //      Collision enhancement factor for condensation (default: 1.3)
+        @epsCoagulation                 2.2;    //      Collision enhancement factor for coagulation (default: 2.2)
+                          
+	@DebugMode			false;
+}
+
+Dictionary fuel-stream
+{
+	@Moles			C2H4 1;
+						
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary oxidizer-stream
+{
+	@Moles			O2 0.24 N2 0.76;
+					
+	@Temperature	300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary peak-mixture
+{
+	@Moles			CO2 0.15 H2O 0.15 N2 0.70;
+					
+	@Temperature	2000 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					1.42 cm;
+	@InitialPoints			15;
+	@Type					equispaced;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.25;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver				OpenSMOKE++;
+	@RelativeTolerance		1e-6;
+	@AbsoluteTolerance		1e-12;
+}
