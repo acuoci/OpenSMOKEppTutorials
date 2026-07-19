@@ -12,109 +12,46 @@
 //             http://creckmodeling.chem.polimi.it/                //
 //-----------------------------------------------------------------//
 
-Dictionary CounterFlowFlame1D
+Dictionary BatchReactor
 {
-	@Type					CounterFlowDiffusion;
-	@KineticsPreProcessor	CRECK_2003_HT_TTIP;
-	
-	@Backup			../01-Baseline/Output/Output.xml;
-	@MOM			MetalOxide;
-	
-	@FuelStream 			fuel-stream;
-	@OxidizerStream			oxidizer-stream;
-	
-	// Strain rate: 50 1/s
-	@FuelVelocity			55.59 cm/s;
-	@OxidizerVelocity		18.75 cm/s;
+		@KineticsPreProcessor	CRECK_2003_HT_TTIP;
+		
+		@Type			NonIsothermal-ConstantPressure;
+		@MOM			MetalOxide;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime		0.01 s;
 
-	@Soret				true;
-	
-	@Grid				grid;
-	
-	@Output				Output;
-	
-	@InitialTemperatureProfile 		T-Profile;
-	@EigenValueStartingGuess		-100 kg/m3/s2;
-	
-	@InitialProfiles			linear;
-	@PeakPosition				7 mm;
-	@MixingZoneWidth			3 mm;
-
-	@Radiation					false;
-	
-	@UseDaeSolver				true;
-	@UseNlsSolver				false;
+		@Options		output-options;
 }
 
 Dictionary CRECK_2003_HT_TTIP
 {
-		@Kinetics		../../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.chem;
-		@Thermodynamics	../../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.thermo;
-		@Transport		../../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.trans;
-		@Output			kinetics;
+		@Kinetics	../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.chem;
+		@Thermodynamics	../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.thermo;
+		@Transport	../../../kinetic-mechanisms/CRECK_2003/HT_TTIP/CRECK_2003_TOT_HT_TTIP.trans;
+		@Output		kinetics;
 }
 
-Dictionary fuel-stream
+Dictionary initial-mixture
 {
-	@MassFractions		C12H28O4TI 	0.0630 
-						AR			0.2910
-						H2			0.6460;
-						
-	@Temperature		380 K;
-	@Pressure			1 atm;
-}
+	@MassFractions          C12H28O4TI      0.05
+				H2		0.05
+				O2		0.20
+				N2		0.70;
 
-Dictionary oxidizer-stream
-{
-	@MoleFractions	O2 0.21
-					N2 0.79;
-					
-	@Temperature	412 K;
-	@Pressure		1 atm;
-}
-
-Dictionary grid
-{
-	@Length				15 mm;
-	@InitialPoints		15;
-	@Type				equispaced;
-	
-	@MaxPoints				200;
-	@MaxAdaptivePoints		10;
-	@GradientCoefficient	0.05;
-	@CurvatureCoefficient	0.5;
-}
-
-Dictionary T-Profile
-{	
-	@XVariable length;
-	@YVariable temperature;
-		
-	@XUnits mm;
-	@YUnits K;
-		
-	@Profile
-	0	380
-	2	380
-	6	2200
-	10	2200
-	13	412
-	15	412;
-}
-
-Dictionary dae-parameters
-{
-	@DaeSolver				OpenSMOKE++;
-	@RelativeTolerance		1e-6;
-	@AbsoluteTolerance		1e-10;
+	@Temperature   	1000.   K ; 
+	@Pressure      	1       atm ;
 }
 
 Dictionary MetalOxide
 {
         @MetalOxide                     true;
+		@ClosureModel			monodisperse;	// Closure model: monodisperse | lognormal
 
         @NucleationModel                1;      //          Nucleation model: 0=off, 1=on (default: 1)
-        @SinteringModel                 0;      //          Sintering growth model: 0=off, 1=on (default: 1)
+        @SinteringModel                 1;      //          Sintering growth model: 0=off, 1=on (default: 1)
         @CondensationModel              1;      //          Condensation model: 0=off, 1=on (default: 1)
         @CoagulationModel               1;      //          Coagulation model: 0=off, 1=on (default: 1)
         @ThermophoreticModel            0;      //          Thermophoretic model: 0=off, 1=on (default: 1)
@@ -146,3 +83,7 @@ Dictionary MetalOxide
         @DebugMode                      false;
 }
 
+Dictionary output-options
+{
+	@OutputFolder	Output-monodisperse;
+}

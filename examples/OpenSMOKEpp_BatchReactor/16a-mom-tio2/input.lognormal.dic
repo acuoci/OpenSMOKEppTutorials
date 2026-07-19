@@ -22,6 +22,8 @@ Dictionary BatchReactor
 		@InitialStatus          initial-mixture;
 		
 		@EndTime		0.01 s;
+
+		@Options		output-options;
 }
 
 Dictionary CRECK_2003_HT_TTIP
@@ -46,6 +48,7 @@ Dictionary initial-mixture
 Dictionary MetalOxide
 {
         @MetalOxide                     true;
+	@ClosureModel			lognormal;	// Closure model: monodisperse | lognormal
 
         @NucleationModel                1;      //          Nucleation model: 0=off, 1=on (default: 1)
         @SinteringModel                 1;      //          Sintering growth model: 0=off, 1=on (default: 1)
@@ -80,4 +83,7 @@ Dictionary MetalOxide
         @DebugMode                      false;
 }
 
-
+Dictionary output-options
+{
+	@OutputFolder	Output-lognormal;
+}
