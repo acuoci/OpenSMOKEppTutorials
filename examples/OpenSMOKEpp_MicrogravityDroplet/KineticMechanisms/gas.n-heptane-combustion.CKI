@@ -48,7 +48,7 @@ NC7H13                        NC7H15                        C6H4C2H
 C6H5C2H2                      RXYLENE                       INDENYL                       
 C10H7                         C10H7O                        RTETRALIN                     
 C10H7CH2                      C12H7                         RBIPHENYL                     
-C14H9                         C16H9                                                                  
+C14H9                         C16H9							CSOOT                                                                  
 END
 
 REACTIONS
